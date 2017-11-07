@@ -8,7 +8,6 @@ public class Main {
             ArrayList list = new ArrayList();
 
             int f=0, vvod=0, n=0, index=0, numb=0;
-            int a[] = new int[100];
 
             while(f!=6) {
 
@@ -19,22 +18,23 @@ public class Main {
                 switch(f) {
                     case 1:
                         n = scanner.nextInt();
+                        list.createMas(n);
                         break;
                     case 2:
                         vvod = scanner.nextInt();
-                        list.DobavK(a, n, vvod);
+                        list.addToEnd(n, vvod);
                         break;
                     case 3:
                         index = scanner.nextInt();
-                        list.Delite(index, a, n);
+                        list.Delete(index, n);
                         break;
                     case 4:
                         numb = scanner.nextInt();
                         index = scanner.nextInt();
-                        list.VstavK(index, a, numb, n);
+                        list.addTo(index, numb, n);
                         break;
                     case 5:
-                        list.Vivod(a, n);
+                        list.outPutMas(n);
                         break;
                     //case 6:
                     //	System.exit(0);
