@@ -2,7 +2,7 @@ package ru.itis;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Main {
 
@@ -13,12 +13,12 @@ public class Main {
         Plane plane1 = new Plane("Air", 123);
         Tank tank1 = new Tank("T-34", 1945);
 
-        TractorBelarus tractor1 = new TractorBelarus("Belarus", 228);
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        System.out.println("Potato = " + n);
+        TractorBelarus tractor1 = new TractorBelarus("Belarus", 228, 13);
+        //Scanner scanner = new Scanner(System.in);
+        //int n = scanner.nextInt();
 
-        ParkingPlace parkingPlace1 = new ParkingPlace(LocalTime.parse("00:00:00"), LocalTime.parse("02:00:00"));
+
+        ParkingPlace parkingPlace1 = new ParkingPlace(LocalTime.parse("00:00:00"), LocalTime.parse("18:00:00"));
 
         car1.setParkingPlace(parkingPlace1);
         car1.goToParking();

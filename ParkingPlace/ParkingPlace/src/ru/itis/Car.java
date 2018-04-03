@@ -1,9 +1,9 @@
 package ru.itis;
 
 public class Car {
-    private int number;
-    private String model;
-    private ParkingPlace parkingPlace;
+    protected int number;
+    protected String model;
+    protected ParkingPlace parkingPlace;
 
     public Car(String model, int number) {
         this.model = model;
