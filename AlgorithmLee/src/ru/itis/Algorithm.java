@@ -5,11 +5,13 @@ import java.util.Arrays;
 public class Algorithm {
     private int[][] space;
     private final static int WALL = -2;
-    private final static int FREE = 0;
+    private final static int FREE = -1;
     private Point start;
     private Point end;
     //private Point way;
     private int position = 0;
+    private int step;
+
 
     public void searchWay(int [][] labyrinth, Point start, Point end) {
         this.space = new int[labyrinth.length][labyrinth[0].length];
@@ -52,10 +54,13 @@ public class Algorithm {
                 }
             }
             position++;
+
             if(position > space.length * space[0].length) {
                 throw new WayNotFoundException();
             }
         }
+        step = position;
+        buildWay();
     }
 
     public void marking(int x, int y) {
@@ -73,6 +78,43 @@ public class Algorithm {
         }
     }
 
+    public void buildWay() {
+        space[end.getX()][end.getY()] = 0;
+        while (space[start.getX()][start.getY()] == -5) {
+            if(step != 0) {
+                searchWay(end.getX(), end.getY());
+            }
+            else {
+                space[start.getX()][start.getY()] = 0;
+            }
+        }
+    }
+
+    public void searchWay(int x, int y) {
+        if(space[x - 1][y] == step - 1) {
+            space[x - 1][y] = 0;
+            end.setX(x - 1);
+            step--;
+        } else {
+            if(space[x + 1][y] == step - 1) {
+                space[x + 1][y] = 0;
+                end.setX(x + 1);
+                step--;
+            } else {
+                if(space[x][y - 1] == step - 1) {
+                    space[x][y - 1] = 0;
+                    end.setY(y - 1);
+                    step--;
+                } else {
+                    if(space[x][y + 1] == step - 1) {
+                        space[x][y + 1] = 0;
+                        end.setY(y + 1);
+                        step--;
+                    }
+                }
+            }
+        }
+    }
     public int getPosition() {
         return position;
     }
