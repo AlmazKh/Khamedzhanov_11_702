@@ -7,6 +7,7 @@ public class Main {
 	    map.put("Marsel", 24);
 	    map.put("Almaz", 19);
 	    map.put("Marsel", 20);
+	    map.put("Richard", 13);
 
     }
 }

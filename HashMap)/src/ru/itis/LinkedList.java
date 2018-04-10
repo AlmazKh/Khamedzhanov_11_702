@@ -48,4 +48,21 @@ public class LinkedList<K, V> {
     public int size() {
         return count;
     }
+
+    public void replace(int index, K key, V value) {
+        if (count == 1){
+            head = new Node(key,value);
+            tail = head;
+        }else {
+            Node node = get(index);
+            Node newNode = new Node(key, value);
+
+            newNode.prev = node.prev;
+            newNode.next = node.next;
+            newNode.key = node.key;
+            newNode.value = node.value;
+
+        }
+    }
+
 }

@@ -21,6 +21,12 @@ public class HashMap<K, V> {
             list[index] = new LinkedList<>();
             list[index].add(key, value);
         } else {
+            for (int i = 0; i < list[index].size(); i++) {
+                if (list[index].get(i).key.hashCode() == key.hashCode() && (list[index].get(i).key.equals(key))) {
+                    list[index].replace(i, key, value);
+                    return;
+                }
+            }
             list[index].add(key,value);
         }
     }
