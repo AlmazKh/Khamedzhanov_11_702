@@ -1,6 +1,6 @@
 package ru.itis;
 
-public class LinkedList<K, V> {
+public class LinkedList<K extends Comparable<K>, V extends Comparable<V>> {
     public class Node {
         K key;
         V value;

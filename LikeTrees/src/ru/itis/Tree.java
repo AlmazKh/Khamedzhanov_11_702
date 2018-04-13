@@ -9,8 +9,8 @@ public class Tree {
     private int [] arr;
     private int M = 0;
 
-   public void setValues() throws Exception {
-       FileInputStream input = new FileInputStream("input.txt");
+   public void setValues(String name) throws Exception {
+       FileInputStream input = new FileInputStream(name);
        Scanner scanner = new Scanner(input);
 
        n = Integer.parseInt(scanner.next());
@@ -31,11 +31,13 @@ public class Tree {
            ways[i] = upgrade(i);
        }
        for(int i = 0; i < ways.length; i++) {
-           if(ways[i]/k == 1) {
+           /*if(ways[i]/k == 1) {
                ways[i] = 0;
-           }
-           M += ways[i]/k;
-           ways[i] -= (ways[i]/k)*(k - 1);
+           }*/
+         while(ways[i] > k) {
+             M += ways[i]/k;
+             ways[i] -= (ways[i]/k)*(k - 1);
+         }
        }
    }
 

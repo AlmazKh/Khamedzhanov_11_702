@@ -2,7 +2,7 @@ package ru.itis;
 
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-public class HashMap<K, V> {
+public class HashMap<K extends Comparable<K>, V extends Comparable<V>> implements Map<K, V>{
     private LinkedList<K, V> []list;
     private static final int COUNT = 16;
 
