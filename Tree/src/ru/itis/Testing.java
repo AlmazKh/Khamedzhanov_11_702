@@ -69,5 +69,4 @@ public class Testing {
         Assert.assertFalse(tree.equals(this.tree));
     }
 
-
 }

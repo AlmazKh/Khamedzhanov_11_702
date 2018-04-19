@@ -47,6 +47,15 @@ public class TreeBstImpl<T extends Comparable<T>> implements Tree<T> {
         return root;
     }
 
+
+    private Node minimum(Node root){
+        Node current = root;
+        while (current.left!=null){
+            current = current.left;
+        }
+        return current;
+    }
+
     //TODO:
     public boolean remove(T value) {
         Node node = find(value);
@@ -78,16 +87,16 @@ public class TreeBstImpl<T extends Comparable<T>> implements Tree<T> {
                     return true;
                 }
             } else {   //удаляемый элемент имеет двух потомков
-                Node successor = next(node);
-                node.value = successor.value;
-                if (successor.parent.left == successor) {
-                    successor.parent.left = successor.right;
-                    if (successor.right != null)
-                        successor.right.parent = successor.parent;
+                Node min = next(node);
+                node.value = min.value;
+                if (min.parent.left == min) {
+                    min.parent.left = min.right;
+                    if (min.right != null)
+                        min.right.parent = min.parent;
                 } else {
-                    successor.parent.right = successor.right;
-                    if (successor.right != null)
-                        successor.right.parent = successor.parent;
+                    min.parent.right = min.right;
+                    if (min.right != null)
+                        min.right.parent = min.parent;
                 }
                 return true;
             }
@@ -121,13 +130,6 @@ public class TreeBstImpl<T extends Comparable<T>> implements Tree<T> {
             y = y.parent;
         }
         return y;
-    }
-
-    private Node minimum(Node node) {
-        if (node.left == null) {
-            return node;
-        }
-        return minimum(node.left);
     }
 
 
