@@ -15,29 +15,43 @@ public class Main {
         int countOfUsers = 0;
         int countOfCars = 0;
 
-        User []users = new User[10];
+        int []ages = new int[100];
         //Car []cars = new Car[10];
         try {
             FileInputStream readOwners = new FileInputStream("users.txt");
             Scanner scanner = new Scanner(readOwners);
-            while (scanner.hasNext()) {
-                ID = scanner.next();
-                name = scanner.next();
-                age = scanner.next();
-                User user = new User(ID, name, age);
-                users[countOfUsers] = user;
-                countOfUsers++;
-            }
-            scanner.close();
             FileInputStream readCars = new FileInputStream("cars.txt");
             Scanner scan = new Scanner(readCars);
+            ID = scanner.next();
+            name = scanner.next();
+            age = scanner.next();
+            carID = scan.next();
+            model = scan.next();
+            ownerID = scan.next();
             while (scan.hasNext()) {
+                while (Integer.parseInt(ID) < Integer.parseInt(ownerID)) {
+                    ID = scanner.next();
+                    name = scanner.next();
+                    age = scanner.next();
+                }
+                if(ID.equals(ownerID)) {
+                   ages[Integer.parseInt(age)]++;
+                }
+                carID = scan.next();
+                model = scan.next();
+                ownerID = scan.next();
+
+            }
+            scanner.close();
+            scan.close();
+
+            /*while (scan.hasNext()) {
                 carID = scan.next();
                 model = scan.next();
                 ownerID = scan.next();
                 //Car car = new Car(carID, model, ownerID);
-                /*cars[countOfCars] = car;
-                countOfCars++;*/
+                *//*cars[countOfCars] = car;
+                countOfCars++;*//*
                     for (int j = 0; j < users.length; j++) {
                         if(ownerID.equals(users[j].getID())) {
                             users[j].countOfCars++;
@@ -45,12 +59,17 @@ public class Main {
                     }
 
             }
-            scanner.close();
+            scanner.close();*/
         } catch (Exception e) {
 
         }
 
-        SearchCars searchCars = new SearchCars();
-        searchCars.search(users);
+       /* SearchCars searchCars = new SearchCars();
+        searchCars.search(users);*/
+       for(int i = 0; i < ages.length; i++) {
+           if(ages[i] != 0) {
+               System.out.println(i + " " + ages[i]);
+           }
+       }
     }
 }
