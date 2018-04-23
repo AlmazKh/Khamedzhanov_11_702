@@ -6,14 +6,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String ID = "";
+        int ID;
         String name = "";
-        String age = "";
+        int age;
         String carID = "";
         String model = "";
-        String ownerID = "";
-        int countOfUsers = 0;
-        int countOfCars = 0;
+        int ownerID;
 
         int []ages = new int[100];
         //Car []cars = new Car[10];
@@ -22,26 +20,30 @@ public class Main {
             Scanner scanner = new Scanner(readOwners);
             FileInputStream readCars = new FileInputStream("cars.txt");
             Scanner scan = new Scanner(readCars);
-            ID = scanner.next();
+            ID = scanner.nextInt();
             name = scanner.next();
-            age = scanner.next();
+            age = scanner.nextInt();
             carID = scan.next();
             model = scan.next();
-            ownerID = scan.next();
+            ownerID = scan.nextInt();
             while (scan.hasNext()) {
-                while (Integer.parseInt(ID) < Integer.parseInt(ownerID)) {
-                    ID = scanner.next();
+                while (ID < ownerID) {
+                    ID = scanner.nextInt();
                     name = scanner.next();
-                    age = scanner.next();
+                    age = scanner.nextInt();
                 }
-                if(ID.equals(ownerID)) {
-                   ages[Integer.parseInt(age)]++;
+                if(ID == ownerID) {
+                   ages[age]++;
                 }
                 carID = scan.next();
                 model = scan.next();
-                ownerID = scan.next();
+                ownerID = scan.nextInt();
 
             }
+            ID = scanner.nextInt();
+            name = scanner.next();
+            age = scanner.nextInt();
+            ages[age]++;
             scanner.close();
             scan.close();
 
