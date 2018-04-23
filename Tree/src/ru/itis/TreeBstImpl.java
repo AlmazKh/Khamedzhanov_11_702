@@ -1,5 +1,7 @@
 package ru.itis;
 
+import java.util.ArrayList;
+
 public class TreeBstImpl<T extends Comparable<T>> implements Tree<T> {
     class Node {
         private T value;
@@ -191,10 +193,28 @@ public class TreeBstImpl<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    //TODO:
+    ArrayList<ArrayList<T>> levels;
     @Override
     public void printByLevels() {
-        //printByLevels(root);
+        levels =  new ArrayList<>();
+        levels(root, 0);
+        for (int i = 0; i < levels.size(); i++) {
+            String sLevel = "";
+            for (int j = 0; j < levels.get(i).size(); j++) {
+                sLevel += String.valueOf(levels.get(i).get(j)) + " ";
+            }
+            if (sLevel != "") System.out.println(sLevel);
+        }
+    }
+
+    private void levels(Node node, int level) {
+        if (node != null) {
+            if (!levels.contains(level)) levels.add(new ArrayList<T>());
+            levels.get(level).add(node.value);
+            level++;
+            levels(node.left, level);
+            levels(node.right, level);
+        }
     }
 
 

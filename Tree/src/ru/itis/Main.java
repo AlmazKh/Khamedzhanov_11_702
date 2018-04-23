@@ -12,5 +12,6 @@ public class Main {
         }
 
         tree.print();
+        tree.printByLevels();
     }
 }
