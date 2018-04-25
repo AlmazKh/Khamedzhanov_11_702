@@ -1,33 +1,28 @@
 package ru.itis;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Algorithm {
-    private int[][] space;
-    private int[][] space2
+    //private int[][] space;
     private final static int WALL = -2;
     private final static int FREE = -1;
     private Point start;
-    //private Point end;
+    private Point end;
     //private Point way;
     private int position = 0;
     private int step;
-    private int floor = 0;
+    private ArrayList<int[][]> list;
 
-
-    public void searchWay(int [][] labyrinth, int [][] labyrinth2,  Point start) {
-        this.space = new int[labyrinth.length][labyrinth[0].length];
-        this.space2 = new int[labyrinth2.length][labyrinth2[0].length];
-
-        for (int i = 0; i < labyrinth.length; i++) {
-            System.arraycopy(labyrinth[i], 0, this.space[i], 0, labyrinth[0].length);
-            System.arraycopy(labyrinth2[i], 0, this.space2[i], 0, labyrinth2[0].length);
-
-        }
+    public void searchWay(ArrayList<int [][]> labyrinth, Point start, Point end) {
+        this.list = new ArrayList<>();
+        this.list.addAll(labyrinth);
         this.start = start;
+        this.end = end;
 
-        if(checking(start)) {
-            setMarks();
+        if(checking(start, end)) {
+            setMarks(); //TODO: переделать все для матриц!!!
         } else {
             throw  new IllegalArgumentException();
         }
@@ -35,8 +30,8 @@ public class Algorithm {
 
     }
 
-    public boolean checking (Point start) {
-        if(space[start.getX()][start.getY()] != WALL) {
+    public boolean checking (Point start, Point end) {
+        if(space[start.getX()][start.getY()] != WALL && space[end.getX()][end.getY()] != WALL) {
             return true;
         }
         else return false;
@@ -45,7 +40,7 @@ public class Algorithm {
     public void setMarks() {
         //this.way = this.start;
         space[start.getX()][start.getY()] = -5; //старт
-        while (floor != 3) {
+        while (space[end.getX()][end.getY()] == FREE) {
             for (int i = 0; i < space.length; i++) {
                 for (int j = 0; j <  space[0].length; j++) {
                     if(space[i][j] == position && position != 0) {
@@ -71,9 +66,6 @@ public class Algorithm {
     public void marking(int x, int y) {
         if(x + 1 < space.length && space[x + 1][y] == FREE) {
             space[x + 1][y] = position + 1;
-            if(x + 1 < space2.length && space2[x + 1][y] == FREE) {
-                space[x + 1][y] = position + 1;
-            }
         }
         if(x - 1 > 0 && space[x - 1][y] == FREE) {
             space[x - 1][y] = position + 1;

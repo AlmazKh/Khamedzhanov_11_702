@@ -16,7 +16,7 @@ public class Threads extends Thread{
     @Override
     public void run() {
         for (int i = start; i < end; i++) {
-            System.out.println(Thread.currentThread().getName());
+            //System.out.println(Thread.currentThread().getName());
             sum += array[i];
         }
     }

@@ -17,7 +17,7 @@ public class Main {
 
 	    for(int i = 0; i < countOfNumbers; i++) {
 	        arr[i] = (int)(Math.random() * 1000);
-            System.out.println(arr[i]);
+           // System.out.println(arr[i]);
             sumFor += arr[i];
         }
         System.out.println(sumFor);

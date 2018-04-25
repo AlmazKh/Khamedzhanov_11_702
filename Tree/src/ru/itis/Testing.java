@@ -54,7 +54,7 @@ public class Testing {
 
     @Test
     public void removeTest(){
-        int[] array = new int[]{4, 8, 2, 5, 6, 10, 1, 3, 6, 7, 4, 5};
+       // int[] array = new int[]{4, 8, 2, 5, 6, 10, 1, 3, 6, 7, 4, 5};
         /*TreeBstImpl<Integer> tree = new TreeBstImpl<>();
         for (int i = 0; i < array.length; i++) {
             tree.insert(array[i]);
