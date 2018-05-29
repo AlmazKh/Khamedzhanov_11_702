@@ -1,4 +1,4 @@
-package ru.itis;
+
 
 import java.io.FileInputStream;
 import java.util.Scanner;
