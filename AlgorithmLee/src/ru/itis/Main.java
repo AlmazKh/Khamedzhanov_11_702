@@ -30,5 +30,7 @@ public class Main {
         lee.searchWay(labyrinth, start, end);
         lee.getSpace();
         System.out.println(lee.getPosition());
+
+
     }
 }
