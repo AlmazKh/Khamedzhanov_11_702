@@ -1,6 +1,6 @@
 package ru.itis;
 
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.Scanner;
 
 
@@ -15,6 +15,9 @@ public class Main {
     }
 
 
+    }
+
+
 
     }
-}
+
