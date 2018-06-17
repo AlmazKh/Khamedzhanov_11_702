@@ -10,7 +10,7 @@ public class MyComparator implements Comparator<Integer> {
 
     private int reversed(int number) {
         int sum = 0;
-        int multi = 0;
+        int multi = 1;
         while (number > 0){
             sum += number % 10;
             multi *= number % 10;

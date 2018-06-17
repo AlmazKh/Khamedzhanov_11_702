@@ -7,7 +7,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(123, 102);
+        List<Integer> list = Arrays.asList(123, 102, 103);
         list.sort(new MyComparator());
         System.out.println(list);
     }
