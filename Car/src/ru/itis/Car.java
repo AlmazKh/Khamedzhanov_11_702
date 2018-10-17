@@ -65,4 +65,12 @@ package ru.itis;
         s = s + n;
         System.out.println("Пробег = " + s + " " );
     }
+
+
+
+
+new DataInputStream(
+	new BufferedInputStream(
+		new FileInputStream("input.txt")))
 }
+
