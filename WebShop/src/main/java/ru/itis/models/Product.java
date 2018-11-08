@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Product {
     private Long id;
-    private String title;
+    private String name;
+    private Integer cost;
 }

@@ -2,10 +2,10 @@ package ru.itis.repositories;
 
 import java.util.List;
 
-public interface CrudRepository<T, V>  {
-    void save(T model);
-    void update(T model);
-    void delete(V id);
-    T findOne(V id);
+public interface CrudRepository<T>  {
     List<T> findAll();
+    T find(Long id);
+    void save(T model);
+    void delete(Long id);
+    void update(T model);
 }

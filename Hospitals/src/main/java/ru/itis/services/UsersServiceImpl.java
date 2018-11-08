@@ -7,13 +7,13 @@ import ru.itis.models.User;
 import ru.itis.repositories.UsersRepository;
 import ru.itis.services.UsersService;
 
-public class UserServiceImpl implements UsersService {
+public class UsersServiceImpl implements UsersService {
 
     private UsersRepository usersRepository;
 
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UsersRepository usersRepository) {
+    public UsersServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }

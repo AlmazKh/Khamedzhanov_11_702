@@ -4,6 +4,6 @@ import ru.itis.models.User;
 
 import java.util.Optional;
 
-public interface UsersRepository extends CrudRepository<User,Long>  {
-    Optional<User> findByPhone(Integer phone);
+public interface UsersRepository extends CrudRepository<User>  {
+    User findByPhone(String phone);
 }

@@ -9,10 +9,13 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @ToString
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private Long id;
 
-    private Integer phone;
+    private String phone;
     private String hashPassword;
     //общие поля
     private String firstName;
@@ -22,7 +25,7 @@ public class User {
     //поля доктора + admin
     private Integer raiting;
     private Hospital hospital;
-    private List<Procedure> procedures;
+    private Procedure procedure;
     //поля пациента
     private Polis polis;
     private List<Reception> receptions;
@@ -33,10 +36,9 @@ public class User {
         return role.equals(Role.ADMIN);
     }
 
-
     public class InnerAdmin {
-        public List<Procedure> getProcedures() {
-            return procedures;
+        public Procedure getProcedure() {
+            return procedure;
         }
     }
 

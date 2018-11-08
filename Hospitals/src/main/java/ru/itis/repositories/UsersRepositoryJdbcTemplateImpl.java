@@ -1,12 +1,17 @@
 package ru.itis.repositories;
 
+import lombok.SneakyThrows;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.User;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
+import java.util.Optional;
 
 
 public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
@@ -16,24 +21,21 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     //language=SQL
     private static final String SQL_SELECT_USER_BY_ID =
-            "select * from shop_user where id = ?";
-
-    //language=SQL
-    private static final String SQL_SELECT_ALL_USERS =
-            "select * from shop_user";
+            "select * from patient where id = ?";
 
     //language=SQL
     private static final String SQL_INSERT_USER =
-            "insert into shop_user(name) values (?)";
+            "insert into patient(name) values (?)";
 
     //language=SQL
-    private static final String SQL_SELECT_BY_NAME =
-            "select * from shop_user where name = ?";
+    private static final String SQL_SELECT_BY_PHONE =
+            "select * from patient where phone = ?";
 
     private RowMapper<User> userRowMapper = (resultSet, i) -> User.builder()
             .id(resultSet.getLong("id"))
-            .name(resultSet.getString("name"))
-            .passwordHash(resultSet.getString("password_hash"))
+            .firstName(resultSet.getString("first_name"))
+            .lastName(resultSet.getString("last_name"))
+            .hashPassword(resultSet.getString("password_hash"))
             .build();
 
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
@@ -42,7 +44,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Override
     public List<User> findAll() {
-        return jdbcTemplate.query(SQL_SELECT_ALL_USERS, userRowMapper);
+        return null;
     }
 
     @Override
@@ -53,7 +55,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Override
     public void save(User model) {
-        jdbcTemplate.update(SQL_INSERT_USER, model.getName());
+        jdbcTemplate.update(SQL_INSERT_USER, model.getPhone());
     }
 
     @Override
@@ -67,9 +69,9 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     }
 
     @Override
-    public User findByName(String name) {
+    public User findByPhone(String phone) {
         try {
-            return jdbcTemplate.queryForObject(SQL_SELECT_BY_NAME, userRowMapper, name);
+            return jdbcTemplate.queryForObject(SQL_SELECT_BY_PHONE, userRowMapper, phone);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

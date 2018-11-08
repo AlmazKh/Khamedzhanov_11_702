@@ -1,7 +1,7 @@
 package ru.itis.servlets;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.itis.form.LoginForm;
+import ru.itis.forms.LoginForm;
 import ru.itis.repositories.AuthRepository;
 import ru.itis.repositories.AuthRepositoryImpl;
 import ru.itis.repositories.UsersRepository;
@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Optional;
 
 @WebServlet("/login")
@@ -30,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUsername("postgres");
         dataSource.setPassword("qwerty007");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/hospital");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/web_shop");
         UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
         AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
         this.service = new LoginServiceImpl(authRepository, usersRepository);
@@ -43,11 +42,11 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String phone = req.getParameter("phone");
+        String name = req.getParameter("name");
         String password = req.getParameter("password");
 
         LoginForm loginForm = LoginForm.builder()
-                .phone(phone)
+                .name(name)
                 .password(password)
                 .build();
 
@@ -62,7 +61,7 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());
             resp.addCookie(cookie);
             resp.setStatus(201);
-            resp.sendRedirect("/starterPageAfterLogin");
+            resp.sendRedirect("/users");
         } else {
             resp.setStatus(403);
         }

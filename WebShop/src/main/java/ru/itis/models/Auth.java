@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Auth {
+
     private Long id;
-    private String name;
-    private String passwordHash;
+    private User user;
+    private String cookieValue;
+
 }
