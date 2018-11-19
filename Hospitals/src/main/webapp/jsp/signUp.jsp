@@ -8,9 +8,86 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-</head>
-<body>
+    <meta charset="utf-8" />
 
+    <title>Title</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body class="text-center" background= "img/wallpaper.jpg">
+
+<div class="container" >
+
+    <div class="row  justify-content-center ">
+
+        <div class="card col-md-4" style="background: #FFF; margin-top: 7vw;">
+
+            <div class="auth-form px-3" id="login" >
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="file:///C:/Users/Almaz/Desktop/HS/starterPage.html#">
+                        <img src="img/logo.png">
+                    </a>
+                </div>
+                <!-- '"` --><!-- </textarea></xmp> -->
+                <form method="post">
+                     <div class="sign-up-form-header p-0">
+                        <h1>Sign up to Hospital Service</h1>
+                    </div>
+
+                    <div class="sign-up-form-body mt-3">
+                        <label for="first_name" style="margin-right: 7vw;" placeholder="Иван" required="">First name</label>
+                        <input type="text" name="first_name" id="first_name" class="form-control input-block" tabindex="1">
+
+                        <label for="last_name" style="margin-right: 7vw;" placeholder="Иванов" required="">Last name</label>
+                        <input type="text" name="last_name" id="last_name" class="form-control input-block" tabindex="2">
+
+                        <div class="radio">
+                            <span>Пол</span>
+                            <label>
+                                <input type="radio" name="gender" value="man">man
+                                <div class="radio-control male"></div>
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="woman">woman
+                                <div class="radio-control female"></div>
+                            </label>
+                        </div>
+
+                        <label for="phone" style="margin-right: 7vw;" placeholder="89677704863" required="">Phone number</label>
+                        <input type="text" name="phone" id="phone" pattern="[0-9]{7,20}" class="form-control input-block" tabindex="3">
+
+                        <label for="password" style="margin-right: 7vw;" required="">Password</label>
+                        <input type="password" name="password" id="password" class="form-control form-control input-block" tabindex="4">
+                        <br>
+                        <input type="submit" name="commit" value="Sign up" tabindex="5" class="btn btn-primary btn-block" >
+                    </div>
+                </form>
+
+                <%--<p class="create-account-callout mt-3">--%>
+                    <%--New to Hospital Service?--%>
+                    <%--<a data-ga-click="Sign in, switch to sign up" href="/singUp">Create an account</a>.--%>
+                <%--</p>--%>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="mt-5 mb-3 text-muted">©2018</p>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
 </html>

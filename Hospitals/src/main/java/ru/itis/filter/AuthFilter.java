@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/users")
+@WebFilter("/starterPageAfterLogin")
 public class AuthFilter implements Filter {
 
     private LoginService service;
@@ -26,7 +26,7 @@ public class AuthFilter implements Filter {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUsername("postgres");
         dataSource.setPassword("qwerty007");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/web_shop");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/hospital");
         UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
         AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
         this.service = new LoginServiceImpl(authRepository, usersRepository);

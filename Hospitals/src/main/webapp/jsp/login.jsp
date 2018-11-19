@@ -9,11 +9,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Login</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -49,34 +47,36 @@
                         <!-- <h1>HS</h1> --></a>
                 </div>
                 <!-- '"` --><!-- </textarea></xmp> -->
-                <form action="/session" accept-charset="UTF-8" method="post">
-                    <input name="utf8" type="hidden" value="✓">
-                    <input type="hidden" name="authenticity_token" value="Bo002FwyKDw8X4AEBtNPa7FXZC+eit+PCOZVGfoXgLyne8Sn7UMF+DVdQrTvTZzyKgV6CUBpOj/rQUkxzchopQ==">
+                <form method="post">
+                    <%--<input name="utf8" type="hidden" value="✓">--%>
+                    <%--<input type="hidden" name="authenticity_token" value="Bo002FwyKDw8X4AEBtNPa7FXZC+eit+PCOZVGfoXgLyne8Sn7UMF+DVdQrTvTZzyKgV6CUBpOj/rQUkxzchopQ==">--%>
                     <div class="auth-form-header p-0">
                         <h1>Sign in to Hospital Service</h1>
                     </div>
 
-                    <div id="js-flash-container">
-                    </div>
+                    <%--<div id="js-flash-container">--%>
+                    <%--</div>--%>
                     <div class="auth-form-body mt-3">
 
                         <label for="login_field" style="margin-right: 7vw;">
-                            Username or email address
+                            Phone number
                         </label>
-                        <input type="text" name="login" id="login_field" class="form-control input-block" tabindex="1" autocapitalize="off" autocorrect="off" autofocus="autofocus">
+                        <input type="text" name="login" id="login_field" class="form-control input-block" tabindex="1">
+                        <%-- autocapitalize="off" autocorrect="off" autofocus="autofocus"--%>
 
                         <label for="password" style="margin-right: 7vw;">
-                            Password <a class="label-link" href="/password_reset">Forgot password?</a>
+                            Password <a class="label-link" href="/starterPage">Forgot password?</a>
                         </label>
                         <input type="password" name="password" id="password" class="form-control form-control input-block" tabindex="2">
                         <br>
-                        <input type="submit" name="commit" value="Sign in" tabindex="3" class="btn btn-primary btn-block" data-disable-with="Signing in…">
+                        <input type="submit" name="commit" value="Sign in" tabindex="3" class="btn btn-primary btn-block" >
+                        <%--data-disable-with="Signing in…"--%>
                     </div>
                 </form>
 
                 <p class="create-account-callout mt-3">
                     New to Hospital Service?
-                    <a data-ga-click="Sign in, switch to sign up" href="/join?return_to=%2FAlmazKh&amp;source=login">Create an account</a>.
+                    <a data-ga-click="Sign in, switch to sign up" href="/singUp">Create an account</a>.
                 </p>
             </div>
         </div>

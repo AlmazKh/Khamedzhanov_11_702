@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String phone = req.getParameter("phone");
+        String phone = req.getParameter("login");
         String password = req.getParameter("password");
 
         LoginForm loginForm = LoginForm.builder()
@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());
             resp.addCookie(cookie);
             resp.setStatus(201);
-            resp.sendRedirect("/starterPageAfterLogin");
+            resp.sendRedirect("/starterPage");
         } else {
             resp.setStatus(403);
         }

@@ -75,19 +75,18 @@
 
 <main role="main" class="container">
 
-    <%--<div class="container">--%>
-        <%--<div class="row">--%>
-            <%--<div class="card col-md-4 " style="background: #FFF; margin-top: 8vw; margin-left: 60vw"   >--%>
-                <%--<p></p>--%>
-                <%--<h2 class="text-center"> Sign in to Hospital Service</h2>--%>
-                <%--<p class="lead">Login or register to get full access <br> to electronic Hospital Services</p>--%>
-                <%--<button type="button" class="btn btn-primary btn-lg">--%>
-                    <%--Sign in </button> <p></p>--%>
-                <%--<button type="button" class="btn btn-success btn-lg">Sign up</button>--%>
-                <%--<p></p>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+    <div class="container">
+        <div class="row">
+            <div class="card col-md-4 " style="background: #FFF; margin-top: 8vw; margin-left: 60vw"   >
+                <p></p>
+                <h2 class="text-center"> Record on the procedure</h2>
+                <p class="lead">Here you can choose the procedures<br> and doctors what you need</p>
+                <button type="button" class="btn btn-primary btn-lg">
+                    Record </button> <p></p>
+                <p></p>
+            </div>
+        </div>
+    </div>
 
     <div class="starter-template">
         <br>

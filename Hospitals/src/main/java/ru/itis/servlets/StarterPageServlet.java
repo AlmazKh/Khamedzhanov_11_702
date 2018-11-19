@@ -42,6 +42,17 @@ public class StarterPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//        UserForm userForm = UserForm.builder()
+//                .firstName(request.getParameter("first_name"))
+//                .lastName(request.getParameter("last_name"))
+//                .build();
+//        service.addUser(userForm);
+//
+//        List<User> users = service.getUsers();
+//        String resultJson = mapper.writeValueAsString(users);
+        response.setStatus(200);
+//        response.setContentType("application/json");
+//        PrintWriter writer = response.getWriter();
+//        writer.write(resultJson);
     }
 }

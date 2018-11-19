@@ -25,7 +25,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     //language=SQL
     private static final String SQL_INSERT_USER =
-            "insert into patient(name) values (?)";
+            "insert into patient(first_name, last_name, gender, phone, password_hash) values (?, ?, ?, ?, ?)";
 
     //language=SQL
     private static final String SQL_SELECT_BY_PHONE =
@@ -35,6 +35,8 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
             .id(resultSet.getLong("id"))
             .firstName(resultSet.getString("first_name"))
             .lastName(resultSet.getString("last_name"))
+            .gender(resultSet.getString("gender"))
+            .phone(resultSet.getString("phone"))
             .hashPassword(resultSet.getString("password_hash"))
             .build();
 
@@ -55,7 +57,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Override
     public void save(User model) {
-        jdbcTemplate.update(SQL_INSERT_USER, model.getPhone());
+        jdbcTemplate.update(SQL_INSERT_USER, model.getFirstName(), model.getLastName(), model.getGender(), model.getPhone(), model.getHashPassword());
     }
 
     @Override

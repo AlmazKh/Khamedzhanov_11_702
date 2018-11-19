@@ -21,29 +21,29 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
-    private Role role;
+//    private Role role;
     //поля доктора + admin
-    private Integer raiting;
-    private Hospital hospital;
-    private Procedure procedure;
+//    private Integer raiting;
+//    private Hospital hospital;
+//    private Procedure procedure;
     //поля пациента
     private Polis polis;
     private List<Reception> receptions;
 
  
 
-    public boolean isAdmin() {
-        return role.equals(Role.ADMIN);
-    }
-
-    public class InnerAdmin {
-        public Procedure getProcedure() {
-            return procedure;
-        }
-    }
-
-    public InnerAdmin asAdmin() {
-        return new InnerAdmin();
-    }
+//    public boolean isAdmin() {
+//        return role.equals(Role.ADMIN);
+//    }
+//
+//    public class InnerAdmin {
+//        public Procedure getProcedure() {
+//            return procedure;
+//        }
+//    }
+//
+//    public InnerAdmin asAdmin() {
+//        return new InnerAdmin();
+//    }
 
 }
