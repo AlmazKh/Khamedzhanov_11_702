@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.models.Product;
+import ru.itis.models.User;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BasketForm {
-    private List<Product> products;
+    private User owner;
+
 }

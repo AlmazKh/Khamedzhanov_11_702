@@ -6,6 +6,6 @@ import ru.itis.models.Basket;
 
 public interface BasketService {
     void addBasket(BasketForm basketForm);
-//    void addProduct(ProductForm);
+    void addProduct(ProductForm productForm);
 
 }
