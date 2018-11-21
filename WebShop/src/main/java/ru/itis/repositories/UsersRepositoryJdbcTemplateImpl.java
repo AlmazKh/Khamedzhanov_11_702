@@ -32,7 +32,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     private RowMapper<User> userRowMapper = (resultSet, i) -> User.builder()
             .id(resultSet.getLong("id"))
-            .name(resultSet.getString("name"))
+            .name(resultSet.getString("product_id"))
             .passwordHash(resultSet.getString("password_hash"))
             .build();
 

@@ -29,7 +29,7 @@
                 type: 'POST',
                 url: '/users',
                 data: {
-                    name: $("#name").val()
+                    product_id: $("#product_id").val()
                 }
             }).done(function (data) {
                 let tableHtml = "";
@@ -40,14 +40,14 @@
                     'id' +
                     '</th>' +
                     '<th>' +
-                    'name' +
+                    'product_id' +
                     '</th>' +
                     '</tr>';
 
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                         '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].name + '</td>' +
+                        '<td>' + data[i].product_id + '</td>' +
                         '</tr>';
                 }
                 tableHtml += '</table>';
@@ -65,7 +65,7 @@
     <input id="name" placeholder="Name">
     <br>
     <button id="send">Send</button>
-    <%--<button onclick="sendUser(document.getElementById('name').value)" id="send">Send</button>--%>
+    <%--<button onclick="sendUser(document.getElementById('product_id').value)" id="send">Send</button>--%>
 </div>
 <div id="users_table">
 

@@ -43,7 +43,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserForm userForm = UserForm.builder()
-                .name(request.getParameter("name"))
+                .name(request.getParameter("product_id"))
                 .build();
         service.addUser(userForm);
 

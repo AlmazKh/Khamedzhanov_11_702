@@ -43,4 +43,9 @@ public class LoginServiceImpl implements LoginService {
     public boolean isExistByCookie(String cookieValue) {
         return authRepository.findByCookieValue(cookieValue).isPresent();
     }
+
+    @Override
+    public User getIdByCookie(String cookieValue) {
+        return authRepository.findOneByCookie(cookieValue).get();
+    }
 }

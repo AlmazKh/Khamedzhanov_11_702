@@ -20,13 +20,11 @@
 </head>
 <script>
     function select(btnId) {
-
             $.ajax({
                 type: 'POST',
                 url: '/products',
                 data: {
-                    name: $("#" + btnId).text(),
-                    cost: 999
+                    product_id: btnId
                 }
             }).done(function (data) {
                 let tableHtml = "";
@@ -34,21 +32,12 @@
                 tableHtml +=
                     '<tr>' +
                     '<th>' +
-                    'id' +
-                    '</th>' +
-                    '<th>' +
-                    'name' +
-                    '</th>' +
-                    '<th>' +
-                    'cost' +
+                    'product' +
                     '</th>' +
                     '</tr>';
-
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
-                        '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].name + '</td>' +
-                        '<td>' + data[i].cost + '</td>' +
+                        '<td>' + data[i].product_id + '</td>' +
                         '</tr>';
                 }
                 tableHtml += '</table>';
@@ -56,6 +45,42 @@
             }).fail(function () {
                 alert('ALL BAD')
             });
+
+            // $.ajax({
+            //     type: 'POST',
+            //     url: '/products',
+            //     data: {
+            //         product_id: $("#" + btnId).text(),
+            //         cost: 999
+            //     }
+            // }).done(function (data) {
+            //     let tableHtml = "";
+            //     tableHtml += '<table>';
+            //     tableHtml +=
+            //         '<tr>' +
+            //         '<th>' +
+            //         'id' +
+            //         '</th>' +
+            //         '<th>' +
+            //         'product_id' +
+            //         '</th>' +
+            //         '<th>' +
+            //         'cost' +
+            //         '</th>' +
+            //         '</tr>';
+            //
+            //     for (let i = 0; i < data.length; i++) {
+            //         tableHtml += '<tr>' +
+            //             '<td>' + data[i].id + '</td>' +
+            //             '<td>' + data[i].product_id + '</td>' +
+            //             '<td>' + data[i].cost + '</td>' +
+            //             '</tr>';
+            //     }
+            //     tableHtml += '</table>';
+            //     $("#products_table").html(tableHtml);
+            // }).fail(function () {
+            //     alert('ALL BAD')
+            // });
 
     }
 </script>
@@ -81,16 +106,59 @@
         <%--</form>--%>
     </div>
 </nav>
-
+<br>
+<br>
+<h2 style="margin-right: auto">User name: ${UserName}</h2>
+<br>
+<br>
 <div>
-    <button onclick="select('product_1')" id="product_1">Product #1</button>
-    <button onclick="select('product_2')" id="product_2">Product #2</button>
-    <button onclick="select('product_3')" id="product_3">Product #3</button>
-    <button id="basket">Basket</button>
-    <%--<button onclick="sendUser(document.getElementById('name').value)" id="send">Send</button>--%>
+    <%--<button onclick="select('product_1')" id="product_1">Product #1</button>--%>
+    <%--<button onclick="select('product_2')" id="product_2">Product #2</button>--%>
+    <%--<button onclick="select('product_3')" id="product_3">Product #3</button>--%>
+    <%--<button id="basket">Basket</button>--%>
+    <%--<button onclick="sendUser(document.getElementById('product_id').value)" id="send">Send</button>--%>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="card-desk col-md-4" >
+            <form method="post">
+                <h2>Leyka</h2>
+                <img class="card-img-top" src="/img/leyka.jpg" alt="Card image cap">
+                <%--<img src="/img/leyka.jpg" width="100" height="1 00">--%>
+                <input  type="hidden" name="product" value="1" tabindex="1">
+                <p><input onclick="select(1)" id="1" type="button" class="btn btn-success btn-block btn-lg" value="Buy"></p>
+            </form>
+        </div>
 
-<div id="products_table">
+        <div class="card-desk col-md-4">
+            <form method="post">
+                <h2>Molotok</h2>
+                <img class="card-img-top" src="/img/molotok.jpg" alt="Card image cap">
+                <%--<img src="/img/molotok.jpg" width="100" height="100">--%>
+                <input  type="hidden" name="product" value="3" tabindex="2">
+                <p><input onclick="select(2)" id="2" type="button" class="btn btn-success btn-block btn-lg" value="Buy"></p>
+            </form>
+        </div>
 
+        <div class="card-desk col-md-4">
+            <form method="post">
+                <h2>Boty</h2>
+                <img class="card-img-top"src="/img/boty.jpg" alt="Card image cap">
+                <%--<img src="/img/boty.jpg" width="100" height="100">--%>
+                <input type="hidden" name="product" value="2" tabindex="3">
+                <p><input onclick="select(3)" id="3" type="button" class="btn btn-success btn-block btn-lg" value="Buy"></p>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="product_table">
+    <table>
+        <c:forEach items="${products}" var="product">
+            <tr>
+                <td>${product.name}</td>
+            </tr>
+        </c:forEach>
+    </table>
 </div>
 
 <script

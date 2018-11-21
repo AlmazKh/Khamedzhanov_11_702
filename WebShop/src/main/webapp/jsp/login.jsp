@@ -30,7 +30,7 @@
 
                 <h1>Sign in to WebShop</h1>
 
-                <%--<label for="login_field">User name</label>--%>
+                <%--<label for="login_field">User product_id</label>--%>
                 <input name="name" id="login_field" placeholder="Name">
                 <br>
                 <%--<label for="password">Password</label>--%>

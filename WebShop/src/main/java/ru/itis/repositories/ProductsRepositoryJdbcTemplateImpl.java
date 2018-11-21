@@ -31,7 +31,7 @@ public class ProductsRepositoryJdbcTemplateImpl implements ProductsRepository {
 
     private RowMapper<Product> productRowMapper = (resultSet, i) -> Product.builder()
             .id(resultSet.getLong("id"))
-            .name(resultSet.getString("name"))
+            .name(resultSet.getString("product_id"))
             .cost(resultSet.getInt("cost"))
             .build();
 

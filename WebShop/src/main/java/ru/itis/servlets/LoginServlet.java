@@ -11,10 +11,7 @@ import ru.itis.services.LoginServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -42,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
+        String name = req.getParameter("product_id");
         String password = req.getParameter("password");
 
         LoginForm loginForm = LoginForm.builder()
@@ -56,6 +53,8 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());
             resp.addCookie(cookie);
             resp.setStatus(201);
+//            HttpSession session = req.getSession();
+//            session.setAttribute("product_id", loginForm);
             resp.sendRedirect("/products");
         } else {
             resp.setStatus(403);
