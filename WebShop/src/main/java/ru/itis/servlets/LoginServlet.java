@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("product_id");
+        String name = req.getParameter("name");
         String password = req.getParameter("password");
 
         LoginForm loginForm = LoginForm.builder()
