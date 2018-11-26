@@ -70,36 +70,12 @@ public class BasketServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-//        String name = currentUser(req).getName();
-////        Cookie[] cookie = req.getCookies();
-////        resp.addCookie(cookie);
-////        LoginForm loginForm = LoginForm.builder()
-////                .product_id(product_id)
-////                .password("qwerty007")
-////                .build();
-//
-////        Optional<String> optionalCookieValue = loginService.login(req.getAttribute("userLogin"));
-////        if (optionalCookieValue.isPresent()) {
-////            Cookie cookie = new Cookie("auth", optionalCookieValue.get());
-////            resp.addCookie(cookie);
-//            List<Product> products = basketRepository.findProductsByName(name);
-//            String resultJson = mapper.writeValueAsString(products);
-//            resp.setStatus(200);
-//            resp.setContentType("application/json");
-//            PrintWriter writer = resp.getWriter();
-//            writer.write(resultJson);
-////        } else {
-////            resp.setStatus(403);
-////        }
-//        String productID = req.getParameter("product_id");
-
-
         Long userId = 1l; //Long.valueOf(req.getParameter("user_id"));
         Long productId = Long.valueOf(req.getParameter("product_id"));
 
-
-        basketService.addBasket(userId, productId);
+//       добавление создание корзины при регистрации
+//        basketService.addBasket(userId, productId);
+        basketService.addProduct(userId, productId);
 
         List<Product> products = basketService.getProductsByUserId(userId);
 

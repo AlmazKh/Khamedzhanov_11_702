@@ -29,8 +29,8 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public void addProduct(ProductForm productForm) {
-
+    public void addProduct(Long userId, Long productId) {
+        basketRepository.addProduct(userId, productId);
     }
 
     @Override

@@ -8,5 +8,6 @@ import java.util.List;
 public interface BasketRepository extends CrudRepository<Basket> {
     List<Product> findProductsByName(String name);
     void addBasket(Long userId, Long productId);
+    void addProduct(Long userId, Long productId);
     List<Product> getProductsByUserId(Long userId);
 }
