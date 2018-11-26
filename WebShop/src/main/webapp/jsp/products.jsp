@@ -11,40 +11,50 @@
 <head>
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
     <title>Products</title>
-</head>
-<script>
-    function select(btnId) {
-            $.ajax({
-                type: 'POST',
-                url: '/products',
-                data: {
-                    product_id: btnId
-                }
-            }).done(function (data) {
-                let tableHtml = "";
-                tableHtml += '<table>';
-                tableHtml +=
-                    '<tr>' +
-                    '<th>' +
-                    'product' +
-                    '</th>' +
-                    '</tr>';
-                for (let i = 0; i < data.length; i++) {
-                    tableHtml += '<tr>' +
-                        '<td>' + data[i].product_id + '</td>' +
-                        '</tr>';
-                }
-                tableHtml += '</table>';
-                $("#products_table").html(tableHtml);
-            }).fail(function () {
-                alert('ALL BAD')
-            });
+    <script>
+        // function selectProduct(btnId) {
+        //     $.ajax({
+        //         type: 'post',
+        //         url: '/products',
+        //         data: {
+        //             product_id: btnId,
+        //             user_id: 1
+        //         }
+        //     }).done(function (data) {
+        //         // alert("ryjgrf");
+        //         // let tableHtml = "";
+        //         // tableHtml += '<table>';
+        //         // tableHtml +=
+        //         //     '<tr>' +
+        //         //     '<th>' +
+        //         //     'product' +
+        //         //     '</th>' +
+        //         //     '</tr>';
+        //         // for (let i = 0; i < data.length; i++) {
+        //         //     tableHtml += '<tr>' +
+        //         //         '<td>' + data[i].product_id + '</td>' +
+        //         //         '</tr>';
+        //         // }
+        //         // tableHtml += '</table>';
+        //         // $("#products_table").html(tableHtml);
+        //     }).fail(function () {
+        //         alert('ALL BAD')
+        //     });
 
             // $.ajax({
             //     type: 'POST',
@@ -82,9 +92,35 @@
             //     alert('ALL BAD')
             // });
 
-    }
-</script>
-<body onload="select()">
+       // }
+        function selectProduct(productId) {
+            $.ajax({
+                type: 'post',
+                url: '/products',
+                data: {
+                    product_id: 1
+                }
+            }).done(function (data) {
+                let contentTableHTML = "<table>";
+                contentTableHTML += "<tr>" +
+                    "<th>Номер</th>" +
+                    "</tr>";
+                for (let i = 0; i < data.length; i++) {
+                    contentTableHTML += "<tr>";
+                    contentTableHTML += "<td>" +  [i] + "</td>";
+                    contentTableHTML += "</tr>";
+                }
+                contentTableHTML += "</table>";
+                let contentTableDiv = document.getElementById("table");
+                contentTableDiv.innerHTML = contentTableHTML;
+            }).fail(function () {
+                alert("НЕ ОЧ");
+            });
+        }
+    </script>
+</head>
+
+<body>
 <nav class="navbar navbar-expand-lg navbar-inverse bg-light d-none d-lg-flex">
 
     <a class="navbar-brand" href="#">WebShop</a>
@@ -125,8 +161,8 @@
                 <h2>Leyka</h2>
                 <img class="card-img-top" src="/img/leyka.jpg" alt="Card image cap">
                 <%--<img src="/img/leyka.jpg" width="100" height="1 00">--%>
-                <input  type="hidden" name="product" value="1" tabindex="1">
-                <p><input onclick="select(1)" id="1" type="button" class="btn btn-success btn-block btn-lg" value="Buy"></p>
+                <input  type="hidden" value="1" tabindex="1">
+                <p><input onclick="selectProduct('1')" id="1" type="submit" class="btn btn-success btn-block btn-lg" value="Buy"></p>
             </form>
         </div>
 
@@ -135,8 +171,8 @@
                 <h2>Molotok</h2>
                 <img class="card-img-top" src="/img/molotok.jpg" alt="Card image cap">
                 <%--<img src="/img/molotok.jpg" width="100" height="100">--%>
-                <input  type="hidden" name="product" value="3" tabindex="2">
-                <p><input onclick="select(2)" id="2" type="button" class="btn btn-success btn-block btn-lg" value="Buy"></p>
+                <input  type="hidden" value="3" tabindex="2">
+                <button onclick="selectProduct('2')" id="2" type="submit" class="btn btn-success btn-block btn-lg" value="Buy"></button>
             </form>
         </div>
 
@@ -145,29 +181,22 @@
                 <h2>Boty</h2>
                 <img class="card-img-top"src="/img/boty.jpg" alt="Card image cap">
                 <%--<img src="/img/boty.jpg" width="100" height="100">--%>
-                <input type="hidden" name="product" value="2" tabindex="3">
-                <p><input onclick="select(3)" id="3" type="button" class="btn btn-success btn-block btn-lg" value="Buy"></p>
+                <input type="hidden" value="2" tabindex="3">
+                <p><input onclick="selectProduct('3')" id="3" type="submit" class="btn btn-success btn-block btn-lg" value="Buy"></p>
             </form>
         </div>
     </div>
 </div>
 <div id="product_table">
-    <table>
-        <c:forEach items="${products}" var="product">
-            <tr>
-                <td>${product.name}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    <%--<table>--%>
+        <%--<c:forEach items="${products}" var="product">--%>
+            <%--<tr>--%>
+                <%--<td>${product.name}</td>--%>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
+    <%--</table>--%>
 </div>
 
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+
 </body>
 </html>
