@@ -62,6 +62,8 @@
                 alert('ALL BAD')
             });
         }
+
+
             // $.ajax({
             //     type: 'POST',
             //     url: '/products',
@@ -190,11 +192,11 @@
 </div>
 <div id="products_table">
     <table>
-        <%--<c:forEach items="${products}" var="product">--%>
-             <%--<tr>--%>
-                <%--<td>${product.name}</td>--%>
-             <%--</tr>--%>
-        <%--</c:forEach>--%>
+        <c:forEach items="${products}" var="product">
+             <tr>
+                <td>${product.name}</td>
+             </tr>
+        </c:forEach>
     </table>
 </div>
 

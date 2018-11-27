@@ -59,8 +59,8 @@ public class BasketServlet extends HttpServlet {
         User user = currentUser(req);
         req.setAttribute("UserName", user.getName());
 //        req.setAttribute("UserId", user.getId());
-//        List<Product> products = basketService.getProductsByUserId(user.getId());
-//        req.setAttribute("products", products );
+        List<Product> products = basketService.getProductsByUserId(user.getId());
+        req.setAttribute("products", products );
 
         req.getRequestDispatcher("jsp/products.jsp").forward(req, resp);
     }
