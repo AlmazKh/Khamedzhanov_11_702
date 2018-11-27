@@ -36,6 +36,7 @@ public class AuthRepositoryImpl implements AuthRepository {
             .build();
 
     private RowMapper<User> userRowMapper = (rs, rowNum) -> User.builder()
+            .id(rs.getLong("user_id"))
             .name(rs.getString("name"))
             .build();
 

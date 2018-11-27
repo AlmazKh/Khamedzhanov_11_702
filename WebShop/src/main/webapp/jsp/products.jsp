@@ -32,9 +32,9 @@
                 type: 'post',
                 url: '/products',
                 data: {
-                    product_id: 1
+                    product_id: btnId
                     // user_id: 1
-                }
+            }
             }).done(function (data) {
                 // alert("ryjgrf");
                 let tableHtml = "";
@@ -42,13 +42,19 @@
                 tableHtml +=
                     '<tr>' +
                     '<th>' +
-                    'product' +
+                    'products' +
                     '</th>' +
                     '</tr>';
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                         '<td>' + data[i].name + '</td>' +
                         '</tr>';
+
+                    tableHtml += '<table id="delete">';
+                    tableHtml += "<tr>";
+                    tableHtml += '<td><button onclick="deleteProduct(' + data[i].id + ')" ">Delete </button></td>'
+                    tableHtml += "</tr>";
+                    tableHtml += "</table>";
                 }
                 tableHtml += '</table>';
                 $("#products_table").html(tableHtml);
@@ -183,13 +189,13 @@
     </div>
 </div>
 <div id="products_table">
-    <%--<table>--%>
-    <%--<c:forEach items="${products}" var="product">--%>
-    <%--<tr>--%>
-    <%--<td>${product.name}</td>--%>
-    <%--</tr>--%>
-    <%--</c:forEach>--%>
-    <%--</table>--%>
+    <table>
+        <%--<c:forEach items="${products}" var="product">--%>
+             <%--<tr>--%>
+                <%--<td>${product.name}</td>--%>
+             <%--</tr>--%>
+        <%--</c:forEach>--%>
+    </table>
 </div>
 
 

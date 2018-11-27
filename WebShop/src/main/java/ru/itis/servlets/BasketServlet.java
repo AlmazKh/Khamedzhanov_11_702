@@ -56,22 +56,21 @@ public class BasketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String product = req.getParameter("product");
         User user = currentUser(req);
         req.setAttribute("UserName", user.getName());
 //        req.setAttribute("UserId", user.getId());
-//        List<Product> products = basketRepository.findProductsByName(user.getName());
+//        List<Product> products = basketService.getProductsByUserId(user.getId());
 //        req.setAttribute("products", products );
-        List<Product> products = basketService.getProductsByUserId(user.getId());
-        req.setAttribute("products", products );
 
         req.getRequestDispatcher("jsp/products.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long userId = 1l; //Long.valueOf(req.getParameter("user_id"));
+//        Long userId = 1l; //Long.valueOf(req.getParameter("user_id"));
         Long productId = Long.valueOf(req.getParameter("product_id"));
+        User user = currentUser(req);
+        Long userId = user.getId();
 
 //       добавление создание корзины при регистрации
 //        basketService.addBasket(userId, productId);
