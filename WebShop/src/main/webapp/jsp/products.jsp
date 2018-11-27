@@ -62,69 +62,41 @@
                 alert('ALL BAD')
             });
         }
+    </script>
+    <script>
+        function deleteProduct(btnId) {
+            $.ajax({
+                type: 'post',
+                url: '/delete',
+                data: {
+                    product_id: btnId
+                }
+            }).done(function (data) {
+                let tableHtml = "";
+                tableHtml += '<table>';
+                tableHtml +=
+                    '<tr>' +
+                    '<th>' +
+                    'products' +
+                    '</th>' +
+                    '</tr>';
+                for (let i = 0; i < data.length; i++) {
+                    tableHtml += '<tr>' +
+                        '<td>' + data[i].name + '</td>' +
+                        '</tr>';
 
-
-            // $.ajax({
-            //     type: 'POST',
-            //     url: '/products',
-            //     data: {
-            //         product_id: $("#" + btnId).text(),
-            //         cost: 999
-            //     }
-            // }).done(function (data) {
-            //     let tableHtml = "";
-            //     tableHtml += '<table>';
-            //     tableHtml +=
-            //         '<tr>' +
-            //         '<th>' +
-            //         'id' +
-            //         '</th>' +
-            //         '<th>' +
-            //         'product_id' +
-            //         '</th>' +
-            //         '<th>' +
-            //         'cost' +
-            //         '</th>' +
-            //         '</tr>';
-            //
-            //     for (let i = 0; i < data.length; i++) {
-            //         tableHtml += '<tr>' +
-            //             '<td>' + data[i].id + '</td>' +
-            //             '<td>' + data[i].product_id + '</td>' +
-            //             '<td>' + data[i].cost + '</td>' +
-            //             '</tr>';
-            //     }
-            //     tableHtml += '</table>';
-            //     $("#products_table").html(tableHtml);
-            // }).fail(function () {
-            //     alert('ALL BAD')
-            // });
-
-       // }
-        <%--function selectProduct(productId) {--%>
-            <%--$.ajax({--%>
-                <%--type: 'post',--%>
-                <%--url: '/products',--%>
-                <%--data: {--%>
-                    <%--product_id: 2--%>
-                <%--}--%>
-            <%--}).done(function (data) {--%>
-                <%--let contentTableHTML = "<table>";--%>
-                <%--contentTableHTML += "<tr>" +--%>
-                    <%--"<th>Номер</th>" +--%>
-                    <%--"</tr>";--%>
-                <%--for (let i = 0; i < data.length; i++) {--%>
-                    <%--contentTableHTML += "<tr>";--%>
-                    <%--contentTableHTML += "<td>" +  [i] + "</td>";--%>
-                    <%--contentTableHTML += "</tr>";--%>
-                <%--}--%>
-                <%--contentTableHTML += "</table>";--%>
-                <%--let contentTableDiv = document.getElementById("table");--%>
-                <%--contentTableDiv.innerHTML = contentTableHTML;--%>
-            <%--}).fail(function () {--%>
-                <%--alert("НЕ ОЧ");--%>
-            <%--});--%>
-        <%--}--%>
+                    tableHtml += '<table id="delete">';
+                    tableHtml += "<tr>";
+                    tableHtml += '<td><button onclick="deleteProduct(' + data[i].id + ')" ">Delete </button></td>'
+                    tableHtml += "</tr>";
+                    tableHtml += "</table>";
+                }
+                tableHtml += '</table>';
+                $("#products_table").html(tableHtml);
+            }).fail(function () {
+                alert("НЕ ОЧ(((")
+            });
+        }
     </script>
 </head>
 

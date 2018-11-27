@@ -34,6 +34,11 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
+    public void deleteProduct(Long userId, Long productId) {
+        basketRepository.deleteProduct(userId, productId);
+    }
+
+    @Override
     public List<Product> getProductsByUserId(Long userId) {
         return basketRepository.getProductsByUserId(userId);
     }

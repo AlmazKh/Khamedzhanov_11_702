@@ -40,8 +40,12 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
                     "JOIN basket_product bp ON bp.basket_id = basket.id\n" +
                     "JOIN product p ON bp.product_id = p.id\n WHERE user_id = ?";
 
+    //language=SQL
+    private static final String SQL_DELETE_PRODUCT =
+            "DELETE FROM basket_product WHERE basket_id = ? AND product_id = ?";
+
     private RowMapper<Product> productRowMapper = (resultSet, i) -> Product.builder()
-            .id(resultSet.getLong("id"))
+            .id(resultSet.getLong("product_id"))
             .name(resultSet.getString("name"))
 //            .cost(resultSet.getInt("cost"))
             .build();
@@ -67,6 +71,12 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
     public void addProduct(Long userId, Long productId) {
         Long basketId = jdbcTemplate.query(SQL_SELECT_BASKET_BY_ID, basketIdRowMapper, userId).get(0);
         jdbcTemplate.update(SQL_INSERT_BASKET_PRODUCT, basketId, productId);
+    }
+
+    @Override
+    public void deleteProduct(Long userId, Long productId) {
+        Long basketId = jdbcTemplate.query(SQL_SELECT_BASKET_BY_ID, basketIdRowMapper, userId).get(0);
+        jdbcTemplate.update(SQL_DELETE_PRODUCT, basketId, productId);
     }
 
 
