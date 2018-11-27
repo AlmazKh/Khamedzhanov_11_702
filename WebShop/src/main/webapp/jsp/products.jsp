@@ -39,15 +39,19 @@
                 // alert("ryjgrf");
                 let tableHtml = "";
                 tableHtml += '<table>';
-                tableHtml +=
-                    '<tr>' +
-                    '<th>' +
-                    'products' +
-                    '</th>' +
-                    '</tr>';
+                // tableHtml +=
+                //     '<tr>' +
+                //     '<th>' +
+                //     'products' +
+                //     '</th>' +
+                //     // '<th>' +
+                //     // 'count' +
+                //     // '</th>' +
+                //     '</tr>';
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                         '<td>' + data[i].name + '</td>' +
+                        // '<td>' + data[i]. + '</td>' +
                         '</tr>';
 
                     tableHtml += '<table id="delete">';
@@ -74,12 +78,12 @@
             }).done(function (data) {
                 let tableHtml = "";
                 tableHtml += '<table>';
-                tableHtml +=
-                    '<tr>' +
-                    '<th>' +
-                    'products' +
-                    '</th>' +
-                    '</tr>';
+                // tableHtml +=
+                //     '<tr>' +
+                //     '<th>' +
+                //     'products' +
+                //     '</th>' +
+                //     '</tr>';
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                         '<td>' + data[i].name + '</td>' +
@@ -123,7 +127,6 @@
     </div>
 </nav>
 <br>
-<br>
 <h2 style="margin-right: auto">User name: ${UserName}</h2>
 <br>
 <br>
@@ -162,6 +165,9 @@
         </div>
     </div>
 </div>
+<br>
+<h3 style="margin-right: auto">Your basket:</h3>
+<br>
 <div id="products_table">
     <table>
         <c:forEach items="${products}" var="product">

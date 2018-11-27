@@ -30,12 +30,23 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void addProduct(Long userId, Long productId) {
-        basketRepository.addProduct(userId, productId);
+        Integer count = basketRepository.getCount(userId, productId);
+        if(count == null) {
+            basketRepository.addProduct(userId, productId);
+        } else {
+            basketRepository.updateCount(userId, productId, count + 1);
+        }
     }
 
     @Override
     public void deleteProduct(Long userId, Long productId) {
-        basketRepository.deleteProduct(userId, productId);
+        Integer count = basketRepository.getCount(userId, productId);
+        if(count <= 1) {
+            basketRepository.deleteProduct(userId, productId);
+        } else {
+            basketRepository.updateCount(userId, productId, count - 1);
+        }
+
     }
 
     @Override

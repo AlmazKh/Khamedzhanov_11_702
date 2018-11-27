@@ -11,4 +11,6 @@ public interface BasketRepository extends CrudRepository<Basket> {
     void addProduct(Long userId, Long productId);
     void deleteProduct(Long userId, Long productId);
     List<Product> getProductsByUserId(Long userId);
+    Integer getCount(Long userId, Long productId);
+    void  updateCount(Long userId, Long productId, Integer count);
 }

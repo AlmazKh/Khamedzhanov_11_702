@@ -12,5 +12,4 @@ public interface BasketService {
     void addProduct(Long userId, Long productId);
     void deleteProduct(Long userId, Long productId);
     List<Product> getProductsByUserId(Long userId);
-
 }

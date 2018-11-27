@@ -28,7 +28,7 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
 
     //language=SQL
     private static final String SQL_INSERT_BASKET_PRODUCT =
-            "INSERT INTO basket_product (basket_id, product_id) VALUES (?, ?)";
+            "INSERT INTO basket_product (basket_id, product_id, count) VALUES (?, ?, ?)";
 
     //language=SQL
     private static final String SQL_SELECT_PRODUCT_BY_ID =
@@ -44,18 +44,27 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
     private static final String SQL_DELETE_PRODUCT =
             "DELETE FROM basket_product WHERE basket_id = ? AND product_id = ?";
 
+    //language=SQL
+    private static final String SQL_SELECT_COUNT =
+            "SELECT count FROM basket_product WHERE basket_id = ? AND product_id = ?";
+
+    //language=SQL
+    private static final String SQL_UPDATE_COUNT =
+            "UPDATE basket_product SET count = ? WHERE basket_id = ? AND product_id = ?";
+
     private RowMapper<Product> productRowMapper = (resultSet, i) -> Product.builder()
             .id(resultSet.getLong("product_id"))
             .name(resultSet.getString("name"))
 //            .cost(resultSet.getInt("cost"))
             .build();
+    private RowMapper<Long> basketIdRowMapper = (resultSet, i) -> resultSet.getLong("id");
+
+    private RowMapper<Integer> countRowMapper = (resultSet, i) -> resultSet.getInt("count");
+
     @Override
     public List<Product> findProductsByName(String name) {
         return jdbcTemplate.query(SQL_SELECT_ALL_PRODUCTS, productRowMapper, name);
     }
-
-    private RowMapper<Long> basketIdRowMapper = (resultSet, i) -> resultSet.getLong("id");
-
 
     public BasketRepositoryJdbcTemplateImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -70,7 +79,8 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
     @Override
     public void addProduct(Long userId, Long productId) {
         Long basketId = jdbcTemplate.query(SQL_SELECT_BASKET_BY_ID, basketIdRowMapper, userId).get(0);
-        jdbcTemplate.update(SQL_INSERT_BASKET_PRODUCT, basketId, productId);
+        jdbcTemplate.update(SQL_INSERT_BASKET_PRODUCT, basketId, productId, 1);
+//        jdbcTemplate.update(SQL_UPDATE_COUNT, getProductsByUserId(userId).size() + 1);
     }
 
     @Override
@@ -83,6 +93,22 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
     @Override
     public List<Product> getProductsByUserId(Long userId) {
         return jdbcTemplate.query(SQL_SELECT_ALL_PRODUCTS, productRowMapper, userId);
+    }
+
+    @Override
+    public Integer getCount(Long userId, Long productId) {
+        Long basketId = jdbcTemplate.query(SQL_SELECT_BASKET_BY_ID, basketIdRowMapper, userId).get(0);
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_COUNT, countRowMapper, basketId, productId);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void updateCount(Long userId, Long productId, Integer count) {
+        Long basketId = jdbcTemplate.query(SQL_SELECT_BASKET_BY_ID, basketIdRowMapper, userId).get(0);
+        jdbcTemplate.update(SQL_UPDATE_COUNT, count, basketId, productId);
     }
 
     @Override
