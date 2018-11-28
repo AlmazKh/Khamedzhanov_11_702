@@ -51,7 +51,7 @@
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                         '<td>' + data[i].name + '</td>' +
-                        // '<td>' + data[i]. + '</td>' +
+                        '<td>' + data[i].count + '</td>' +
                         '</tr>';
 
                     tableHtml += '<table id="delete">';
@@ -87,6 +87,7 @@
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                         '<td>' + data[i].name + '</td>' +
+                        '<td>' + data[i].count + '</td>' +
                         '</tr>';
 
                     tableHtml += '<table id="delete">';

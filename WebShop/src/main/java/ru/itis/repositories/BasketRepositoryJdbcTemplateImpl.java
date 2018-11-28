@@ -57,6 +57,14 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
             .name(resultSet.getString("name"))
 //            .cost(resultSet.getInt("cost"))
             .build();
+
+    private RowMapper<Product> productWithCountRowMapper = (resultSet, i) -> Product.builder()
+            .id(resultSet.getLong("product_id"))
+            .name(resultSet.getString("name"))
+            .count(resultSet.getInt("count"))
+//            .cost(resultSet.getInt("cost"))
+            .build();
+
     private RowMapper<Long> basketIdRowMapper = (resultSet, i) -> resultSet.getLong("id");
 
     private RowMapper<Integer> countRowMapper = (resultSet, i) -> resultSet.getInt("count");
@@ -92,7 +100,7 @@ public class BasketRepositoryJdbcTemplateImpl implements BasketRepository {
 
     @Override
     public List<Product> getProductsByUserId(Long userId) {
-        return jdbcTemplate.query(SQL_SELECT_ALL_PRODUCTS, productRowMapper, userId);
+        return jdbcTemplate.query(SQL_SELECT_ALL_PRODUCTS, productWithCountRowMapper, userId);
     }
 
     @Override
