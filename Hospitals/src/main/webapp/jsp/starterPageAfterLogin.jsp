@@ -65,6 +65,11 @@
                     Procedures
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
+                    Hello, ${UserName}
+                </a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -81,8 +86,8 @@
                 <p></p>
                 <h2 class="text-center"> Record on the procedure</h2>
                 <p class="lead">Here you can choose the procedures<br> and doctors what you need</p>
-                <button type="button" class="btn btn-primary btn-lg">
-                    Record </button> <p></p>
+                <input type="button" class="btn btn-primary btn-lg" value="Record" onclick="openPage('/record')" />
+                <p></p>
                 <p></p>
             </div>
         </div>
@@ -153,6 +158,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function openPage(pageURL)
+    {
+        window.location.href = pageURL;
+    }
+</script>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

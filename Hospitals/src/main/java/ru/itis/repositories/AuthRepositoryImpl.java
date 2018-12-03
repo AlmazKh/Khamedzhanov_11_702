@@ -4,6 +4,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.Auth;
+import ru.itis.models.User;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -19,6 +20,10 @@ public class AuthRepositoryImpl implements AuthRepository {
     private static final String SQL_SELECT_BY_COOKIE_VALUE =
             "select * from auth where cookie_value = ?";
 
+    //language=SQL
+    private static final String SQL_SELECT_USER_BY_ID =
+            "select * from auth JOIN patient u ON auth.user_id = u.id where auth.cookie_value = ?";
+
     private JdbcTemplate template;
 
     public AuthRepositoryImpl(DataSource dataSource) {
@@ -28,6 +33,11 @@ public class AuthRepositoryImpl implements AuthRepository {
     private RowMapper<Auth> authRowMapper = (rs, rowNum) -> Auth.builder()
             .id(rs.getLong("id"))
             .cookieValue(rs.getString("cookie_value"))
+            .build();
+
+    private RowMapper<User> userRowMapper = (rs, rowNum) -> User.builder()
+            .id(rs.getLong("user_id"))
+            .firstName(rs.getString("first_name"))
             .build();
 
     @Override
@@ -62,5 +72,10 @@ public class AuthRepositoryImpl implements AuthRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public Optional<User> findOneByCookie(String cookieValue) {
+        return Optional.of(template.queryForObject(SQL_SELECT_USER_BY_ID, userRowMapper, cookieValue));
     }
 }
