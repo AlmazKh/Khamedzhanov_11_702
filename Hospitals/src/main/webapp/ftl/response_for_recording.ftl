@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Record</title>
+    <title>Response for recording</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -54,55 +54,10 @@
     </div>
 </nav>
 
-<#--TODO:-->
-<#--выбор больницы-->
-<#--выбор врача-->
-<#--время-->
-<#--процедура (связать с доктором и показом номера кабинета)-->
-
-<#--история посещений-->
-
 <main role="main" class="container" style="padding-top: 10vw">
     <div class="container" style="background: aliceblue">
         <div class="row">
-
-            <form method="post" >
-                <div class="form-group">
-                    <label for="selectHospital">Hospital</label>
-                    <select class="form-control" id="selectHospital" name="hospital_id">
-                        <#--Если что сделать так-->
-                        <#--<c:forEach var="hospital" items="${hospitals}">-->
-                            <#--<option value="${hospital.id}">${hospital.address}</option>-->
-                        <#--</c:forEach>-->
-                         <#list hospitals as hospital>
-                            <option value="${hospital.id}">${hospital.address}</option>
-                         </#list>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="selectProcedure">Procedure</label>
-                    <select class="form-control" id="selectProcedure" name="procedure_id">
-                         <#list procedures as procedure>
-                             <option value="${procedure.id}">${procedure.name}</option>
-                         </#list>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="selectDoctor">Doctor</label>
-                    <select class="form-control" id="selectDoctor" name="doctor_id">
-                         <#list doctors as doctor>
-                            <option value="${doctor.id}">${doctor.firstName}</option>
-                         </#list>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="selectTime">Time</label>
-                    <input type="datetime-local" name="calendar" id="selectTime"  value="03:15" min="08:00" max="17:00">
-                    <#--<input type="time" name="cron" value="03:15" min="08:00" max="17:00">-->
-                </div>
-
-                <button type="submit" class="btn btn-primary">Record</button>
-            </form>
+            здесь будут данные с записью куда когда надо пройти
         </div>
     </div>
 </main>
