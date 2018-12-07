@@ -31,8 +31,8 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public void addReception(Long doctorId, String dateTime) {
-        recordRepository.addReception(doctorId, dateTime);
+    public void addReception(Long doctorId, String dateTime, Long patientId) {
+        recordRepository.addReception(doctorId, dateTime, patientId);
     }
 
 

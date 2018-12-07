@@ -10,6 +10,6 @@ public interface RecordService {
     List<Hospital> getHospitals();
     List<Doctor> getDoctors();
     List<Procedure> getProcedures();
-    void addReception(Long doctorId, String dateTime);
+    void addReception(Long doctorId, String dateTime, Long patientId);
 
 }

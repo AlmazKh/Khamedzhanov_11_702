@@ -25,7 +25,7 @@ public class RecordRepositoryImpl implements RecordRepository {
             "SELECT * FROM doctor";
 
     //language=SQL
-    private static final String SQL_SELECT_DOCTOR_BY_ID=
+    private static final String SQL_SELECT_CABINET_BY_DOCTOR_ID=
             "SELECT cabinet_number FROM doctor WHERE id = ?";
 
     //language=SQL
@@ -34,7 +34,7 @@ public class RecordRepositoryImpl implements RecordRepository {
 
     //language=SQL
     private static final String SQL_INSERT_RECEPTION =
-            "INSERT INTO reception (cabinet_number, time, doctor_id) VALUES (?, ?, ?)";
+            "INSERT INTO reception (cabinet_number, time, doctor_id, patient_id) VALUES (?, ?, ?, ?)";
 
     public RecordRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -60,6 +60,7 @@ public class RecordRepositoryImpl implements RecordRepository {
             .build();
 
     private RowMapper<Integer> doctorCabinetRowMapper = (resultSet, i) -> resultSet.getInt("cabinet_number");
+
     @Override
     public List<Hospital> getHospitals() {
         return jdbcTemplate.query(SQL_SELECT_HOSPITALS, hospitalRowMapper);
@@ -76,9 +77,14 @@ public class RecordRepositoryImpl implements RecordRepository {
     }
 
     @Override
-    public void addReception(Long doctorId, String dateTime) {
-        Integer cabinetNumber = jdbcTemplate.query(SQL_SELECT_DOCTOR_BY_ID, doctorCabinetRowMapper, doctorId).get(0);
-        jdbcTemplate.update(SQL_INSERT_RECEPTION, cabinetNumber, dateTime, doctorId);
+    public void addReception(Long doctorId, String dateTime, Long patientId) {
+        Integer cabinetNumber = jdbcTemplate.query(SQL_SELECT_CABINET_BY_DOCTOR_ID, doctorCabinetRowMapper, doctorId).get(0);
+        jdbcTemplate.update(SQL_INSERT_RECEPTION, cabinetNumber, dateTime, doctorId, patientId);
+    }
+
+    @Override
+    public Hospital getHospital(Long hospitalId) {
+        return null;
     }
 
     @Override

@@ -63,9 +63,10 @@ public class StarterPageServlet extends HttpServlet {
         if (user.getFirstName().equals("***")) {
             request.getRequestDispatcher("jsp/starterPage.jsp").forward(request, response);
         } else {
+            request.setAttribute("UserName", user.getFirstName());
             request.getRequestDispatcher("jsp/starterPageAfterLogin.jsp").forward(request, response);
         }
-        request.setAttribute("UserName", user.getFirstName());
+
     }
 
     @Override

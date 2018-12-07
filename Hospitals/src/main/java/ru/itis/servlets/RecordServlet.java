@@ -5,11 +5,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
+import ru.itis.models.User;
 import ru.itis.repositories.*;
 import ru.itis.services.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +23,8 @@ public class RecordServlet extends HttpServlet {
 
     private RecordService recordService;
     private RecordRepository recordRepository;
+    private UsersService usersService;
+    private LoginService loginService;
 
     @Override
     public void init() throws ServletException {
@@ -31,6 +35,22 @@ public class RecordServlet extends HttpServlet {
         dataSource.setUrl("jdbc:postgresql://localhost:5432/hospital");
         recordRepository = new RecordRepositoryImpl(dataSource);
         recordService = new RecordServiceImpl(recordRepository);
+        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
+        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
+        usersService = new UsersServiceImpl(usersRepository);
+        loginService = new LoginServiceImpl(authRepository, usersRepository);
+    }
+
+    private User currentUser(HttpServletRequest req) {
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("auth")) {
+                if (loginService.isExistByCookie(cookie.getValue())) {
+                    return loginService.getIdByCookie(cookie.getValue());
+                }
+            }
+        }
+        return User.builder().firstName("***").build();
     }
 
     @Override
@@ -51,9 +71,19 @@ public class RecordServlet extends HttpServlet {
         Long procedureId = Long.valueOf(req.getParameter("procedure_id"));
         String calendar = req.getParameter("calendar");
 
-        recordService.addReception(doctorId, calendar);
+        User user = currentUser(req);
+        req.setAttribute("user", user);
+        recordService.addReception(doctorId, calendar,user.getId());
 
-        resp.setStatus(200);
+        //TODO: подача данных в if блок после сабмита формы
+//        List<Hospital> hospitals = recordService.getHospitals();
+
+
+//        req.setAttribute("hospital", );
+
+        req.getRequestDispatcher("ftl/record.ftl").forward(req, resp);
+
+//        resp.setStatus(200);
 
 
     }

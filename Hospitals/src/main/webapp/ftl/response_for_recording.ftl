@@ -57,7 +57,7 @@
 <main role="main" class="container" style="padding-top: 10vw">
     <div class="container" style="background: aliceblue">
         <div class="row">
-            здесь будут данные с записью куда когда надо пройти
+            <h3>Здесь будут данные с записью куда когда надо пройти</h3>
         </div>
     </div>
 </main>
