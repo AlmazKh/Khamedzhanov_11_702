@@ -18,7 +18,7 @@ public class Parser {
     }
 
     //language=SQL
-    private  final String SQL_INSERT_INFO =
+    private  static final String SQL_INSERT_INFO =
             "INSERT INTO log(ip, date, method, url, protocol, status, size, client_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 //    public void init(){
