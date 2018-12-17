@@ -4,6 +4,7 @@ package ru.itis;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.util.Scanner;
 
@@ -12,18 +13,22 @@ public class Parser {
     private JdbcTemplate jdbcTemplate;
     private Log log;
 
+    public Parser(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
     //language=SQL
-    private static final String SQL_INSERT_INFO =
+    private  final String SQL_INSERT_INFO =
             "INSERT INTO log(ip, date, method, url, protocol, status, size, client_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public void init(){
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("qwerty007");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/log");
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+//    public void init(){
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("org.postgresql.Driver");
+//        dataSource.setUsername("postgres");
+//        dataSource.setPassword("qwerty007");
+//        dataSource.setUrl("jdbc:postgresql://localhost:5432/log");
+//        jdbcTemplate = new JdbcTemplate(dataSource);
+//    }
 
 
     public void parse(){
