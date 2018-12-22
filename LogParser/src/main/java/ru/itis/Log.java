@@ -2,6 +2,8 @@ package ru.itis;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -13,7 +15,7 @@ import lombok.*;
 public class Log {
     private Long id;
     private String ip;
-    private String date;
+    private LocalDateTime dateTime;
     private String method;
     private String url;
     private String protocol;
