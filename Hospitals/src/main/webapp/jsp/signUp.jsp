@@ -45,29 +45,29 @@
                     </div>
 
                     <div class="sign-up-form-body mt-3">
-                        <label for="first_name" style="margin-right: 7vw;" placeholder="Иван" required="">First name</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control input-block" tabindex="1">
+                        <label for="first_name" style="margin-right: 7vw;" >First name</label>
+                        <input type="text" name="first_name" id="first_name" placeholder="Ivan" required="required" class="form-control input-block" tabindex="1">
 
-                        <label for="last_name" style="margin-right: 7vw;" placeholder="Иванов" required="">Last name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control input-block" tabindex="2">
+                        <label for="last_name" style="margin-right: 7vw;" >Last name</label>
+                        <input type="text" name="last_name" id="last_name" placeholder="Ivanov" required="" class="form-control input-block" tabindex="2">
 
                         <div class="radio">
                             <span>Пол</span>
                             <label>
-                                <input type="radio" name="gender" value="man">man
+                                <input type="radio" name="gender" required="" value="man">man
                                 <div class="radio-control male"></div>
                             </label>
                             <label>
-                                <input type="radio" name="gender" value="woman">woman
+                                <input type="radio" name="gender" required="" value="woman">woman
                                 <div class="radio-control female"></div>
                             </label>
                         </div>
 
-                        <label for="phone" style="margin-right: 7vw;" placeholder="89677704863" required="">Phone number</label>
-                        <input type="text" name="phone" id="phone" pattern="[0-9]{7,20}" class="form-control input-block" tabindex="3">
+                        <label for="phone" style="margin-right: 3vw;" >Phone number</label>
+                        <input type="text" name="phone" id="phone" required="" placeholder="89677704863" pattern="[0-9]{7,20}" class="form-control input-block" tabindex="3">
 
-                        <label for="password" style="margin-right: 7vw;" required="">Password</label>
-                        <input type="password" name="password" id="password" class="form-control form-control input-block" tabindex="4">
+                        <label for="password" style="margin-right: 7vw;" >Password</label>
+                        <input type="password" name="password" required="" id="password" class="form-control form-control input-block" tabindex="4">
                         <br>
                         <input type="submit" name="commit" value="Sign up" tabindex="5" class="btn btn-primary btn-block" >
                     </div>

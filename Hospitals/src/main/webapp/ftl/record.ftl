@@ -21,31 +21,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/starterPage">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownH" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item">
+                <a class="nav-link" href="#" role="button">
                     Hospitals
                 </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownD" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item">
+                <a class="nav-link" href="/doctors" role="button">
                     Doctors
                 </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownP" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item">
+                <a class="nav-link" href="/procedures" role="button">
                     Procedures
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
+                <a class="nav-link" href="/history" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
                     Hello
                 </a>
             </li>
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -69,11 +67,13 @@
                 <div class="card col-md-6">
                     <#--<h4> Hospital: ${hospital}</h4>-->
                     <h3>Здесь будут данные о записи на прием</h3>
-                        <h4>Больница</h4>
-                        <h4>Доктор</h4>
-                        <h4>Процедура (мб цена)</h4>
-                        <h4>Номер кабинета</h4>
-                        <h4>Время</h4>
+                        <h5>Больница</h5>
+                        <h5>Доктор</h5>
+                        <h5>Процедура (мб цена)</h5>
+                        <h5>Номер кабинета</h5>
+                        <h5>Время</h5>
+
+
                 </div>
             <#else>
                 <form method="post" action="/record">
@@ -118,7 +118,44 @@
     </div>
 </main>
 
+<#--<script>-->
+    <#--function selectDoctor(btnId) {-->
+        <#--$.ajax({-->
+            <#--type: 'post',-->
+            <#--url: '/record',-->
+            <#--data: {-->
+                <#--doctor_id: btnId-->
+            <#--}-->
+        <#--}).done(function (data) {-->
+            <#--var tableHtml = "";-->
+            <#--tableHtml += '<table>';-->
+            <#--tableHtml +=-->
+                <#--'<tr>' +-->
+                <#--'<th>' +-->
+                <#--'Doctors' +-->
+                <#--'</th>' +-->
+                <#--// '<th>' +-->
+                <#--// 'count' +-->
+                <#--// '</th>' +-->
+                <#--'</tr>';-->
+            <#--for (var i = 0; i < data.length; i++) {-->
+                <#--tableHtml += '<tr>' +-->
+                        <#--'<td>' + data[i].lastName + '</td>' +-->
+                        <#--'</tr>';-->
 
+                <#--tableHtml += '<table id="delete">';-->
+                <#--tableHtml += "<tr>";-->
+                <#--tableHtml += '<td><button onclick="deleteProduct(' + data[i].id + ')" ">Delete </button></td>'-->
+                <#--tableHtml += "</tr>";-->
+                <#--tableHtml += "</table>";-->
+            <#--}-->
+            <#--tableHtml += '</table>';-->
+            <#--$("#products_table").html(tableHtml);-->
+        <#--}).fail(function () {-->
+            <#--alert('ALL BAD')-->
+        <#--});-->
+    <#--}-->
+<#--</script>-->
 
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"

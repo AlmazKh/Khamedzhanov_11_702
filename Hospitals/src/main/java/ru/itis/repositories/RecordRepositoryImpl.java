@@ -51,6 +51,7 @@ public class RecordRepositoryImpl implements RecordRepository {
             .firstName(resultSet.getString("first_name"))
             .lastName(resultSet.getString("last_name"))
             .rating(resultSet.getInt("rating"))
+            .cabinetNumber((resultSet.getInt("cabinet_number")))
             .build();
 
     private RowMapper<Procedure> procedureRowMapper = (resultSet, i) -> Procedure.builder()
