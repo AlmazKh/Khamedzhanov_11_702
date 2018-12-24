@@ -5,8 +5,10 @@ import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
+import ru.itis.models.WorkTime;
 
 import javax.sql.DataSource;
+import java.sql.Time;
 import java.util.List;
 
 public class RecordRepositoryImpl implements RecordRepository {
@@ -37,6 +39,10 @@ public class RecordRepositoryImpl implements RecordRepository {
             "SELECT * FROM procedure";
 
     //language=SQL
+    private static final String SQL_SELECT_TIME=
+            "SELECT * FROM work_time wt WHERE wt.time NOT IN (" +
+                "SELECT r.time FROM reception r WHERE r.doctor_id = ? AND r.date = ?)";
+    //language=SQL
     private static final String SQL_INSERT_RECEPTION =
             "INSERT INTO reception (cabinet_number, time, doctor_id, patient_id) VALUES (?, ?, ?, ?)";
 
@@ -64,6 +70,11 @@ public class RecordRepositoryImpl implements RecordRepository {
             .price(resultSet.getInt("price"))
             .build();
 
+    private RowMapper<WorkTime> timeRowMapper = (resultSet, i) -> WorkTime.builder()
+            .id(resultSet.getLong("id"))
+            .time(resultSet.getString("time"))
+            .build();
+
     private RowMapper<Integer> doctorCabinetRowMapper = (resultSet, i) -> resultSet.getInt("cabinet_number");
 
     @Override
@@ -87,6 +98,10 @@ public class RecordRepositoryImpl implements RecordRepository {
 
     }
 
+    @Override
+    public List<WorkTime> getTime(Long doctorId, String date) {
+        return jdbcTemplate.query(SQL_SELECT_TIME, timeRowMapper, doctorId, date);
+    }
 
     @Override
     public void addReception(Long doctorId, String dateTime, Long patientId) {

@@ -3,6 +3,7 @@ package ru.itis.services;
 import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
+import ru.itis.models.WorkTime;
 import ru.itis.repositories.RecordRepository;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public List<Doctor> getDoctors(Long hospitalId, Long procedureId) {
         return recordRepository.getDoctors(hospitalId, procedureId);
+    }
+
+    @Override
+    public List<WorkTime> getTime(Long doctorId, String date) {
+        return recordRepository.getTime(doctorId, date);
     }
 
 

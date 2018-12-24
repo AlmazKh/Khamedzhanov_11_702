@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -8,6 +9,13 @@
     <title>Record</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 <script>
     $(document).on('change', '.test-1', function () {
@@ -26,6 +34,7 @@
             $("#selectProcedure").html(option);
         });
     });
+
     $(document).on('change', '.test-2', function () {
         var selectedDoctor = $("#selectHospital").val();
         var selectedProcedure = $("#selectProcedure").val();
@@ -43,7 +52,29 @@
             }
             $("#selectDoctor").html(option);
         });
+    });
+
+    $(document).on('change', '.test-4', function () {
+        var selectedDoctor = $("#selectDoctor").val();
+        var selectedDate = $("#selectDate").val();
+
+        $.ajax({
+            type: 'get',
+            url: '/recordtime',
+            // dataType: 'json',
+            data: {
+                doctor_id: selectedDoctor,
+                date: selectedDate
+            }
+        }).done(function (data) {
+            var option = "";
+            for (var i = 0; i < data.length ; i++){
+                option += '<option value=' + data[i].id + '>' + data[i].time +  '</option>';
+            }
+            $("#selectTime").html(option);
+        });
     })
+
 </script>
 <body background= "img/wallpaper.jpg">
 
@@ -146,8 +177,18 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="selectDate">Date</label>
+                        <#--<select class="form-control test-4" id="selectDate" name="date">-->
+                        <#--</select>-->
+                        <input class="form-control test-4" type="date" name="date" id="selectDate">
+                     <#--<input type="time" name="cron" value="03:15" min="08:00" max="17:00">-->
+                    </div>
+                    <div class="form-group">
                         <label for="selectTime">Time</label>
-                        <input type="datetime-local" name="calendar" id="selectTime"  value="03:15" min="08:00" max="17:00">
+                        <select class="form-control test-5" id="selectTime" name="time">
+
+                        </select>
+                        <#--<input type="datetime-local" name="calendar" id="selectTime"  value="03:15" min="08:00" max="17:00">-->
                         <#--<input type="time" name="cron" value="03:15" min="08:00" max="17:00">-->
                     </div>
 
@@ -198,12 +239,6 @@
 <#--</script>-->
 
 
-<!-- Bootstrap core CSS -->
-<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="starter-template.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous">
 </body>
 </html>

@@ -86,7 +86,8 @@ public class RecordServlet extends HttpServlet {
         Long hospitalId = Long.valueOf(req.getParameter("hospital_id"));
         Long doctorId = Long.valueOf(req.getParameter("doctor_id"));
         Long procedureId = Long.valueOf(req.getParameter("procedure_id"));
-        String calendar = req.getParameter("calendar");
+        String calendar = req.getParameter("date");
+        //add time
 
         User user = currentUser(req);
         req.setAttribute("user", user);
