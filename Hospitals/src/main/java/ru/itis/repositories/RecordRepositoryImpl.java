@@ -44,7 +44,7 @@ public class RecordRepositoryImpl implements RecordRepository {
                 "SELECT r.time FROM reception r WHERE r.doctor_id = ? AND r.date = ?)";
     //language=SQL
     private static final String SQL_INSERT_RECEPTION =
-            "INSERT INTO reception (cabinet_number, time, doctor_id, patient_id) VALUES (?, ?, ?, ?)";
+            "INSERT INTO reception (cabinet_number, date, time, doctor_id, patient_id) VALUES (?, ?, ?, ?, ?)";
 
     public RecordRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -104,9 +104,9 @@ public class RecordRepositoryImpl implements RecordRepository {
     }
 
     @Override
-    public void addReception(Long doctorId, String dateTime, Long patientId) {
+    public void addReception(Long doctorId, String date, String time, Long patientId) {
         Integer cabinetNumber = jdbcTemplate.query(SQL_SELECT_CABINET_BY_DOCTOR_ID, doctorCabinetRowMapper, doctorId).get(0);
-        jdbcTemplate.update(SQL_INSERT_RECEPTION, cabinetNumber, dateTime, doctorId, patientId);
+        jdbcTemplate.update(SQL_INSERT_RECEPTION, cabinetNumber, date, time, doctorId, patientId);
     }
 
     @Override

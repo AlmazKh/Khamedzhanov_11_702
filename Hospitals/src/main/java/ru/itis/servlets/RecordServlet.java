@@ -86,12 +86,12 @@ public class RecordServlet extends HttpServlet {
         Long hospitalId = Long.valueOf(req.getParameter("hospital_id"));
         Long doctorId = Long.valueOf(req.getParameter("doctor_id"));
         Long procedureId = Long.valueOf(req.getParameter("procedure_id"));
-        String calendar = req.getParameter("date");
-        //add time
+        String date = req.getParameter("date");
+        String time = req.getParameter("time");
 
         User user = currentUser(req);
         req.setAttribute("user", user);
-        recordService.addReception(doctorId, calendar,user.getId());
+        recordService.addReception(doctorId, date, time, user.getId());
 
         //TODO: подача данных в if блок после сабмита формы
 //        List<Hospital> hospitals = recordService.getHospitals();

@@ -69,7 +69,7 @@
         }).done(function (data) {
             var option = "";
             for (var i = 0; i < data.length ; i++){
-                option += '<option value=' + data[i].id + '>' + data[i].time +  '</option>';
+                option += '<option value=' + data[i].time + '>' + data[i].time +  '</option>';
             }
             $("#selectTime").html(option);
         });

@@ -13,6 +13,6 @@ public interface RecordService {
     List<Procedure> getProcedures();
     List<Doctor> getDoctors(Long hospitalId, Long procedureId);
     List<WorkTime> getTime(Long doctorId, String date);
-    void addReception(Long doctorId, String dateTime, Long patientId);
+    void addReception(Long doctorId, String date, String time, Long patientId);
 
 }

@@ -14,7 +14,7 @@ public interface RecordRepository extends CrudRepository<Hospital> {
     List<Doctor> getDoctors(Long hospitalId, Long procedureId);
     List<WorkTime> getTime(Long doctorId, String date);
 
-    void addReception(Long doctorId, String dateTime, Long patientId);
+    void addReception(Long doctorId, String date, String time, Long patientId);
     Hospital getHospital(Long hospitalId);
 
 
