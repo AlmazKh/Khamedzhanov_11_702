@@ -31,6 +31,12 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public List<Doctor> getDoctors(Long hospitalId, Long procedureId) {
+        return recordRepository.getDoctors(hospitalId, procedureId);
+    }
+
+
+    @Override
     public void addReception(Long doctorId, String dateTime, Long patientId) {
         recordRepository.addReception(doctorId, dateTime, patientId);
     }

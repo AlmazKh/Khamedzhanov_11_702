@@ -25,6 +25,10 @@ public class RecordRepositoryImpl implements RecordRepository {
             "SELECT * FROM doctor";
 
     //language=SQL
+    private static final String SQL_SELECT_DOCTORS_BY_H_P=
+            "SELECT * FROM doctor WHERE hospital_id = ? AND procedure_id = ?";
+
+    //language=SQL
     private static final String SQL_SELECT_CABINET_BY_DOCTOR_ID=
             "SELECT cabinet_number FROM doctor WHERE id = ?";
 
@@ -76,6 +80,13 @@ public class RecordRepositoryImpl implements RecordRepository {
     public List<Procedure> getProcedures() {
         return jdbcTemplate.query(SQL_SELECT_PROCEDURES, procedureRowMapper);
     }
+
+    @Override
+    public List<Doctor> getDoctors(Long hospitalId, Long procedureId) {
+        return jdbcTemplate.query(SQL_SELECT_DOCTORS_BY_H_P, doctorRowMapper, hospitalId, procedureId);
+
+    }
+
 
     @Override
     public void addReception(Long doctorId, String dateTime, Long patientId) {

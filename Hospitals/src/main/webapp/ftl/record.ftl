@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <title>Record</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<script>
+    $(document).on('change', '.test-1', function () {
+        var selectedDoctor = $("#selectHospital").val();
+        $.ajax({
+            type: 'get',
+            url: '/recordprocedures',
+            data: {
+                hospital_id: selectedDoctor
+            }
+        }).done(function (data) {
+            var option = "";
+            for (var i = 0; i < data.length ; i++){
+                option += '<option value=' + data[i].id + '>' + data[i].name +  '</option>';
+            }
+            $("#selectProcedure").html(option);
+        });
+    });
+    $(document).on('change', '.test-2', function () {
+        var selectedDoctor = $("#selectHospital").val();
+        var selectedProcedure = $("#selectProcedure").val();
+        $.ajax({
+            type: 'get',
+            url: '/recorddoctors',
+            data: {
+                hospital_id: selectedDoctor,
+                procedure_id: selectedProcedure
+            }
+        }).done(function (data) {
+            var option = "";
+            for (var i = 0; i < data.length ; i++){
+                option += '<option value=' + data[i].id + '>' + data[i].lastName +  '</option>';
+            }
+            $("#selectDoctor").html(option);
+        });
+    })
+</script>
 <body background= "img/wallpaper.jpg">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
@@ -79,7 +119,7 @@
                 <form method="post" action="/record">
                     <div class="form-group">
                         <label for="selectHospital">Hospital</label>
-                        <select class="form-control" id="selectHospital" name="hospital_id">
+                        <select class="form-control test-1" id="selectHospital" name="hospital_id">
                             <#--Если что сделать так-->
                             <#--<c:forEach var="hospital" items="${hospitals}">-->
                                 <#--<option value="${hospital.id}">${hospital.address}</option>-->
@@ -91,18 +131,18 @@
                     </div>
                     <div class="form-group">
                         <label for="selectProcedure">Procedure</label>
-                        <select class="form-control" id="selectProcedure" name="procedure_id">
-                             <#list procedures as procedure>
+                        <select class="form-control test-2" id="selectProcedure" name="procedure_id">
+                            <#-- <#list procedures as procedure>
                                  <option value="${procedure.id}">${procedure.name}</option>
-                             </#list>
+                             </#list>-->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectDoctor">Doctor</label>
-                        <select class="form-control" id="selectDoctor" name="doctor_id">
-                             <#list doctors as doctor>
-                                <option value="${doctor.id}">${doctor.firstName}</option>
-                             </#list>
+                        <select class="form-control test-3" id="selectDoctor" name="doctor_id">
+                             <#--<#list doctors as doctor>
+                                &lt;#&ndash;<option value="${doctor.id}">${doctor.firstName}</option>&ndash;&gt;
+                             </#list>-->
                         </select>
                     </div>
                     <div class="form-group">
@@ -157,10 +197,7 @@
     <#--}-->
 <#--</script>-->
 
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+
 <!-- Bootstrap core CSS -->
 <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 

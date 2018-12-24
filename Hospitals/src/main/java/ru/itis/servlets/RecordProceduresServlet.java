@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.models.Doctor;
@@ -18,10 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Optional;
 
-@WebServlet("/record")
-public class RecordServlet extends HttpServlet {
+@WebServlet("/recordprocedures")
+public class RecordProceduresServlet extends HttpServlet {
 
     private RecordService recordService;
     private RecordRepository recordRepository;
@@ -60,48 +60,16 @@ public class RecordServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Hospital> hospitals = recordService.getHospitals();
-        List<Doctor> doctors = recordService.getDoctors();
-        List<Procedure> procedures = recordService.getProcedures();
-        req.setAttribute("hospitals", hospitals);
-        /*String hosptalId = req.getParameter("hospital_id");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String hosptalId = req.getParameter("hospital_id");
         if (hosptalId != null){
-            doctors = componentsService.getDoctors(Long.parseLong(hosptalId));
-            String resultJson = objectMapper.writeValueAsString(doctors);
+            List<Procedure> procedures = componentsService.getProcedures(Long.parseLong(hosptalId));
+            String resultJson = objectMapper.writeValueAsString(procedures);
+            resp.setStatus(200);
             resp.setContentType("application/json");
             PrintWriter writer = resp.getWriter();
             writer.write(resultJson);
         }
-        req.setAttribute("doctors", doctors);
-        *//*if(candidate.isPresent()){
-            Long hospitalId = Long.parseLong(candidate.get());
-        }*//*
-        req.setAttribute("procedures", procedures);*/
-        req.getRequestDispatcher("ftl/record.ftl").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long hospitalId = Long.valueOf(req.getParameter("hospital_id"));
-        Long doctorId = Long.valueOf(req.getParameter("doctor_id"));
-        Long procedureId = Long.valueOf(req.getParameter("procedure_id"));
-        String calendar = req.getParameter("calendar");
-
-        User user = currentUser(req);
-        req.setAttribute("user", user);
-        recordService.addReception(doctorId, calendar,user.getId());
-
-        //TODO: подача данных в if блок после сабмита формы
-//        List<Hospital> hospitals = recordService.getHospitals();
-
-
-//        req.setAttribute("hospital", );
-
-        req.getRequestDispatcher("ftl/record.ftl").forward(req, resp);
-
-//        resp.setStatus(200);
-
-
     }
 }
