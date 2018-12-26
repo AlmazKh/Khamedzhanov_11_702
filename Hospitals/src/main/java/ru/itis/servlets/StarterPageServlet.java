@@ -2,6 +2,7 @@ package ru.itis.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ru.itis.form.FeedbackForm;
 import ru.itis.form.UserForm;
 import ru.itis.models.User;
 import ru.itis.repositories.AuthRepository;
@@ -59,25 +60,42 @@ public class StarterPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = currentUser(request);
-        if (user.getFirstName().equals("***")) {
-            request.getRequestDispatcher("jsp/starterPage.jsp").forward(request, response);
-        } else {
-            request.setAttribute("UserName", user.getFirstName());
-            request.getRequestDispatcher("jsp/starterPageAfterLogin.jsp").forward(request, response);
+        if (!user.getFirstName().equals("***")) {
+            request.setAttribute("user", user);
         }
+        request.getRequestDispatcher("ftl/starterPage.ftl").forward(request, response);
+//            request.getRequestDispatcher("jsp/starterPage.jsp").forward(request, response);
+
+//        if (user.getFirstName().equals("***")) {
+//            request.getRequestDispatcher("jsp/starterPage.jsp").forward(request, response);
+//        } else {
+//            request.setAttribute("UserName", user.getFirstName());
+//            request.getRequestDispatcher("jsp/starterPageAfterLogin.jsp").forward(request, response);
+//        }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        UserForm userForm = UserForm.builder()
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        FeedbackForm feedbackForm = FeedbackForm.builder()
+//                .name(req.getParameter("name"))
+//                .phone(req.getParameter("phone"))
+//                .email(req.getParameter("email"))
+//                .text(req.getParameter("text"))
+//                .build();
+        //        UserForm userForm = UserForm.builder()
 //                .firstName(request.getParameter("first_name"))
 //                .lastName(request.getParameter("last_name"))
 //                .build();
-//        service.addUser(userForm);
+
+        String name = req.getParameter("name");
+        String p = req.getParameter("phone");
+        String e = req.getParameter("email");
+        String ee = req.getParameter("text");
+        usersService.getUsers();
 //
 //        List<User> users = service.getUsers();
 //        String resultJson = mapper.writeValueAsString(users);
-        response.setStatus(200);
+        resp.setStatus(200);
 //        response.setContentType("application/json");
 //        PrintWriter writer = response.getWriter();
 //        writer.write(resultJson);

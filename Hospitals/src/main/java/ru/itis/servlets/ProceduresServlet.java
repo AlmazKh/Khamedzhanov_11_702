@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/procedures")
-public class ProceduresServlet extends HttpServlet {
+public class  ProceduresServlet extends HttpServlet {
     private RecordService recordService;
     private RecordRepository recordRepository;
     private ComponentsRepository componentsRepository;

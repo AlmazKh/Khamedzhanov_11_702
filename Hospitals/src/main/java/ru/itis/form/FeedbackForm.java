@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginForm {
+public class FeedbackForm {
 
-    private String phone;
-    private String password;
+    String name;
+    String phone;
+    String email;
+    String text;
 }

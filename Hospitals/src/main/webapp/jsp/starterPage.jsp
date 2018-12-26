@@ -12,22 +12,24 @@
     <%--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
     <%--<meta name="description" content="">--%>
     <%--<meta name="author" content="">--%>
-    <link rel="icon" href="../../../../favicon.ico">
+    <%--<link rel="icon" href="../../../../favicon.ico">--%>
     <link rel="stylesheet" href="css/style.css">
 
     <title>Starter page</title>
 
-    <script
+    <%--<script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>--%>
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <%--<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">--%>
 
     <!-- Custom styles for this template -->
+<%--
     <link href="starter-template.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
+--%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 <script>
@@ -111,19 +113,37 @@
     <br>
 
 
-</main><!-- /.container -->
-<!--
-    <div class="container-fluid" style="background: #FFF;" >
-        <div class="card">
-          <div class="col-md-12" style="background: #FF9; ">
-          <p>sdfsdf
-            <br><br><br>
-          </p>
-          </div>
+</main>
 
+<!-- Button trigger modal -->
+<form>
+    <input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+    </input>
+
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
+    </div>
+</div>
 
-    </div> -->
 
 <div class="contacts_block">
     <div class="container-fluid" style="background: #FFF;" >
@@ -145,36 +165,80 @@
                     </div>
                     <div class="contact_form">
                         <h5>Свяжитесь с нами</h5>
-                        <form action="">
+                        <form action="post" id="user_feedback">
                             <label for="user_name">Ваше имя:</label>
-                            <input required="required" id="user_name" type="text">
+                            <input required="required" id="user_name" name="name" type="text">
 
                             <label for="user_phone">Ваш телефон:</label>
-                            <input type="text" required="" value="8" pattern="[0-9]{7,20}" id="user_phone">
+                            <input type="text" required="" value="8" pattern="[0-9]{7,20}" id="user_phone" name="phone">
 
                             <label for="user_mail">Ваш e-mail:</label>
-                            <input type="email" required="" id="user_mail">
+                            <input type="email" required="" id="user_mail" name="email">
 
                             <label for="user_text">Ваше сообщение:</label>
-                            <textarea name="" id="user_text" cols="30" rows="10" placeholder="Ваш текст" ></textarea>
+                            <textarea name="text" id="user_text" cols="30" rows="10" placeholder="Ваш текст" ></textarea>
 
-                            <input type="submit" class="btn blue" value="Отправить">
+                            <input type="submit" class="btn blue"  value="Отправить">
                         </form>
                     </div>
+
+                    <%--<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">--%>
+                        <%--<div class="modal-dialog" role="document">--%>
+                            <%--<div class="modal-content">--%>
+                                <%--<div class="modal-header">--%>
+                                    <%--<h5 class="modal-title" id="modalLabel">Successful! Thanks for your feedback</h5>--%>
+                                    <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+                                        <%--<span aria-hidden="true">&times;</span>--%>
+                                    <%--</button>--%>
+                                <%--</div>--%>
+                                <%--<div class="modal-body">--%>
+                                    <%--<h3>Successful! Thanks for your feedback</h3>--%>
+                                <%--</div>--%>
+                                <%--<div class="modal-footer">--%>
+                                    <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+                                    <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <!-- Button trigger modal -->
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<%--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>--%>
+<script>
+    $('#submit_button').onclick(function(){
+        $.ajax({
+            url: '/starterPage',
+            type: 'POST',
+            dataType: 'html',
+            data: $('#user_feedback').serialize(),
+            success: function(){
+                alert('Successful! Thanks for your feedback'); // отправлено удачно
+            },
+            error: function() {
+                alert('Please, try again'); // ошибка
+            }
+        });
 
-
-</body></html>
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
 
