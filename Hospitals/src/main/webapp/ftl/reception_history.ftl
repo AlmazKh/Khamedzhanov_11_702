@@ -9,10 +9,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
-    <a class="navbar-brand" href="file://C:\Users\Almaz\Desktop\Khamedzhanov_11_702\Hospitals\src\main\webapp\jsp\starterPageAfterLogin.jsp#">
+    <a class="navbar-brand" href="/starterPage">
         <img src="img/logo_withHS.png" width="109" height="49" >
-        <!--  <img src="logo_withHS.png">  -->
-        <!-- <h1>HS</h1> --></a>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -39,8 +38,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="history" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
-                    Hello
+                <a class="nav-link" href="/history" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
+                    History
                 </a>
             </li>
         </ul>
@@ -54,27 +53,10 @@
 <main role="main" class="container" style="padding-top: 5vw">
     <div class="card" style="background: aliceblue">
         <div class="row justify-content-center">
-
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">Your history</h1>
 
-                <#--<form method="post">-->
-                    <#--<div class="row">-->
-                        <#--<div class="col-md-4">-->
-                            <#--<label for="selectHospital">Please, choose hospital</label>-->
-                            <#--<select class="form-control" id="selectHospital" name="hospital_id">-->
-                                <#--<#list hospitals as hospital>-->
-                                    <#--<option value="${hospital.id}">${hospital.address}</option>-->
-                                <#--</#list>-->
-                            <#--</select>-->
-                        <#--</div>-->
-                        <#--<div class="col-md-4" align="left" style="padding-top: 31px">-->
-                            <#--<button type="submit" class="btn btn-primary">Show</button>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</form>-->
                 <div class="row">
-
                     <h2 class="sub-header" style="padding-top: 5vw">Here you can see list of reception</h2>
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -87,19 +69,17 @@
                             </tr>
                             </thead>
                             <#list receptions as reception>
-                                <#list doctors as doctor>
-                                    <#--<#list procedures as procedure>-->
+                                <#--<#list doctors as doctor>-->
                                     <tbody>
                                     <tr>
                                         <td>${reception?counter}</td>
-                                        <td>${reception.time}</td>
+                                        <td> ${reception.date}, ${reception.time}</td>
                                         <td>${reception.cabinetNumber}</td>
-                                        <td>${doctor.lastName}</td>
-                                        <#--<td>${procedure.name}</td>-->
+                                        <td>${doctors[reception?index].lastName}</td>
+                                    <#--<td>${doctor.lastName}</td>-->
                                     </tr>
                                     </tbody>
-                                    <#--</#list>-->
-                                </#list>
+                                <#--</#list>-->
                             </#list>
                         </table>
                     </div>

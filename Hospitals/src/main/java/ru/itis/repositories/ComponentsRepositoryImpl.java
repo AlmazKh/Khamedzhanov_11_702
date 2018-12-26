@@ -20,7 +20,7 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
             "SELECT * FROM doctor WHERE hospital_id = ?";
 
     //language=SQL
-    private static final String SQL_SELECT_DOCTORS_BY_ID=
+    private static final String SQL_SELECT_DOCTORS_BY_PATIENT_ID=
             "SELECT last_name FROM doctor d " +
                     "JOIN reception r ON d.id = r.doctor_id " +
                     "WHERE  patient_id = ?";
@@ -58,6 +58,7 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
     private RowMapper<Reception> receptionRowMapper = (resultSet, i) -> Reception.builder()
             .id(resultSet.getLong("id"))
             .cabinetNumber(resultSet.getInt("cabinet_number"))
+            .date(resultSet.getString("date"))
             .time(resultSet.getString("time"))
             .build();
 
@@ -78,7 +79,7 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
 
     @Override
     public List<Doctor> getDoctorsNameById(Long patientId) {
-        return jdbcTemplate.query(SQL_SELECT_DOCTORS_BY_ID, doctorNameRowMapper, patientId);
+        return jdbcTemplate.query(SQL_SELECT_DOCTORS_BY_PATIENT_ID, doctorNameRowMapper, patientId);
     }
 
     @Override

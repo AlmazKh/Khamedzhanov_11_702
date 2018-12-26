@@ -15,5 +15,6 @@ public class Reception {
     private Polis polis;
     private Integer cabinetNumber;
     private Doctor doctor;
+    private String date;
     private String time;
 }
