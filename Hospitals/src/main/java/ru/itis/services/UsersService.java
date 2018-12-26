@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface UsersService {
 
-    void addUser(UserForm userForm);
     void signUp(UserForm userForm);
     List<User> getUsers();
 }

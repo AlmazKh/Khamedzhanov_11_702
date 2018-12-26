@@ -126,7 +126,7 @@
                     </div>
                     <div class="contact_form">
                         <h5>Give us feedback</h5>
-                        <form method="post" action="/starterPage" id="user_feedback">
+                        <form method="post" action="/starterPage" id="user_fee  dback">
                             <label for="user_name">Your name:</label>
                             <input required="required" id="user_name" name="name" type="text">
 

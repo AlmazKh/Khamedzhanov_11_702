@@ -13,9 +13,6 @@ import java.util.List;
 
 public class RecordRepositoryImpl implements RecordRepository {
 
-    //TODO: продумать селекты выбора докоторов и больниц, через процедуры (джойны ждут)
-
-    // класс из Spring Framework
     private JdbcTemplate jdbcTemplate;
 
     //language=SQL

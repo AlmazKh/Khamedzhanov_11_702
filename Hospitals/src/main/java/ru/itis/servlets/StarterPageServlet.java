@@ -5,14 +5,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.form.FeedbackForm;
 import ru.itis.form.UserForm;
 import ru.itis.models.User;
-import ru.itis.repositories.AuthRepository;
-import ru.itis.repositories.AuthRepositoryImpl;
-import ru.itis.repositories.UsersRepository;
-import ru.itis.repositories.UsersRepositoryJdbcTemplateImpl;
-import ru.itis.services.LoginService;
-import ru.itis.services.LoginServiceImpl;
-import ru.itis.services.UsersService;
-import ru.itis.services.UsersServiceImpl;
+import ru.itis.repositories.*;
+import ru.itis.services.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +23,8 @@ public class StarterPageServlet extends HttpServlet {
 
     private UsersService usersService;
     private LoginService loginService;
+    private FeedbackRepository feedbackRepository;
+    private FeedbackService feedbackService;
     private ObjectMapper mapper = new ObjectMapper();
 
     @Override
@@ -42,6 +38,8 @@ public class StarterPageServlet extends HttpServlet {
         AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
         this.usersService = new UsersServiceImpl(usersRepository);
         this.loginService = new LoginServiceImpl(authRepository, usersRepository);
+        feedbackRepository = new FeedbackRepositoryImpl(dataSource);
+        feedbackService = new FeedbackServiceImpl(feedbackRepository);
     }
 
     private User currentUser(HttpServletRequest req) {
@@ -56,7 +54,6 @@ public class StarterPageServlet extends HttpServlet {
         return User.builder().firstName("***").build();
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = currentUser(request);
@@ -64,40 +61,21 @@ public class StarterPageServlet extends HttpServlet {
             request.setAttribute("user", user);
         }
         request.getRequestDispatcher("ftl/starterPage.ftl").forward(request, response);
-//            request.getRequestDispatcher("jsp/starterPage.jsp").forward(request, response);
-
-//        if (user.getFirstName().equals("***")) {
-//            request.getRequestDispatcher("jsp/starterPage.jsp").forward(request, response);
-//        } else {
-//            request.setAttribute("UserName", user.getFirstName());
-//            request.getRequestDispatcher("jsp/starterPageAfterLogin.jsp").forward(request, response);
-//        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        FeedbackForm feedbackForm = FeedbackForm.builder()
-//                .name(req.getParameter("name"))
-//                .phone(req.getParameter("phone"))
-//                .email(req.getParameter("email"))
-//                .text(req.getParameter("text"))
-//                .build();
-        //        UserForm userForm = UserForm.builder()
-//                .firstName(request.getParameter("first_name"))
-//                .lastName(request.getParameter("last_name"))
-//                .build();
-
-        String name = req.getParameter("name");
-        String p = req.getParameter("phone");
-        String e = req.getParameter("email");
-        String ee = req.getParameter("text");
-        usersService.getUsers();
-//
-//        List<User> users = service.getUsers();
-//        String resultJson = mapper.writeValueAsString(users);
-        resp.setStatus(200);
-//        response.setContentType("application/json");
-//        PrintWriter writer = response.getWriter();
-//        writer.write(resultJson);
+        FeedbackForm feedbackForm = FeedbackForm.builder()
+                .name(req.getParameter("name"))
+                .phone(req.getParameter("phone"))
+                .email(req.getParameter("email"))
+                .text(req.getParameter("text"))
+                .build();
+        feedbackService.addFeedback(feedbackForm);
+        User user = currentUser(req);
+        if (!user.getFirstName().equals("***")) {
+            req.setAttribute("user", user);
+        }
+        req.getRequestDispatcher("ftl/starterPage.ftl").forward(req, resp);
     }
 }

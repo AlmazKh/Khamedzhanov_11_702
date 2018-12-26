@@ -21,19 +21,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void addUser(UserForm userForm) {
-        User user = User.builder()
-                .firstName(userForm.getFirstName())
-                .lastName(userForm.getLastName())
-                .gender(userForm.getGender())
-                .phone(userForm.getPhone())
-                .hashPassword(userForm.getPassword())
-                .build();
-
-        usersRepository.save(user);
-    }
-
-    @Override
     public void signUp(UserForm userForm) {
         User newUser = User.builder()
                 .firstName(userForm.getFirstName())

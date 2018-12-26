@@ -1,5 +1,8 @@
 package ru.itis.repositories;
 
-public interface FeedbackRepository extends CrudRepository {
+import ru.itis.form.FeedbackForm;
+import ru.itis.models.Feedback;
+
+public interface FeedbackRepository extends CrudRepository<Feedback> {
 
 }
