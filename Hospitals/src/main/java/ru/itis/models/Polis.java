@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Polis {
+
     private Long id;
     private Integer number;
     private String insuranceCompany;

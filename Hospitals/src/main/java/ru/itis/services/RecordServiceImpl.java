@@ -46,6 +46,4 @@ public class RecordServiceImpl implements RecordService {
     public void addReception(Long doctorId, String date, String time, Long patientId) {
         recordRepository.addReception(doctorId, date, time, patientId);
     }
-
-
 }

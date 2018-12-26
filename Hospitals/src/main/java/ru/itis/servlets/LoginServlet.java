@@ -53,11 +53,6 @@ public class LoginServlet extends HttpServlet {
 
         Optional<String> optionalCookieValue = service.login(loginForm);
 
-//        Cookie cookie = new Cookie("auth", optionalCookieValue.get());
-//        resp.addCookie(cookie);
-//        resp.setStatus(201);
-//        resp.sendRedirect("/users");
-
         if (optionalCookieValue.isPresent()) {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());
             resp.addCookie(cookie);

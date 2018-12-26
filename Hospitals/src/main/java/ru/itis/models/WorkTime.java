@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorkTime {
+
     Long id;
     String time;
     Doctor doctor;

@@ -64,5 +64,4 @@ public class ReceptionHistoryServlet extends HttpServlet {
         req.setAttribute("doctors", doctors);
         req.getRequestDispatcher("ftl/reception_history.ftl").forward(req, resp);
     }
-
 }

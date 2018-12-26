@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Hospital {
+
     private Long id;
     private String address;
     private String phone;

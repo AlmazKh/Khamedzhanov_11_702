@@ -33,7 +33,6 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
     private static final String SQL_SELECT_RECEPTIONS=
             "SELECT * FROM reception WHERE patient_id = ?";
 
-
     public ComponentsRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }

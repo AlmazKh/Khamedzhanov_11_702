@@ -28,7 +28,6 @@ public class StarterPageServlet extends HttpServlet {
 
     private UsersService usersService;
     private LoginService loginService;
-
     private ObjectMapper mapper = new ObjectMapper();
 
     @Override
@@ -66,7 +65,6 @@ public class StarterPageServlet extends HttpServlet {
             request.setAttribute("UserName", user.getFirstName());
             request.getRequestDispatcher("jsp/starterPageAfterLogin.jsp").forward(request, response);
         }
-
     }
 
     @Override

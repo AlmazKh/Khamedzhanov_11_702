@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Procedure {
+
     private Long id;
     private String name;
     private Integer price;

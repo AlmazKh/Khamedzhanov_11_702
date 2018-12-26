@@ -7,9 +7,9 @@ import ru.itis.models.Reception;
 import java.util.List;
 
 public interface ComponentsService {
+
     List<Doctor> getDoctors(Long hospitalId);
     List<Procedure> getProcedures(Long hospitalId);
     List<Reception> getReception(Long userId);
     List<Doctor> getDoctorsNameById(Long patientId);
-
 }

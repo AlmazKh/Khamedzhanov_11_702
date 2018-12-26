@@ -1,7 +1,6 @@
 package ru.itis.servlets;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
 import ru.itis.repositories.ComponentsRepository;

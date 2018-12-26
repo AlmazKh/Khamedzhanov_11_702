@@ -65,19 +65,6 @@ public class RecordServlet extends HttpServlet {
         List<Doctor> doctors = recordService.getDoctors();
         List<Procedure> procedures = recordService.getProcedures();
         req.setAttribute("hospitals", hospitals);
-        /*String hosptalId = req.getParameter("hospital_id");
-        if (hosptalId != null){
-            doctors = componentsService.getDoctors(Long.parseLong(hosptalId));
-            String resultJson = objectMapper.writeValueAsString(doctors);
-            resp.setContentType("application/json");
-            PrintWriter writer = resp.getWriter();
-            writer.write(resultJson);
-        }
-        req.setAttribute("doctors", doctors);
-        *//*if(candidate.isPresent()){
-            Long hospitalId = Long.parseLong(candidate.get());
-        }*//*
-        req.setAttribute("procedures", procedures);*/
         req.getRequestDispatcher("ftl/record.ftl").forward(req, resp);
     }
 

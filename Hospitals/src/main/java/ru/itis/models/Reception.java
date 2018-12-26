@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reception {
+
     private Long id;
     private Polis polis;
     private Integer cabinetNumber;

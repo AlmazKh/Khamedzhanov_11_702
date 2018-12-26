@@ -20,7 +20,6 @@ public class UsersServiceImpl implements UsersService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-
     @Override
     public void addUser(UserForm userForm) {
         User user = User.builder()
@@ -44,7 +43,6 @@ public class UsersServiceImpl implements UsersService {
                 .hashPassword(passwordEncoder.encode(userForm.getPassword()))
                 .build();
         usersRepository.save(newUser);
-
     }
 
     @Override

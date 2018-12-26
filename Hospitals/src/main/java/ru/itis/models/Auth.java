@@ -14,5 +14,4 @@ public class Auth {
     private Long id;
     private User user;
     private String cookieValue;
-
 }

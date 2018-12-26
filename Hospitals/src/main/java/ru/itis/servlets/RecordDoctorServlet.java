@@ -23,10 +23,6 @@ public class RecordDoctorServlet extends HttpServlet {
 
     private RecordService recordService;
     private RecordRepository recordRepository;
-    private UsersService usersService;
-    private LoginService loginService;
-    private ComponentsRepository componentsRepository;
-    private ComponentsService componentsService;
 
     @Override
     public void init() throws ServletException {
@@ -45,7 +41,6 @@ public class RecordDoctorServlet extends HttpServlet {
         String hospitalId = req.getParameter("hospital_id");
         String procedureId = req.getParameter("procedure_id");
         if (hospitalId != null && procedureId != null){
-//            List<Procedure> procedures = componentsService.getProcedures(Long.parseLong(hospitalId));
             List<Doctor> doctors = recordService.getDoctors(Long.parseLong(hospitalId), Long.parseLong(procedureId));
             String resultJson = objectMapper.writeValueAsString(doctors);
             resp.setStatus(200);

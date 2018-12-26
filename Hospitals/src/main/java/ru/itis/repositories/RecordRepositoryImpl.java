@@ -95,7 +95,6 @@ public class RecordRepositoryImpl implements RecordRepository {
     @Override
     public List<Doctor> getDoctors(Long hospitalId, Long procedureId) {
         return jdbcTemplate.query(SQL_SELECT_DOCTORS_BY_H_P, doctorRowMapper, hospitalId, procedureId);
-
     }
 
     @Override
@@ -107,11 +106,6 @@ public class RecordRepositoryImpl implements RecordRepository {
     public void addReception(Long doctorId, String date, String time, Long patientId) {
         Integer cabinetNumber = jdbcTemplate.query(SQL_SELECT_CABINET_BY_DOCTOR_ID, doctorCabinetRowMapper, doctorId).get(0);
         jdbcTemplate.update(SQL_INSERT_RECEPTION, cabinetNumber, date, time, doctorId, patientId);
-    }
-
-    @Override
-    public Hospital getHospital(Long hospitalId) {
-        return null;
     }
 
     @Override
