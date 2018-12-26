@@ -9,7 +9,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
-    <a class="navbar-brand" href="file://C:\Users\Almaz\Desktop\Khamedzhanov_11_702\Hospitals\src\main\webapp\jsp\starterPageAfterLogin.jsp#">
+    <a class="navbar-brand" href="/starterPage">
         <img src="img/logo_withHS.png" width="109" height="49" >
         <!--  <img src="logo_withHS.png">  -->
         <!-- <h1>HS</h1> --></a>
@@ -44,10 +44,6 @@
                 </a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 

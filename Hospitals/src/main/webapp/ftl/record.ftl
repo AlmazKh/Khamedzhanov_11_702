@@ -61,7 +61,6 @@
         $.ajax({
             type: 'get',
             url: '/recordtime',
-            // dataType: 'json',
             data: {
                 doctor_id: selectedDoctor,
                 date: selectedDate
@@ -76,14 +75,13 @@
     })
 
 </script>
-<body background= "img/wallpaper.jpg">
+<body background= "img/wallpaper.jpg" >
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
-    <a class="navbar-brand" href="file://C:\Users\Almaz\Desktop\Khamedzhanov_11_702\Hospitals\src\main\webapp\jsp\starterPageAfterLogin.jsp#">
+    <a class="navbar-brand" href="/starterPage">
         <img src="img/logo_withHS.png" width="109" height="49" >
-        <!--  <img src="logo_withHS.png">  -->
-        <!-- <h1>HS</h1> --></a>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -111,134 +109,72 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/history" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
-                    Hello
+                    History
                 </a>
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 
-<#--TODO:-->
-<#--выбор больницы-->
-<#--выбор врача-->
-<#--время-->
-<#--процедура (связать с доктором и показом номера кабинета)-->
-
-<#--история посещений-->
-
-<main role="main" class="container" style="padding-top: 10vw">
-    <div class="container" style="background: aliceblue">
-        <div class="row">
-            <#if user?? >
-                <div class="card col-md-6">
-                    <#--<h4> Hospital: ${hospital}</h4>-->
-                    <h3>Здесь будут данные о записи на прием</h3>
-                        <h5>Больница</h5>
-                        <h5>Доктор</h5>
-                        <h5>Процедура (мб цена)</h5>
-                        <h5>Номер кабинета</h5>
-                        <h5>Время</h5>
+<main role="main" class="container" style="padding-top: 5vw">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card col-md-8" style="background: aliceblue">
+                 <#if user?? >
+                     <div class="card col-md-6">
+                         <h3>Здесь будут данные о записи на прием</h3>
+                         <h5>Больница</h5>
+                         <h5>Доктор</h5>
+                         <h5>Процедура (мб цена)</h5>
+                         <h5>Номер кабинета</h5>
+                         <h5>Время</h5>
 
 
-                </div>
-            <#else>
-                <form method="post" action="/record">
+                     </div>
+                 <#else>
+                <form method="post" action="/record" class="col-md-6" style="padding-top: 2vw">
                     <div class="form-group">
                         <label for="selectHospital">Hospital</label>
-                        <select class="form-control test-1" id="selectHospital" name="hospital_id">
-                            <#--Если что сделать так-->
-                            <#--<c:forEach var="hospital" items="${hospitals}">-->
-                                <#--<option value="${hospital.id}">${hospital.address}</option>-->
-                            <#--</c:forEach>-->
+                        <select class="form-control test-1" id="selectHospital" name="hospital_id" required="required">
                              <#list hospitals as hospital>
-                                <option value="${hospital.id}">${hospital.address}</option>
+                                 <option value="${hospital.id}">${hospital.address}</option>
                              </#list>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectProcedure">Procedure</label>
-                        <select class="form-control test-2" id="selectProcedure" name="procedure_id">
-                            <#-- <#list procedures as procedure>
+                        <select class="form-control test-2" id="selectProcedure" name="procedure_id" required="">
+                        <#-- <#list procedures as procedure>
                                  <option value="${procedure.id}">${procedure.name}</option>
                              </#list>-->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectDoctor">Doctor</label>
-                        <select class="form-control test-3" id="selectDoctor" name="doctor_id">
-                             <#--<#list doctors as doctor>
-                                &lt;#&ndash;<option value="${doctor.id}">${doctor.firstName}</option>&ndash;&gt;
-                             </#list>-->
+                        <select class="form-control test-3" id="selectDoctor" name="doctor_id" required="">
+                        <#--<#list doctors as doctor>
+                                <#--<option value="${doctor.id}">${doctor.firstName}</option>-->
+                             <#--</#list>-->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectDate">Date</label>
-                        <#--<select class="form-control test-4" id="selectDate" name="date">-->
-                        <#--</select>-->
-                        <input class="form-control test-4" type="date" name="date" id="selectDate">
-                     <#--<input type="time" name="cron" value="03:15" min="08:00" max="17:00">-->
+                        <input class="form-control test-4" type="date" name="date" id="selectDate" required="">
                     </div>
                     <div class="form-group">
                         <label for="selectTime">Time</label>
-                        <select class="form-control test-5" id="selectTime" name="time">
-
+                        <select class="form-control test-5" id="selectTime" name="time" required="">
                         </select>
-                        <#--<input type="datetime-local" name="calendar" id="selectTime"  value="03:15" min="08:00" max="17:00">-->
-                        <#--<input type="time" name="cron" value="03:15" min="08:00" max="17:00">-->
                     </div>
 
                     <button type="submit" class="btn btn-primary">Record</button>
                 </form>
-            </#if>
+                 </#if>
+            </div>
         </div>
     </div>
 </main>
-
-<#--<script>-->
-    <#--function selectDoctor(btnId) {-->
-        <#--$.ajax({-->
-            <#--type: 'post',-->
-            <#--url: '/record',-->
-            <#--data: {-->
-                <#--doctor_id: btnId-->
-            <#--}-->
-        <#--}).done(function (data) {-->
-            <#--var tableHtml = "";-->
-            <#--tableHtml += '<table>';-->
-            <#--tableHtml +=-->
-                <#--'<tr>' +-->
-                <#--'<th>' +-->
-                <#--'Doctors' +-->
-                <#--'</th>' +-->
-                <#--// '<th>' +-->
-                <#--// 'count' +-->
-                <#--// '</th>' +-->
-                <#--'</tr>';-->
-            <#--for (var i = 0; i < data.length; i++) {-->
-                <#--tableHtml += '<tr>' +-->
-                        <#--'<td>' + data[i].lastName + '</td>' +-->
-                        <#--'</tr>';-->
-
-                <#--tableHtml += '<table id="delete">';-->
-                <#--tableHtml += "<tr>";-->
-                <#--tableHtml += '<td><button onclick="deleteProduct(' + data[i].id + ')" ">Delete </button></td>'-->
-                <#--tableHtml += "</tr>";-->
-                <#--tableHtml += "</table>";-->
-            <#--}-->
-            <#--tableHtml += '</table>';-->
-            <#--$("#products_table").html(tableHtml);-->
-        <#--}).fail(function () {-->
-            <#--alert('ALL BAD')-->
-        <#--});-->
-    <#--}-->
-<#--</script>-->
-
-
 
 </body>
 </html>

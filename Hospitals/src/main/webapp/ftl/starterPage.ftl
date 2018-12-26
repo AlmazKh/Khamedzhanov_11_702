@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
-    <a class="navbar-brand" href="file://C:\Users\Almaz\Desktop\Khamedzhanov_11_702\Hospitals\src\main\webapp\jsp\starterPageAfterLogin.jsp#">
+    <a class="navbar-brand" href="/starterPage">
         <img src="img/logo_withHS.png" width="109" height="49" >
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -57,10 +57,6 @@
                     </li>
                 </#if>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 
@@ -176,5 +172,23 @@
         window.location.href = pageURL;
     }
 </script>
+<#--<script>-->
+    <#--$('#submit_button').onclick(function(){-->
+        <#--$.ajax({-->
+            <#--url: '/starterPage',-->
+            <#--type: 'POST',-->
+            <#--dataType: 'html',-->
+            <#--data: $('#user_feedback').serialize(),-->
+            <#--success: function(){-->
+                <#--alert('Successful! Thanks for your feedback'); // отправлено удачно-->
+            <#--},-->
+            <#--error: function() {-->
+                <#--alert('Please, try again'); // ошибка-->
+            <#--}-->
+        <#--});-->
+
+    <#--});-->
+<#--</script>-->
+
 </body>
 </html>
