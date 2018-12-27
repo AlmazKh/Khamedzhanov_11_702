@@ -76,17 +76,6 @@ public class RecordServlet extends HttpServlet {
         User user = currentUser(req);
         req.setAttribute("user", user);
         recordService.addReception(doctorId, date, time, user.getId());
-
-        //TODO: подача данных в if блок после сабмита формы
-//        List<Hospital> hospitals = recordService.getHospitals();
-
-
-//        req.setAttribute("hospital", );
-
         req.getRequestDispatcher("ftl/record.ftl").forward(req, resp);
-
-//        resp.setStatus(200);
-
-
     }
 }

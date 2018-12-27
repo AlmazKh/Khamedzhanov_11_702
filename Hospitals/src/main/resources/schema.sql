@@ -79,6 +79,8 @@ ALTER TABLE reception ADD CONSTRAINT fk_reception_doctor FOREIGN KEY (doctor_id)
   REFERENCES doctor(id);
 ALTER TABLE reception ADD CONSTRAINT fk_reception_polis FOREIGN KEY (polis_id)
 REFERENCES polis(id);
+ALTER TABLE auth ADD CONSTRAINT fk_auth_user FOREIGN KEY (user_id)
+REFERENCES patient(id);
 
 ALTER TABLE doctor ADD COLUMN password_hash VARCHAR(70);
 ALTER TABLE patient ADD COLUMN password_hash VARCHAR(70);
