@@ -5,10 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <#--<script src="../../assets/js/vendor/popper.min.js"></script>-->
+    <#--<script src="../../dist/js/bootstrap.min.js"></script>-->
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <#--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -122,7 +127,7 @@
                     </div>
                     <div class="contact_form">
                         <h5>Give us feedback</h5>
-                        <form method="post" action="/starterPage" id="user_fee  dback">
+                        <form method="post" action="/starterPage" id="user_feedback">
                             <label for="user_name">Your name:</label>
                             <input required="required" id="user_name" name="name" type="text">
 
@@ -135,25 +140,24 @@
                             <label for="user_text">Your message:</label>
                             <textarea name="text" id="user_text" cols="30" rows="10" placeholder="Ваш текст" ></textarea>
 
-                            <input type="submit" class="btn blue" data-toggle="modal" data-target="#feedbackModal" value="SUBMIT">
+                            <input type="submit" id="submit_button" class="btn blue" data-toggle="modal" data-target="#feedbackModal" value="SUBMIT">
                         </form>
                     </div>
 
-                    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="modalLabel">Successfully</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    ...
+                                    <h5>Thanks for your feedback</h5>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -163,32 +167,37 @@
         </div>
     </div>
 </div>
+<script>
+    $("#submit_button").on('click', function (e) {
+        e.preventDefault(); //отмена стандартной отравки формы
+        var formDataSer = $("#user_feedback").serializeArray();
+        var formData = {};
+        formDataSer.forEach(function (i) {
+            formData[i.name] = i.value;
+        });
+        $.ajax({
+            type: 'post',
+            url: '/starterPage',
+            data: formData
+        }).done(function (data) {
+            $("#feedbackModal").modal('show'); // bootstrap documentation
+            // https://getbootstrap.com/docs/4.1/components/modal/#methods
+            // $('#user_feedback input').each(function (e) {
+            //     e.val('');
+            // })
+            document.querySelectorAll('#user_feedback').forEach(function (e) {
+                e.value = '';
+            })
+        });
 
-
-
+    });
+</script>
 <script>
     function openPage(pageURL)
     {
         window.location.href = pageURL;
     }
 </script>
-<#--<script>-->
-    <#--$('#submit_button').onclick(function(){-->
-        <#--$.ajax({-->
-            <#--url: '/starterPage',-->
-            <#--type: 'POST',-->
-            <#--dataType: 'html',-->
-            <#--data: $('#user_feedback').serialize(),-->
-            <#--success: function(){-->
-                <#--alert('Successful! Thanks for your feedback'); // отправлено удачно-->
-            <#--},-->
-            <#--error: function() {-->
-                <#--alert('Please, try again'); // ошибка-->
-            <#--}-->
-        <#--});-->
-
-    <#--});-->
-<#--</script>-->
 
 </body>
 </html>

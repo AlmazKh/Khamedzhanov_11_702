@@ -99,11 +99,51 @@ CREATE SEQUENCE patient_seq
   cache 10
   owned by patient.id;
 
+CREATE SEQUENCE reception_seq
+  owned by reception.id;
+
 SELECT setval('doctor_seq', max(id)) FROM doctor;
 SELECT setval('patient_seq', max(id)) FROM patient;
+SELECT setval('reception_seq', max(id)) FROM reception;
 ALTER TABLE doctor ALTER COLUMN id SET DEFAULT nextval('doctor_seq');
 ALTER TABLE patient ALTER COLUMN id SET DEFAULT nextval('patient_seq');
+ALTER TABLE reception ALTER COLUMN id SET DEFAULT nextval('reception_seq');
 
 
+ALTER TABLE patient DROP COLUMN gender;
 
+ALTER TABLE patient ADD COLUMN gender VARCHAR(30);
+
+ALTER TABLE hospital DROP COLUMN procedure_id;
+ALTER TABLE procedure DROP COLUMN hospital_id;
+ALTER TABLE patient DROP COLUMN reception_id;
+
+ALTER TABLE reception DROP COLUMN polis_id;
+ALTER TABLE reception ADD COLUMN patient_id BIGINT;
+ALTER TABLE reception ADD CONSTRAINT fk_reception_patient FOREIGN KEY (patient_id)
+REFERENCES patient(id);
+
+ALTER TABLE doctor ADD COLUMN cabinet_number INTEGER;
+
+ALTER TABLE doctor DROP COLUMN phone;
+ALTER TABLE doctor DROP COLUMN password_hash;
+
+CREATE TABLE work_time (
+  id serial primary key,
+  time varchar(10),
+  doctor_id BIGINT
+);
+
+ALTER TABLE work_time ADD CONSTRAINT fk_work_time_doctor FOREIGN KEY (doctor_id)
+REFERENCES doctor(id);
+
+ALTER TABLE reception ADD COLUMN date VARCHAR(20);
+
+CREATE TABLE feedback (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(40),
+  phone VARCHAR(20),
+  email VARCHAR(30),
+  text VARCHAR(1000)
+);
 

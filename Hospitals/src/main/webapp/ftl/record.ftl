@@ -129,11 +129,9 @@
                          <h5>Процедура (мб цена)</h5>
                          <h5>Номер кабинета</h5>
                          <h5>Время</h5>
-
-
                      </div>
                  <#else>
-                <form method="post" action="/record" class="col-md-6" style="padding-top: 2vw">
+                <form method="post" action="/record" id="record" class="col-md-6" style="padding-top: 2vw">
                     <div class="form-group">
                         <label for="selectHospital">Hospital</label>
                         <select class="form-control test-1" id="selectHospital" name="hospital_id" required="required">
@@ -167,14 +165,52 @@
                         <select class="form-control test-5" id="selectTime" name="time" required="">
                         </select>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Record</button>
+                    <button type="submit" id="submit_button" class="btn btn-primary">Record</button>
                 </form>
                  </#if>
             </div>
         </div>
+        <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Successfully recording</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>Thanks for your using our service</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+
+<script>
+    $("#submit_button").on('click', function (e) {
+        e.preventDefault();
+        var formDataSer = $("#record").serializeArray();
+        var formData = {};
+        formDataSer.forEach(function (i) {
+            formData[i.name] = i.value;
+        });
+        $.ajax({
+            type: 'post',
+            url: '/record',
+            data: formData
+        }).done(function (data) {
+            $("#recordModal").modal('show');
+            document.querySelectorAll('#record').forEach(function (e) {
+                e.value = '';
+            })
+        });
+    });
+</script>
 
 </body>
 </html>
