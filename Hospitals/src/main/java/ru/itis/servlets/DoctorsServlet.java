@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/doctors")
@@ -47,11 +49,17 @@ public class DoctorsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long hospitalId = Long.valueOf(req.getParameter("hospital_id"));
-        List<Doctor> doctors = componentsService.getDoctors(hospitalId);
+        ObjectMapper objectMapper = new ObjectMapper();
         List<Hospital> hospitals = recordService.getHospitals();
-        req.setAttribute("doctors", doctors);
         req.setAttribute("hospitals", hospitals);
-        req.getRequestDispatcher("ftl/doctors.ftl").forward(req, resp);
+        String hospitalId = req.getParameter("hospital_id");
+        if (hospitalId != null){
+            List<Doctor> doctors = componentsService.getDoctors(Long.parseLong(hospitalId));
+            String resultJson = objectMapper.writeValueAsString(doctors);
+            resp.setStatus(200);
+            resp.setContentType("application/json");
+            PrintWriter writer = resp.getWriter();
+            writer.write(resultJson);
+        }
     }
 }

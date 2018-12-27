@@ -36,13 +36,13 @@
     });
 
     $(document).on('change', '.test-2', function () {
-        var selectedDoctor = $("#selectHospital").val();
+        var selectedHospital = $("#selectHospital").val();
         var selectedProcedure = $("#selectProcedure").val();
         $.ajax({
             type: 'get',
             url: '/recorddoctors',
             data: {
-                hospital_id: selectedDoctor,
+                hospital_id: selectedHospital,
                 procedure_id: selectedProcedure
             }
         }).done(function (data) {

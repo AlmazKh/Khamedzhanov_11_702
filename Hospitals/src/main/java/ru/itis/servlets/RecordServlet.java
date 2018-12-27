@@ -62,8 +62,6 @@ public class RecordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Hospital> hospitals = recordService.getHospitals();
-        List<Doctor> doctors = recordService.getDoctors();
-        List<Procedure> procedures = recordService.getProcedures();
         req.setAttribute("hospitals", hospitals);
         req.getRequestDispatcher("ftl/record.ftl").forward(req, resp);
     }
@@ -75,7 +73,6 @@ public class RecordServlet extends HttpServlet {
         Long procedureId = Long.valueOf(req.getParameter("procedure_id"));
         String date = req.getParameter("date");
         String time = req.getParameter("time");
-
         User user = currentUser(req);
         req.setAttribute("user", user);
         recordService.addReception(doctorId, date, time, user.getId());

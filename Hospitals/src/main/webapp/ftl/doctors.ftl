@@ -53,48 +53,23 @@
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">List of doctors</h1>
-
-                <form method="post">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="selectHospital">Please, choose hospital</label>
-                            <select class="form-control" id="selectHospital" name="hospital_id">
-                                <#list hospitals as hospital>
-                                    <option value="${hospital.id}">${hospital.address}</option>
-                                </#list>
-                            </select>
-                        </div>
-                        <div class="col-md-4" align="left" style="padding-top: 31px">
-                            <button type="submit" class="btn btn-primary">Show</button>
-                        </div>
-                    </div>
-                </form>
                 <div class="row">
-
-                    <h2 class="sub-header" style="padding-top: 5vw">Here you can see list of doctors</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Cabinet Number</th>
-                                <th>Rating</th>
-                            </tr>
-                            </thead>
-                            <#list doctors as doctor>
-                            <tbody>
-                            <tr>
-                                <td>${doctor?counter}</td>
-                                <td>${doctor.firstName}</td>
-                                <td>${doctor.lastName}</td>
-                                <td>${doctor.cabinetNumber}</td>
-                                <td>${doctor.rating}</td>
-                            </tr>
-                            </tbody>
+                    <div class="col-md-4">
+                        <label for="selectHospital">Please, choose hospital</label>
+                        <select class="form-control" id="selectHospital" name="hospital_id">
+                            <#list hospitals as hospital>
+                                <option value="${hospital.id}">${hospital.address}</option>
                             </#list>
-                        </table>
+                        </select>
+                    </div>
+                    <div class="col-md-4" align="left" style="padding-top: 31px">
+                        <button onclick="showTable()" type="submit" class="btn btn-primary">Show</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2 class="sub-header" style="padding-top: 5vw">Here you can see list of doctors</h2>
+                    <div class="table-responsive" id="docorts_table">
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,5 +87,45 @@
 <link href="starter-template.css" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous">
+<script>
+    function showTable() {
+        var selectedHospital = $("#selectHospital").val();
+        $.ajax({
+            type: 'post',
+            url: '/doctors',
+            data: {
+                hospital_id: selectedHospital
+            }
+        }).done(function (data) {
+            var tableHtml = "";
+            tableHtml += '<table  class="table table-striped">';
+            tableHtml += '<thead>';
+            tableHtml +=
+                    '<tr>' +
+                    '<th>' + '#' + '</th>' +
+                    '<th>' + 'First Name' + '</th>' +
+                    '<th>' + 'Last name' + '</th>' +
+                    '<th>' + 'Cabinet number' + '</th>' +
+                    '<th>' + 'Rating' + '</th>' +
+                    '</tr>';
+            tableHtml += '</thead>';
+            for (var i = 0; i < data.length; i++) {
+                tableHtml += '<tbody>';
+                tableHtml += '<tr>' +
+                        '<td>' + (i+1) + '</td>' +
+                        '<td>' + data[i].firstName + '</td>' +
+                        '<td>' + data[i].lastName + '</td>' +
+                        '<td>' + data[i].cabinetNumber + '</td>' +
+                        '<td>' + data[i].rating + '</td>' +
+                        '</tr>';
+                tableHtml += '</tbody>';
+            }
+            tableHtml += '</table>';
+            $("#docorts_table").html(tableHtml);
+        }).fail(function () {
+            alert('ALL BAD')
+        });
+    }
+</script>
 </body>
 </html>

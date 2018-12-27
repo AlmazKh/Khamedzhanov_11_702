@@ -25,7 +25,6 @@ public class StarterPageServlet extends HttpServlet {
     private LoginService loginService;
     private FeedbackRepository feedbackRepository;
     private FeedbackService feedbackService;
-    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public void init() throws ServletException {

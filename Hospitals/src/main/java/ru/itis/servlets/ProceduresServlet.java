@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/procedures")
@@ -51,11 +53,17 @@ public class  ProceduresServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long hospitalId = Long.valueOf(req.getParameter("hospital_id"));
-        List<Procedure> procedures = componentsService.getProcedures(hospitalId);
+        ObjectMapper objectMapper = new ObjectMapper();
         List<Hospital> hospitals = recordService.getHospitals();
-        req.setAttribute("procedures", procedures);
         req.setAttribute("hospitals", hospitals);
-        req.getRequestDispatcher("ftl/procedures.ftl").forward(req, resp);
+        String hospitalId = req.getParameter("hospital_id");
+        if (hospitalId != null){
+            List<Procedure> procedures = componentsService.getProcedures(Long.parseLong(hospitalId));
+            String resultJson = objectMapper.writeValueAsString(procedures);
+            resp.setStatus(200);
+            resp.setContentType("application/json");
+            PrintWriter writer = resp.getWriter();
+            writer.write(resultJson);
+        }
     }
 }
