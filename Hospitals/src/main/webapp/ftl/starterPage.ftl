@@ -185,7 +185,7 @@
             // $('#user_feedback input').each(function (e) {
             //     e.val('');
             // })
-            document.querySelectorAll('#user_feedback').forEach(function (e) {
+            document.querySelectorAll('#user_feedback input, #user_feedback textarea').forEach(function (e) {
                 e.value = '';
             })
         });
