@@ -25,15 +25,12 @@ import java.util.Optional;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private LoginService service;
+    private LoginService loginService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        this.service = new LoginServiceImpl(authRepository, usersRepository);
+        loginService = (LoginService) context.getAttribute("loginService");
     }
 
     @Override
@@ -51,7 +48,7 @@ public class LoginServlet extends HttpServlet {
                 .password(password)
                 .build();
 
-        Optional<String> optionalCookieValue = service.login(loginForm);
+        Optional<String> optionalCookieValue = loginService.login(loginForm);
 
         if (optionalCookieValue.isPresent()) {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());

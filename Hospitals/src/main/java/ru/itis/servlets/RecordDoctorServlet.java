@@ -25,14 +25,11 @@ import java.util.List;
 public class RecordDoctorServlet extends HttpServlet {
 
     private RecordService recordService;
-    private RecordRepository recordRepository;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        recordRepository = new RecordRepositoryImpl(dataSource);
-        recordService = new RecordServiceImpl(recordRepository);
+        recordService = (RecordService) context.getAttribute("recordService");
     }
 
     @Override

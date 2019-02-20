@@ -31,9 +31,7 @@ public class SignUpServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        this.usersService = new UsersServiceImpl(usersRepository);
+        usersService = (UsersService) context.getAttribute("usersService");
     }
 
     @Override

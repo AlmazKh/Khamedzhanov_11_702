@@ -24,21 +24,14 @@ import java.util.List;
 @WebServlet("/starterPage")
 public class StarterPageServlet extends HttpServlet {
 
-    private UsersService usersService;
     private LoginService loginService;
-    private FeedbackRepository feedbackRepository;
     private FeedbackService feedbackService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        this.usersService = new UsersServiceImpl(new UsersRepositoryJdbcTemplateImpl(dataSource));
-        this.loginService = new LoginServiceImpl(authRepository, usersRepository);
-        feedbackRepository = new FeedbackRepositoryImpl(dataSource);
-        feedbackService = new FeedbackServiceImpl(feedbackRepository);
+        loginService = (LoginService) context.getAttribute("loginService");
+        feedbackService = (FeedbackService) context.getAttribute("feedbackService");
     }
 
     private User currentUser(HttpServletRequest req) {

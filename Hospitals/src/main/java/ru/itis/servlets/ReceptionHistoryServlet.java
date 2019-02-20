@@ -23,21 +23,14 @@ import java.util.List;
 @WebServlet("/history")
 public class ReceptionHistoryServlet extends HttpServlet {
 
-    private ComponentsRepository componentsRepository;
     private ComponentsService componentsService;
     private LoginService loginService;
-    private UsersService usersService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        componentsRepository = new ComponentsRepositoryImpl(dataSource);
-        componentsService = new ComponentsServiceImpl(componentsRepository);
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        usersService = new UsersServiceImpl(usersRepository);
-        loginService = new LoginServiceImpl(authRepository, usersRepository);
+        loginService = (LoginService) context.getAttribute("loginService");
+        componentsService = (ComponentsService) context.getAttribute("componentsService");
     }
 
     private User currentUser(HttpServletRequest req){

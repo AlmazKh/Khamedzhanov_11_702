@@ -24,18 +24,13 @@ import java.util.List;
 public class DoctorsServlet extends HttpServlet {
 
     private RecordService recordService;
-    private RecordRepository recordRepository;
-    private ComponentsRepository componentsRepository;
     private ComponentsService componentsService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        recordRepository = new RecordRepositoryImpl(dataSource);
-        recordService = new RecordServiceImpl(recordRepository);
-        componentsRepository = new ComponentsRepositoryImpl(dataSource);
-        componentsService = new ComponentsServiceImpl(componentsRepository);
+        recordService = (RecordService) context.getAttribute("recordService");
+        componentsService = (ComponentsService) context.getAttribute("componentsService");
     }
 
     @Override

@@ -10,4 +10,49 @@
         <property name="password" value="qwerty007"/>
     </bean>
 
+    <bean id="usersRepository" class="ru.itis.repositories.UsersRepositoryJdbcTemplateImpl">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="authRepository" class="ru.itis.repositories.AuthRepositoryImpl">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="feedbackRepository" class="ru.itis.repositories.FeedbackRepositoryImpl">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="recordRepository" class="ru.itis.repositories.RecordRepositoryImpl">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="componentsRepository" class="ru.itis.repositories.ComponentsRepositoryImpl">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="recordService" class="ru.itis.services.RecordServiceImpl">
+        <constructor-arg name="recordRepository" ref="recordRepository"/>
+    </bean>
+
+    <bean id="feedbackService" class="ru.itis.services.FeedbackServiceImpl">
+        <constructor-arg name="feedbackRepository" ref="feedbackRepository"/>
+    </bean>
+
+    <bean id="usersService" class="ru.itis.services.UsersServiceImpl">
+        <constructor-arg name="usersRepository" ref="usersRepository"/>
+    </bean>
+
+    <bean id="loginService" class="ru.itis.services.LoginServiceImpl">
+        <constructor-arg name="authRepository" ref="authRepository"/>
+        <constructor-arg name="usersRepository" ref="usersRepository"/>
+    </bean>
+
+    <bean id="componentsService" class="ru.itis.services.ComponentsServiceImpl">
+        <constructor-arg name="componentsRepository" ref="componentsRepository"/>
+    </bean>
+
+
+
+
+
 </beans>

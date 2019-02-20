@@ -27,24 +27,13 @@ import java.util.Optional;
 public class RecordServlet extends HttpServlet {
 
     private RecordService recordService;
-    private RecordRepository recordRepository;
-    private UsersService usersService;
     private LoginService loginService;
-    private ComponentsRepository componentsRepository;
-    private ComponentsService componentsService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        DataSource dataSource = (DataSource) context.getAttribute("dataSource");
-        recordRepository = new RecordRepositoryImpl(dataSource);
-        recordService = new RecordServiceImpl(recordRepository);
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        usersService = new UsersServiceImpl(usersRepository);
-        loginService = new LoginServiceImpl(authRepository, usersRepository);
-        componentsRepository = new ComponentsRepositoryImpl(dataSource);
-        componentsService = new ComponentsServiceImpl(componentsRepository);
+        recordService = (RecordService) context.getAttribute("recordService");
+        loginService = (LoginService) context.getAttribute("loginService");
     }
 
     private User currentUser(HttpServletRequest req) {
