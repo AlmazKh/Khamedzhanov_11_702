@@ -11,6 +11,7 @@ public class SocketClient {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
+    private boolean messageState;
 
     // начало сессии - получаем ip-сервера и его порт
     public void startConnection(String ip, int port) {
