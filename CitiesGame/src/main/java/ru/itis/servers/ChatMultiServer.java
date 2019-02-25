@@ -46,24 +46,28 @@ public class ChatMultiServer {
         private Socket clientSocket;
         // информация, поступающая от клиента
         private BufferedReader in;
+        private PrintWriter out;
+
 
         ClientHandler(Socket socket) {
             this.clientSocket = socket;
             // добавляем текущее подключение в список
             clients.add(this);
+            try {
+                out = new PrintWriter(this.clientSocket.getOutputStream(), true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("New client " + socket.getPort());
         }
         public boolean findCity(String SearchedCity) {
-            if(!cities.isEmpty()) {
+            if(cities.isEmpty()) {
                 return false;
             }
-//            if(cities.contains(SearchedCity)) {
-//                System.out.println("This city was used");
-//                return true;
-//            }
+
             for (String city: cities) {
                 if(city.equals(SearchedCity)) {
-                    System.out.println("This city was used");
+                    out.println("This city was used");
                     return true;
                 }
             }
@@ -77,7 +81,7 @@ public class ChatMultiServer {
             if(city.charAt(0) == previousCity.charAt(previousCity.length()-1)) {
                 return true;
             } else {
-                System.out.println("You need to write the city which beginning in " + previousCity.charAt(previousCity.length()-1));
+                out.println("You need to write the city which beginning in " + previousCity.charAt(previousCity.length()-1));
                 return false;
             }
         }
