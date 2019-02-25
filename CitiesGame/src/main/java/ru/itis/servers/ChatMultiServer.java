@@ -15,6 +15,7 @@ public class ChatMultiServer {
     private List<ClientHandler> clients;
     public HashSet<String> cities;
     private String previousCity;
+    private int queue = 0;
 
     public ChatMultiServer() {
         // Список для работы с многопоточностью
@@ -60,7 +61,8 @@ public class ChatMultiServer {
             }
             System.out.println("New client " + socket.getPort());
         }
-        public boolean findCity(String SearchedCity) {
+
+        private boolean findCity(String SearchedCity) {
             if(cities.isEmpty()) {
                 return false;
             }
@@ -74,7 +76,7 @@ public class ChatMultiServer {
             return false;
         }
 
-        public boolean checkLastLetter (String city) {
+        private boolean checkLastLetter (String city) {
             if (previousCity.equals("")) {
                 return true;
             }
@@ -85,6 +87,7 @@ public class ChatMultiServer {
                 return false;
             }
         }
+
         public void run() {
             try {
                 // получем входной поток для конкретного клиента
@@ -93,23 +96,32 @@ public class ChatMultiServer {
 
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    if (".".equals(inputLine)) {
-                        // бегаем по всем клиентам и обовещаем их о событии
-                        for (ClientHandler client : clients) {
-                            PrintWriter out = new PrintWriter(client.clientSocket.getOutputStream(), true);
-                            out.println("You win!");
-                        }
-                        break;
-                    } else {
-                        if(!findCity(inputLine) && checkLastLetter(inputLine)) {
-                            cities.add(inputLine);
-                            previousCity = inputLine;
+                    if(clients.get(queue).equals(this)) {
+                        if (".".equals(inputLine)) {
+                            // бегаем по всем клиентам и обовещаем их о событии
                             for (ClientHandler client : clients) {
                                 PrintWriter out = new PrintWriter(client.clientSocket.getOutputStream(), true);
-                                out.println(inputLine);
+                                out.println("You win!");
                             }
-                        }
+                            break;
+                        } else {
+                            if(!findCity(inputLine) && checkLastLetter(inputLine)) {
+                                cities.add(inputLine);
+                                previousCity = inputLine;
+                                for (ClientHandler client : clients) {
+                                    PrintWriter out = new PrintWriter(client.clientSocket.getOutputStream(), true);
+                                    out.println(inputLine);
+                                }
+                                if(queue == 0) {
+                                    queue = 1;
+                                } else {
+                                    queue = 0;
+                                }
+                            }
 
+                        }
+                    } else {
+                        out.println("Wait...");
                     }
                 }
                 in.close();
