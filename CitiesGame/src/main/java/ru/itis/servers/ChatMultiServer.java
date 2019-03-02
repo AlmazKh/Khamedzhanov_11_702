@@ -88,6 +88,13 @@ public class ChatMultiServer {
             }
         }
 
+        private void sendAllUsers(String text) throws IOException {
+            for (ClientHandler client : clients) {
+                PrintWriter out = new PrintWriter(client.clientSocket.getOutputStream(), true);
+                out.println(text);
+            }
+        }
+
         public void run() {
             try {
                 // получем входной поток для конкретного клиента
@@ -108,14 +115,11 @@ public class ChatMultiServer {
                             if(!findCity(inputLine) && checkLastLetter(inputLine)) {
                                 cities.add(inputLine);
                                 previousCity = inputLine;
-                                for (ClientHandler client : clients) {
-                                    PrintWriter out = new PrintWriter(client.clientSocket.getOutputStream(), true);
-                                    out.println(inputLine);
-                                }
-                                if(queue == 0) {
-                                    queue = 1;
-                                } else {
+                                sendAllUsers("Player " + clientSocket.getPort() + ": " + inputLine);
+                                if(queue == clients.size() - 1) {
                                     queue = 0;
+                                } else {
+                                    queue++;
                                 }
                             }
 

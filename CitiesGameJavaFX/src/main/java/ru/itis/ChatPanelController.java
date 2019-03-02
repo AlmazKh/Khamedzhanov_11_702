@@ -39,7 +39,7 @@ public class ChatPanelController {
     }
 
 //    @FXML
-    public void sendMessage( String text) {
+    public void sendMessage(String text) {
         textArea.appendText(text + "\n");
         textField.clear();
 
