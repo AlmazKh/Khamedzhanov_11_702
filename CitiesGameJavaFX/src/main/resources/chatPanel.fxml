@@ -10,8 +10,8 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ru.itis.ChatPanelController">
 
-    <TextArea fx:id="textArea" layoutX="73.0" layoutY="29.0" prefHeight="265.0" prefWidth="447.0" />
-    <Button fx:id="btn" layoutX="464.0" layoutY="334.0" onAction="#click" text="Hi niga!" />
-    <TextField fx:id="textField" layoutX="72.0" layoutY="334.0" prefHeight="25.0" prefWidth="373.0" onAction="#sendMessage" />
+    <TextArea fx:id="textArea" layoutX="73.0" layoutY="29.0" prefHeight="265.0" prefWidth="447.0" editable="false" />
+    <Button fx:id="btn" layoutX="464.0" layoutY="334.0" text="Hi niga!" />
+    <TextField fx:id="textField" layoutX="72.0" layoutY="334.0" prefHeight="25.0" prefWidth="373.0" />
 
 </AnchorPane>

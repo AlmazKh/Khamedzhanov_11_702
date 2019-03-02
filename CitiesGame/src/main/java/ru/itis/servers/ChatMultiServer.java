@@ -59,7 +59,7 @@ public class ChatMultiServer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("New client " + socket.getPort());
+            out.println("New client " + socket.getPort());
         }
 
         private boolean findCity(String SearchedCity) {
