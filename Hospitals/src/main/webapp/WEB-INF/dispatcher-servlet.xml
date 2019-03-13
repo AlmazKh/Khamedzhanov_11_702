@@ -39,6 +39,12 @@
 
     <bean id="authRepository" class="ru.itis.repositories.AuthRepositoryImpl"/>
 
+    <bean id="feedbackService" class="ru.itis.services.FeedbackServiceImpl"/>
+
+    <bean id="feedbackRepository" class="ru.itis.repositories.FeedbackRepositoryImpl"/>
+
+
+
 
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">

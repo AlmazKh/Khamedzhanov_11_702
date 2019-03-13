@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/starterPage")
+@WebServlet("/starterPageServlet")
 public class StarterPageServlet extends HttpServlet {
 
     private LoginService loginService;

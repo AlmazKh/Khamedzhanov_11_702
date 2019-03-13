@@ -4,7 +4,7 @@
     <title>Record</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
     <#--<script src="../../assets/js/vendor/popper.min.js"></script>-->
     <#--<script src="../../dist/js/bootstrap.min.js"></script>-->
     <script
@@ -22,12 +22,12 @@
           crossorigin="anonymous">
 </head>
 
-<body background= "img/wallpaper.jpg">
+<body background= "static/img/wallpaper.jpg">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
     <a class="navbar-brand" href="/starterPage">
-        <img src="img/logo_withHS.png" width="109" height="49" >
+        <img src="static/img/logo_withHS.png" width="109" height="49" >
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -22,7 +22,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-@WebServlet("/signUp")
+@WebServlet("/signUpServlet")
 public class SignUpServlet extends HttpServlet {
 
     private UsersService usersService;

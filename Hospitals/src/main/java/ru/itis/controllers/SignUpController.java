@@ -1,31 +1,43 @@
 package ru.itis.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 import ru.itis.form.UserForm;
 import ru.itis.services.UsersService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class SignUpController implements Controller {
+@Controller
+public class SignUpController {
 
     @Autowired
     private UsersService usersService;
 
-    @Override
-    public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        UserForm userForm = UserForm.builder()
-                .firstName(httpServletRequest.getParameter("first_name"))
-                .lastName(httpServletRequest.getParameter("last_name"))
-                .gender(httpServletRequest.getParameter("gender"))
-                .phone(httpServletRequest.getParameter("phone"))
-                .password(httpServletRequest.getParameter("password"))
-                .build();
-        usersService.signUp(userForm);
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+    public ModelAndView getSignUpPage(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("singUp");
         return modelAndView;
+    }
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    public ModelAndView signUp(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserForm userForm = UserForm.builder()
+                .firstName(req.getParameter("first_name"))
+                .lastName(req.getParameter("last_name"))
+                .gender(req.getParameter("gender"))
+                .phone(req.getParameter("phone"))
+                .password(req.getParameter("password"))
+                .build();
+        usersService.signUp(userForm);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+//        resp.sendRedirect("/login");
     }
 }

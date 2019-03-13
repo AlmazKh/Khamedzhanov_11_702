@@ -1,16 +1,14 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.form.FeedbackForm;
 import ru.itis.models.Feedback;
 import ru.itis.repositories.FeedbackRepository;
 
 public class FeedbackServiceImpl implements FeedbackService {
 
+    @Autowired
     private FeedbackRepository feedbackRepository;
-
-    public FeedbackServiceImpl(FeedbackRepository feedbackRepository) {
-        this.feedbackRepository = feedbackRepository;
-    }
 
     @Override
     public void addFeedback(FeedbackForm feedbackForm) {

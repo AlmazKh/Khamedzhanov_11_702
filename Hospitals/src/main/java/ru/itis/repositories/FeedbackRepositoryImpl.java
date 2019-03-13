@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.itis.form.FeedbackForm;
 import ru.itis.models.Feedback;
@@ -9,11 +10,8 @@ import java.util.List;
 
 public class FeedbackRepositoryImpl implements FeedbackRepository {
 
+    @Autowired
     JdbcTemplate jdbcTemplate;
-
-    public FeedbackRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     //language=SQL
     private static final String SQL_INSERT_FEEDBACK=
