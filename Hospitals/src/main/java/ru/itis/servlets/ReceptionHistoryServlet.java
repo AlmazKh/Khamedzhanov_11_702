@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/history")
+@WebServlet("/historyServlet")
 public class ReceptionHistoryServlet extends HttpServlet {
 
     private ComponentsService componentsService;

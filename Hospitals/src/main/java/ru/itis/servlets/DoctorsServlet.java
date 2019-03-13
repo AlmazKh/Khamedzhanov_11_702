@@ -1,11 +1,8 @@
 package ru.itis.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
-import ru.itis.models.Procedure;
-import ru.itis.repositories.*;
 import ru.itis.services.*;
 
 import javax.servlet.ServletConfig;
@@ -15,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

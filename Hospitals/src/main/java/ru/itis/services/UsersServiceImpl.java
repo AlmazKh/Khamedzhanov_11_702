@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.itis.form.UserForm;
@@ -11,12 +12,12 @@ import java.util.List;
 
 public class UsersServiceImpl implements UsersService {
 
+    @Autowired
     private UsersRepository usersRepository;
 
     private PasswordEncoder passwordEncoder;
 
-    public UsersServiceImpl(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
+    public UsersServiceImpl() {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 

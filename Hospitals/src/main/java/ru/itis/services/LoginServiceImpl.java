@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.itis.form.LoginForm;
 import ru.itis.models.Auth;
@@ -12,15 +13,14 @@ import java.util.UUID;
 
 public class LoginServiceImpl implements LoginService {
 
+    @Autowired
     private AuthRepository authRepository;
-
+    @Autowired
     private UsersRepository usersRepository;
 
     private BCryptPasswordEncoder encoder;
 
-    public LoginServiceImpl(AuthRepository authRepository, UsersRepository usersRepository) {
-        this.authRepository = authRepository;
-        this.usersRepository = usersRepository;
+    public LoginServiceImpl() {
         this.encoder = new BCryptPasswordEncoder();
     }
 

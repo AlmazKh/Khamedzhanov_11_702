@@ -18,6 +18,7 @@ import java.util.Optional;
 public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     // класс из Spring Framework
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     //language=SQL
@@ -40,10 +41,6 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
             .phone(resultSet.getString("phone"))
             .hashPassword(resultSet.getString("password_hash"))
             .build();
-
-    public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public List<User> findAll() {

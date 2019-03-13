@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.Doctor;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ComponentsRepositoryImpl implements ComponentsRepository {
 
     // класс из Spring Framework
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     //language=SQL
@@ -32,10 +34,6 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
     //language=SQL
     private static final String SQL_SELECT_RECEPTIONS=
             "SELECT * FROM reception WHERE patient_id = ?";
-
-    public ComponentsRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     private RowMapper<Doctor> doctorRowMapper = (resultSet, i) -> Doctor.builder()
             .id(resultSet.getLong("id"))

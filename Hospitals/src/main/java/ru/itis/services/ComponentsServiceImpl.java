@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.models.Doctor;
 import ru.itis.models.Procedure;
 import ru.itis.models.Reception;
@@ -9,11 +10,8 @@ import java.util.List;
 
 public class ComponentsServiceImpl implements ComponentsService {
 
+    @Autowired
     ComponentsRepository componentsRepository;
-
-    public ComponentsServiceImpl(ComponentsRepository componentsRepository) {
-        this.componentsRepository = componentsRepository;
-    }
 
     @Override
     public List<Doctor> getDoctors(Long hospitalId) {
