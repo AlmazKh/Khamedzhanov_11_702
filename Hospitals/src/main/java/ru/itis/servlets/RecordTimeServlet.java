@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/recordtime")
+@WebServlet("/recordtimeServlet")
 public class RecordTimeServlet extends HttpServlet {
 
     private RecordService recordService;

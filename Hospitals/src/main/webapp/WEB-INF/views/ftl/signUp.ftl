@@ -32,17 +32,17 @@
                     </a>
                 </div>
                 <!-- '"` --><!-- </textarea></xmp> -->
-                <form method="post">
+                <form action="/signUp" method="post">
                     <div class="sign-up-form-header p-0">
                         <h1>Sign up to Hospital Service</h1>
                     </div>
 
                     <div class="sign-up-form-body mt-3">
                         <label for="first_name" style="margin-right: 7vw;" >First name</label>
-                        <input type="text" name="first_name" id="first_name" placeholder="Ivan" required="required" class="form-control input-block" tabindex="1">
+                        <input type="text" name="firstName" id="first_name" placeholder="Ivan" required="required" class="form-control input-block" tabindex="1">
 
                         <label for="last_name" style="margin-right: 7vw;" >Last name</label>
-                        <input type="text" name="last_name" id="last_name" placeholder="Ivanov" required="" class="form-control input-block" tabindex="2">
+                        <input type="text" name="lastName" id="last_name" placeholder="Ivanov" required="" class="form-control input-block" tabindex="2">
 
                         <div class="radio">
                             <span>Пол</span>
@@ -68,7 +68,7 @@
 
                 <%--<p class="create-account-callout mt-3">--%>
                 <%--New to Hospital Service?--%>
-                <%--<a data-ga-click="Sign in, switch to sign up" href="/singUp">Create an account</a>.--%>
+                <%--<a data-ga-click="Sign in, switch to sign up" href="/signUp">Create an account</a>.--%>
                 <%--</p>--%>
             </div>
         </div>

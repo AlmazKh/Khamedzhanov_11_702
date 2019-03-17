@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="text-center" background= "img/wallpaper.jpg">
+<body class="text-center" background= "static/img/wallpaper.jpg">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
     <a class="navbar-brand" href="/starterPage">
-        <img src="img/logo_withHS.png" width="109" height="49" >
+        <img src="static/img/logo_withHS.png" width="109" height="49" >
         <!--  <img src="logo_withHS.png">  -->
         <!-- <h1>HS</h1> --></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -68,7 +68,7 @@
                 </div>
                 <div class="row">
                     <h2 class="sub-header" style="padding-top: 5vw">Here you can see list of doctors</h2>
-                    <div class="table-responsive" id="docorts_table">
+                    <div class="table-responsive" id="doctors_table">
                     </div>
                 </div>
             </div>
@@ -90,6 +90,7 @@
 <script>
     function showTable() {
         var selectedHospital = $("#selectHospital").val();
+        alert(selectedHospital);
         $.ajax({
             type: 'post',
             url: '/doctors',
@@ -100,6 +101,7 @@
             var tableHtml = "";
             tableHtml += '<table  class="table table-striped">';
             tableHtml += '<thead>';
+            alert('g1');
             tableHtml +=
                     '<tr>' +
                     '<th>' + '#' + '</th>' +
@@ -109,7 +111,9 @@
                     '<th>' + 'Rating' + '</th>' +
                     '</tr>';
             tableHtml += '</thead>';
+            alert(data[0]);
             for (var i = 0; i < data.length; i++) {
+                alert('g2');
                 tableHtml += '<tbody>';
                 tableHtml += '<tr>' +
                         '<td>' + (i+1) + '</td>' +
@@ -121,7 +125,7 @@
                 tableHtml += '</tbody>';
             }
             tableHtml += '</table>';
-            $("#docorts_table").html(tableHtml);
+            $("#doctors_table").html(tableHtml);
         }).fail(function () {
             alert('ALL BAD')
         });

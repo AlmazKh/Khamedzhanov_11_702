@@ -43,6 +43,10 @@
 
     <bean id="feedbackRepository" class="ru.itis.repositories.FeedbackRepositoryImpl"/>
 
+    <bean id="recordService" class="ru.itis.services.RecordServiceImpl"/>
+
+    <bean id="recordRepository" class="ru.itis.repositories.RecordRepositoryImpl"/>
+
 
 
 

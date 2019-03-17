@@ -138,7 +138,7 @@
                             <input type="email" required="" id="user_mail" name="email">
 
                             <label for="user_text">Your message:</label>
-                            <textarea name="text" id="user_text" cols="30" rows="10" placeholder="Ваш текст" ></textarea>
+                            <textarea name="text" id="user_text" cols="30" rows="10" placeholder="Your text" ></textarea>
 
                             <input type="submit" id="submit_button" class="btn blue" data-toggle="modal" data-target="#feedbackModal" value="SUBMIT">
                         </form>

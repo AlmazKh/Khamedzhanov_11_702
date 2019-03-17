@@ -23,7 +23,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
-@WebServlet("/record")
+@WebServlet("/recordServlet")
 public class RecordServlet extends HttpServlet {
 
     private RecordService recordService;

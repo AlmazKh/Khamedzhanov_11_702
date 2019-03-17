@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.models.Doctor;
 import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
@@ -10,11 +11,8 @@ import java.util.List;
 
 public class RecordServiceImpl implements RecordService {
 
+    @Autowired
     RecordRepository recordRepository;
-
-    public RecordServiceImpl(RecordRepository recordRepository) {
-        this.recordRepository = recordRepository;
-    }
 
     @Override
     public List<Hospital> getHospitals() {

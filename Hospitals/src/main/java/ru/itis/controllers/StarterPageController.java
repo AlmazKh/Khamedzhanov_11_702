@@ -36,7 +36,7 @@ public class StarterPageController {
     }
 
     @RequestMapping(value = "/starterPage", method = RequestMethod.GET)
-    public ModelAndView getStarterPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ModelAndView getStarterPage(HttpServletRequest request, HttpServletResponse response) {
         User user = currentUser(request);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("starterPage");
@@ -47,35 +47,8 @@ public class StarterPageController {
     }
 
     @RequestMapping(value = "/starterPage", method = RequestMethod.POST)
-    public  ModelAndView getFeedback(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("starterPage");
-        FeedbackForm feedbackForm = FeedbackForm.builder()
-                .name(request.getParameter("name"))
-                .phone(request.getParameter("phone"))
-                .email(request.getParameter("email"))
-                .text(request.getParameter("text"))
-                .build();
+    public String getFeedback(FeedbackForm feedbackForm) {
         feedbackService.addFeedback(feedbackForm);
-        User user = currentUser(request);
-        if (!user.getFirstName().equals("***")) {
-            modelAndView.addObject("user", user);
-        }
-        return modelAndView;
+        return "redirect:/starterPage";
     }
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        FeedbackForm feedbackForm = FeedbackForm.builder()
-//                .name(req.getParameter("name"))
-//                .phone(req.getParameter("phone"))
-//                .email(req.getParameter("email"))
-//                .text(req.getParameter("text"))
-//                .build();
-//        feedbackService.addFeedback(feedbackForm);
-//        User user = currentUser(req);
-//        if (!user.getFirstName().equals("***")) {
-//            req.setAttribute("user", user);
-//        }
-//        req.getRequestDispatcher("ftl/starterPage.ftl").forward(req, resp);
-//    }
 }

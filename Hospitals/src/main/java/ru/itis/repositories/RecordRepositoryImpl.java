@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.Doctor;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class RecordRepositoryImpl implements RecordRepository {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     //language=SQL
@@ -42,10 +44,6 @@ public class RecordRepositoryImpl implements RecordRepository {
     //language=SQL
     private static final String SQL_INSERT_RECEPTION =
             "INSERT INTO reception (cabinet_number, date, time, doctor_id, patient_id) VALUES (?, ?, ?, ?, ?)";
-
-    public RecordRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     private RowMapper<Hospital> hospitalRowMapper = (resultSet, i) -> Hospital.builder()
             .id(resultSet.getLong("id"))

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Optional;
 
-@WebServlet("/login")
+@WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
 
     private LoginService loginService;
