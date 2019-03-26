@@ -3,16 +3,11 @@ package ru.itis.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ru.itis.models.Doctor;
-import ru.itis.models.Hospital;
-import ru.itis.models.Reception;
-import ru.itis.models.User;
+import ru.itis.models.*;
 import ru.itis.services.ComponentsService;
 import ru.itis.services.LoginService;
 import ru.itis.services.RecordService;
@@ -67,7 +62,7 @@ public class ComponentsController {
 
 
     @RequestMapping(value = "/doctors", method = RequestMethod.GET)
-    protected ModelAndView getDoctorsPage() {
+    public ModelAndView getDoctorsPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("doctors");
         List<Doctor> doctors = recordService.getDoctors();
@@ -80,15 +75,33 @@ public class ComponentsController {
     @RequestMapping(value = "/doctors", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Doctor> showDoctorsTable(@RequestBody HttpServletRequest req) {
-        List<Hospital> hospitals = recordService.getHospitals();
-//        req.setAttribute("hospitals", hospitals);
-        String hospitalId = req.getParameter("hospital_id");
-        if (hospitalId != null){
-            return componentsService.getDoctors(Long.parseLong(hospitalId));
+    public List<Doctor> showDoctorsTable(@RequestBody String hospital_id) {
+        if (hospital_id != null){
+            return componentsService.getDoctors(Long.parseLong(hospital_id.replaceAll("\\D+","")));
         } else {
             return null;
         }
     }
 
+    @RequestMapping(value = "/procedures", method = RequestMethod.GET)
+    private ModelAndView getProceduresPage () {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("procedures");
+        List<Procedure> procedures = recordService.getProcedures();
+        List<Hospital> hospitals = recordService.getHospitals();
+        modelAndView.addObject("procedures", procedures);
+        modelAndView.addObject("hospitals", hospitals);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/procedures", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Procedure> showProceduresTable(@RequestBody String hospital_id) {
+        if (hospital_id != null){
+            return componentsService.getProcedures(Long.parseLong(hospital_id.replaceAll("\\D+","")));
+        } else {
+            return null;
+        }
+    }
 }

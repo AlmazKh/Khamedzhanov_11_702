@@ -22,6 +22,7 @@
         var selectedDoctor = $("#selectHospital").val();
         $.ajax({
             type: 'get',
+            contentType: "application/json",
             url: '/recordprocedures',
             data: {
                 hospital_id: selectedDoctor
@@ -40,6 +41,7 @@
         var selectedProcedure = $("#selectProcedure").val();
         $.ajax({
             type: 'get',
+            contentType: "application/json",
             url: '/recorddoctors',
             data: {
                 hospital_id: selectedHospital,
@@ -60,6 +62,7 @@
 
         $.ajax({
             type: 'get',
+            contentType: "application/json",
             url: '/recordtime',
             data: {
                 doctor_id: selectedDoctor,

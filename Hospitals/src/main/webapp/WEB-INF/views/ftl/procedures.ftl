@@ -93,6 +93,7 @@
         $.ajax({
             type: 'post',
             url: '/procedures',
+            contentType: "application/json",
             data: {
                 hospital_id: selectedHospital
             }

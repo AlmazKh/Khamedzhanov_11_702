@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <head>
     <title>Doctors</title>
     <meta charset="UTF-8">
@@ -84,7 +85,7 @@
 <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="starter-template.css" rel="stylesheet">
+<#--<link href="starter-template.css" rel="stylesheet">-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous">
 <script>
@@ -93,6 +94,7 @@
         alert(selectedHospital);
         $.ajax({
             type: 'post',
+            contentType: "application/json",
             url: '/doctors',
             data: {
                 hospital_id: selectedHospital
@@ -101,7 +103,6 @@
             var tableHtml = "";
             tableHtml += '<table  class="table table-striped">';
             tableHtml += '<thead>';
-            alert('g1');
             tableHtml +=
                     '<tr>' +
                     '<th>' + '#' + '</th>' +
@@ -111,9 +112,7 @@
                     '<th>' + 'Rating' + '</th>' +
                     '</tr>';
             tableHtml += '</thead>';
-            alert(data[0]);
             for (var i = 0; i < data.length; i++) {
-                alert('g2');
                 tableHtml += '<tbody>';
                 tableHtml += '<tr>' +
                         '<td>' + (i+1) + '</td>' +

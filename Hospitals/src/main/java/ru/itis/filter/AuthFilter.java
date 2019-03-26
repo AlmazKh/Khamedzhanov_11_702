@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //@WebFilter({"/record", "/history"})
-@WebFilter({"/record"})
+//@WebFilter({"/record"})
 public class AuthFilter implements Filter {
 
     private LoginService service;
