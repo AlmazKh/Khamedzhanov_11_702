@@ -95,12 +95,12 @@ public class ComponentsController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/procedures", method = RequestMethod.POST,
+    @PostMapping(value = "/procedures",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Procedure> showProceduresTable(@RequestParam("hospital_id") String hospital_id) {
-        if (hospital_id != null){
-            return componentsService.getProcedures(Long.parseLong(hospital_id.replaceAll("\\D+","")));
+    public List<Procedure> showProceduresTable(@RequestParam("hospital_id") String hospitalId) {
+        if (hospitalId != null){
+            return componentsService.getProcedures(Long.parseLong(hospitalId));
         } else {
             return null;
         }

@@ -90,15 +90,14 @@
       crossorigin="anonymous">
 <script>
     function showTable() {
-        //let selectedHospital =
-          //    ;
-               // $("#selectHospital").val();
+        let selectedHospital = $("#selectHospital").val();
+        // document.getElementById("selectHospital").value
         $.ajax({
             type: 'post',
             url: '/procedures',
           // contentType: "application/json",
             data: {
-                hospital_id: document.getElementById("selectHospital").value
+                hospital_id: selectedHospital
             }
         }).done(function (data) {
             var tableHtml = "";
