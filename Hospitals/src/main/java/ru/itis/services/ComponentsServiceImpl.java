@@ -2,6 +2,7 @@ package ru.itis.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.models.Doctor;
+import ru.itis.models.Hospital;
 import ru.itis.models.Procedure;
 import ru.itis.models.Reception;
 import ru.itis.repositories.ComponentsRepository;
@@ -31,5 +32,10 @@ public class ComponentsServiceImpl implements ComponentsService {
     @Override
     public List<Doctor> getDoctorsNameById(Long patientId) {
         return componentsRepository.getDoctorsNameById(patientId);
+    }
+
+    @Override
+    public List<Hospital> getHospitalsByAddress(String address) {
+        return componentsRepository.getHospitalsByAddress(address);
     }
 }

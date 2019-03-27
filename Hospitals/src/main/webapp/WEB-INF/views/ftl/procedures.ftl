@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <title>Doctors</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,10 +80,7 @@
         </div>
 </main>
 
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+
 <!-- Bootstrap core CSS -->
 <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -89,13 +90,15 @@
       crossorigin="anonymous">
 <script>
     function showTable() {
-        var selectedHospital = $("#selectHospital").val();
+        //let selectedHospital =
+          //    ;
+               // $("#selectHospital").val();
         $.ajax({
             type: 'post',
             url: '/procedures',
-            contentType: "application/json",
+          // contentType: "application/json",
             data: {
-                hospital_id: selectedHospital
+                hospital_id: document.getElementById("selectHospital").value
             }
         }).done(function (data) {
             var tableHtml = "";

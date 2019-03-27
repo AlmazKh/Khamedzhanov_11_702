@@ -35,6 +35,16 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
     private static final String SQL_SELECT_RECEPTIONS=
             "SELECT * FROM reception WHERE patient_id = ?";
 
+    //language=SQL
+    private static final String SQL_SEARCH =
+            "SELECT * FROM hospital WHERE hospital.address ilike ?";
+
+    private RowMapper<Hospital> hospitalRowMapper = (resultSet, i) -> Hospital.builder()
+            .id(resultSet.getLong("id"))
+            .address(resultSet.getString("address"))
+            .phone(resultSet.getString("phone"))
+            .build();
+
     private RowMapper<Doctor> doctorRowMapper = (resultSet, i) -> Doctor.builder()
             .id(resultSet.getLong("id"))
             .firstName(resultSet.getString("first_name"))
@@ -78,6 +88,11 @@ public class ComponentsRepositoryImpl implements ComponentsRepository {
     @Override
     public List<Doctor> getDoctorsNameById(Long patientId) {
         return jdbcTemplate.query(SQL_SELECT_DOCTORS_BY_PATIENT_ID, doctorNameRowMapper, patientId);
+    }
+
+    @Override
+    public List<Hospital> getHospitalsByAddress(String address) {
+        return jdbcTemplate.query(SQL_SEARCH, hospitalRowMapper, "%" + address + "%");
     }
 
     @Override

@@ -12,5 +12,6 @@ public interface ComponentsRepository extends CrudRepository<Hospital> {
     List<Procedure> getProcedures(Long hospitalId);
     List<Reception> getReception(Long userId);
     List<Doctor> getDoctorsNameById(Long patientId);
+    List<Hospital> getHospitalsByAddress(String address);
 
 }

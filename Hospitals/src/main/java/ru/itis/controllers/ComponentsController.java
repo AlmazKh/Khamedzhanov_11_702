@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.itis.models.*;
@@ -95,13 +96,28 @@ public class ComponentsController {
     }
 
     @RequestMapping(value = "/procedures", method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Procedure> showProceduresTable(@RequestBody String hospital_id) {
+    public List<Procedure> showProceduresTable(@RequestParam("hospital_id") String hospital_id) {
         if (hospital_id != null){
             return componentsService.getProcedures(Long.parseLong(hospital_id.replaceAll("\\D+","")));
         } else {
             return null;
         }
+    }
+
+    @GetMapping(value = "/hospitals")
+    public String getHospitalsPage() {
+        return "hospitals";
+    }
+
+    @PostMapping(value = "/hospitals")
+    @ResponseBody
+    public String getHospitals(@RequestParam("q") String query, ModelMap modelMap) {
+        if (query != null) {
+            modelMap.addAttribute(componentsService.getHospitalsByAddress(query));
+            return "hospitals";
+        }
+        return "hospitals";
     }
 }
