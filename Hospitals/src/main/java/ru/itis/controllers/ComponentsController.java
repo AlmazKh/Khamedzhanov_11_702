@@ -111,13 +111,14 @@ public class ComponentsController {
         return "hospitals";
     }
 
-    @PostMapping(value = "/hospitals")
+    @GetMapping(value = "/hospitals/search",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getHospitals(@RequestParam("q") String query, ModelMap modelMap) {
+    public List<Hospital> getHospitals(@RequestParam("q") String query) {
+        int i = 0;
         if (query != null) {
-            modelMap.addAttribute(componentsService.getHospitalsByAddress(query));
-            return "hospitals";
+            return componentsService.getHospitalsByAddress(query);
         }
-        return "hospitals";
+        return null;
     }
 }

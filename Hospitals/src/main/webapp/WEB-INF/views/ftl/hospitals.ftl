@@ -21,34 +21,42 @@
 
 <script>
     function search(query) {
+        alert(query);
         $.ajax({
-            type: 'post',
-            url: '/hospitals',
-            contentType: "application/json",
+            type: 'get',
+            url: '/hospitals/search',
             data: {
                 q: query
             }
         }).done(function (data) {
             let tableHtml = "";
-            tableHtml += '<table>';
-            tableHtml +=
-                    '<tr>' +
-                    '<th>' +
-                    '#' +
-                    '</th>' +
-                    '<th>' +
-                    'Address' +
-                    '</th>' +
-                    '</tr>';
-
-            for (let i = 0; i < data.length; i++) {
-                tableHtml += '<tr>' +
-                        '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].address + '</td>' +
-                        '<td>' + data[i].phone + '</td>' +
+            if (data){
+                tableHtml += '<table>';
+                tableHtml +=
+                        '<tr>' +
+                        '<th>' +
+                        '#' +
+                        '</th>' +
+                        '<th>' +
+                        'Address' +
+                        '</th>' +
+                        '<th>' +
+                        'Phone' +
+                        '</th>' +
                         '</tr>';
+                alert(data);
+                for (let i = 0; i < data.length; i++) {
+                    tableHtml += '<tr>' +
+                            '<td>' + data[i].id + '</td>' +
+                            '<td>' + data[i].address + '</td>' +
+                            '<td>' + data[i].phone + '</td>' +
+                            '</tr>';
+                }
+                tableHtml += '</table>';
+            } else {
+                tableHtml = '<h1>No such hospitals</h1>'
             }
-            tableHtml += '</table>';
+
             $("#hospitals_table").html(tableHtml);
         }).fail(function () {
             alert('ALL BAD')
