@@ -17,12 +17,8 @@ public class LoginServiceImpl implements LoginService {
     private AuthRepository authRepository;
     @Autowired
     private UsersRepository usersRepository;
-
+    @Autowired
     private BCryptPasswordEncoder encoder;
-
-    public LoginServiceImpl() {
-        this.encoder = new BCryptPasswordEncoder();
-    }
 
     @Override
     public Optional<String> login(LoginForm loginForm) {

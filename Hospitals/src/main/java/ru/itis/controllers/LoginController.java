@@ -2,6 +2,8 @@ package ru.itis.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,22 +24,14 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     private String getLoginPage () {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    private String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String phone = req.getParameter("login");
-        String password = req.getParameter("password");
-        LoginForm loginForm = LoginForm.builder()
-                .phone(phone)
-                .password(password)
-                .build();
-
+    @PostMapping(value = "/login")
+    private String login(LoginForm loginForm ,HttpServletRequest req, HttpServletResponse resp) {
         Optional<String> optionalCookieValue = loginService.login(loginForm);
-
         if (optionalCookieValue.isPresent()) {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());
             resp.addCookie(cookie);
