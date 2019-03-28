@@ -30,7 +30,7 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login")
-    private String login(LoginForm loginForm ,HttpServletRequest req, HttpServletResponse resp) {
+    private String login(LoginForm loginForm, HttpServletResponse resp) {
         Optional<String> optionalCookieValue = loginService.login(loginForm);
         if (optionalCookieValue.isPresent()) {
             Cookie cookie = new Cookie("auth", optionalCookieValue.get());

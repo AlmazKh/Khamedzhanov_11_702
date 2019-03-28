@@ -115,7 +115,6 @@ public class ComponentsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<Hospital> getHospitals(@RequestParam("q") String query) {
-        int i = 0;
         if (query != null) {
             return componentsService.getHospitalsByAddress(query);
         }

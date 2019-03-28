@@ -23,7 +23,7 @@
         $.ajax({
             type: 'get',
             contentType: "application/json",
-            url: '/recordprocedures',
+            url: '/record/procedures',
             data: {
                 hospital_id: selectedDoctor
             }
@@ -42,7 +42,7 @@
         $.ajax({
             type: 'get',
             contentType: "application/json",
-            url: '/recorddoctors',
+            url: '/record/doctors',
             data: {
                 hospital_id: selectedHospital,
                 procedure_id: selectedProcedure
@@ -63,7 +63,7 @@
         $.ajax({
             type: 'get',
             contentType: "application/json",
-            url: '/recordtime',
+            url: '/record/time',
             data: {
                 doctor_id: selectedDoctor,
                 date: selectedDate
@@ -78,12 +78,12 @@
     })
 
 </script>
-<body background= "img/wallpaper.jpg" >
+<body background= "static/img/wallpaper.jpg" >
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
     <a class="navbar-brand" href="/starterPage">
-        <img src="img/logo_withHS.png" width="109" height="49" >
+        <img src="static/img/logo_withHS.png" width="109" height="49" >
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
