@@ -1,0 +1,52 @@
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+@font-face {
+    font-family: 'OS';
+    src: local('Open Sans'), local('OpenSans'), 
+    url('../fonts/opensans/opensans.woff2') format('woff2'), 
+    url('../fonts/opensans/opensans.woff') format('woff'),
+    url('../fonts/opensans/opensans.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'YK';
+    src: local('Yanone Kaffeesatz'), local('YanoneKaffeesatz-Regular'), 
+    url('../fonts/yanone/yanonekaffeesatz.woff2') format('woff2'), 
+    url('../fonts/yanone/yanonekaffeesatz.woff') format('woff'), 
+    url('../fonts/yanone/yanonekaffeesatz.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.contacts .block_title { text-align: left;  }
+.contacts_box { font-size: 0; margin: 0 -20px; }
+.contacts_info, .contact_form  { display: inline-block; vertical-align: top; width: 50%; padding: 20px; }
+.contact_form {  } 
+
+.contacts_info p { font: 24px/1.5 "OS"; padding-bottom: 15px; }
+.contacts_info p span,
+.contact_form label { 
+	text-transform: uppercase; color: #444; font: 14px/1.3 "OS"; display: block; }
+
+.contact_form label { padding-bottom: 5px;  }
+
+.contact_form input,
+.contact_form textarea { 
+ 	display: block; width: 100%; height: 44px; border: 2px solid #333;
+ 	 font: 18px/1 "OS"; padding: 0 15px; }
+.contact_form input { margin-bottom: 15px; }
+
+.contact_form input[type="submit"] { margin: 20px 0 0 0; border: none; 
+	/*color: #FFF;*/ width: auto; display: inline-block; font-weight: 700; }
+
+
+/*9.10.2018*/
+.map {  }
+.map iframe { width: 100%; height: 280px; }
+
+.contact_form textarea { resize: vertical; min-height: 120px; padding: 10px 15px; }
+.contact_form h5 { font: 32px/1.5 "YK"; }
+/*.contacts_block { padding: 30px; }*/
+
+/*header { position: fixed; top: 0, left: 0; background: #FFF; width: 100vw; z-index: 999; }*/

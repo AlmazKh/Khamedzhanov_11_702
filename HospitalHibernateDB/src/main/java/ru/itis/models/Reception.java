@@ -16,14 +16,14 @@ public class Reception {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @ManyToOne
-//    @JoinColumn(name = "id")
-//    private Polis polis;
     @Column(length = 5)
     private Integer cabinetNumber;
-//    @ManyToOne
-//    @JoinColumn(name = "id")
-//    private Doctor doctor;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private User user;
     @Column(length = 15)
     private String date;
     @Column(length = 15)
