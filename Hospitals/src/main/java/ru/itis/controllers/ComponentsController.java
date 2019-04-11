@@ -85,14 +85,12 @@ public class ComponentsController {
     }
 
     @RequestMapping(value = "/procedures", method = RequestMethod.GET)
-    private ModelAndView getProceduresPage () {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("procedures");
+    private String getProceduresPage (ModelMap modelMap) {
         List<Procedure> procedures = recordService.getProcedures();
         List<Hospital> hospitals = recordService.getHospitals();
-        modelAndView.addObject("procedures", procedures);
-        modelAndView.addObject("hospitals", hospitals);
-        return modelAndView;
+        modelMap.addAttribute("procedures", procedures);
+        modelMap.addAttribute("hospitals", hospitals);
+        return "procedures";
     }
 
     @PostMapping(value = "/procedures",

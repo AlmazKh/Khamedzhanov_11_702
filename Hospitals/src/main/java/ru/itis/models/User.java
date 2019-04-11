@@ -21,5 +21,5 @@ public class User {
     private String lastName;
     private String gender;
     private Polis polis;
-    private List<Reception> receptions;
+//    private List<Reception> receptions;
 }

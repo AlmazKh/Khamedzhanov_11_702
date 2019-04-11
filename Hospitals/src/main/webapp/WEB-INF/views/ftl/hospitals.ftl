@@ -21,7 +21,7 @@
 
 <script>
     function search(query) {
-        alert(query);
+        // alert(query);
         $.ajax({
             type: 'get',
             url: '/hospitals/search',
@@ -31,7 +31,7 @@
         }).done(function (data) {
             let tableHtml = "";
             if (data){
-                tableHtml += '<table>';
+                tableHtml += '<table class="table table-striped">';
                 tableHtml +=
                         '<tr>' +
                         '<th>' +
@@ -44,7 +44,7 @@
                         'Phone' +
                         '</th>' +
                         '</tr>';
-                alert(data);
+                // alert(data);
                 for (let i = 0; i < data.length; i++) {
                     tableHtml += '<tr>' +
                             '<td>' + data[i].id + '</td>' +
