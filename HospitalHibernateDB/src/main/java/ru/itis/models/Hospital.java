@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

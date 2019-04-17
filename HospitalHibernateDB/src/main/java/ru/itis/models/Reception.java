@@ -22,7 +22,7 @@ public class Reception {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
     @ManyToOne
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "user_id")
     private User user;
     @Column(length = 15)
     private String date;
