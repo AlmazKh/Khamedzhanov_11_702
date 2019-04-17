@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
 </head>
-<body class="text-center" background= "static/img/wallpaper.jpg">
+<body class="text-center" background= "/img/wallpaper.jpg">
 
 <div class="container" >
 
@@ -28,7 +28,7 @@
             <div class="auth-form px-3" id="login" >
                 <div class="navbar-header" >
                     <a class="navbar-brand" href="file:///C:/Users/Almaz/Desktop/HS/starterPage.html#">
-                        <img src="static/img/logo.png">
+                        <img src="/img/logo.png">
                     </a>
                 </div>
                 <form method="post">
@@ -42,7 +42,7 @@
                         <label for="login_field" style="margin-right: 7vw;">
                             Phone number
                         </label>
-                        <input type="text" name="phone" id="login_field" class="form-control input-block" tabindex="1">
+                        <input type="text" name="phone" id="login_field" class="form-control input-field" tabindex="1">
 
                         <label for="password" style="margin-right: 7vw;">
                             Password <a class="label-link" href="/starterPage">Forgot password?</a>
