@@ -36,7 +36,9 @@
                     <div class="auth-form-header p-0">
                         <h1>Sign in to Hospital Service</h1>
                     </div>
-
+                    <#if error??>
+                         <h1>Неправильный логин или пароль</h1>
+                    </#if>
                     <div class="auth-form-body mt-3">
 
                         <label for="login_field" style="margin-right: 7vw;">

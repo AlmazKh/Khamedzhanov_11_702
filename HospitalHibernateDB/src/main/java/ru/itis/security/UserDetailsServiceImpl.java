@@ -11,7 +11,7 @@ import ru.itis.repositories.UsersRepository;
 
 import java.util.Optional;
 
-@Component(value = "my")
+@Component(value = "customUserDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -23,6 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         if (userOptional.isPresent()) {
             return new UserDetailsImpl(userOptional.get());
-        } else throw new SecurityException();
+        } else throw new SecurityException("User with phone <" + phone + "> not found");
     }
 }

@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    @Qualifier("my")
+    @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
 
     @Override
@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/record").authenticated()
                 .antMatchers("/history").authenticated()
+                .antMatchers("/confirm/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")

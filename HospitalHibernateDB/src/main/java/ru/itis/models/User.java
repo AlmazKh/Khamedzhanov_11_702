@@ -18,7 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 12)
+    @Column(length = 40)
     private String phone;
     @Column(name = "password_hash", length = 200)
     private String hashPassword;
@@ -28,4 +28,13 @@ public class User {
     private String lastName;
     @Column(length = 5)
     private String gender;
+
+    @Enumerated(value = EnumType.STRING)
+    private UserState state;
+
+    private String confirmString;
+
+    public boolean isEnabled() {
+        return this.getState().equals(UserState.CONFIRMED);
+    }
 }

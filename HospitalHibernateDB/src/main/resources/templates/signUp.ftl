@@ -57,7 +57,7 @@
                         </div>
 
                         <label for="phone" style="margin-right: 3vw;" >Phone number</label>
-                        <input type="text" name="phone" id="phone" required="" placeholder="89677704863" pattern="[0-9]{7,20}" class="form-control input-block" tabindex="3">
+                        <input type="text" name="phone" id="phone" required="" placeholder="89677704863"  class="form-control input-block" tabindex="3">
 
                         <label for="password" style="margin-right: 7vw;" >Password</label>
                         <input type="password" name="password" required="" id="password" class="form-control form-control input-block" tabindex="4">
