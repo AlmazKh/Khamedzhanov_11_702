@@ -50,7 +50,7 @@
 //        }
 //    }
 //
-//    @RequestMapping(value = "/history", method = RequestMethod.GET)
+//    @GetMapping(value = "/history")
 //    public ModelAndView getHistoryPage(HttpServletRequest req) throws Exception {
 //        List<Reception> receptions = componentsService.getReception(currentUser(req).getId());
 //        List<Doctor> doctors = componentsService.getDoctorsNameById(currentUser(req).getId());

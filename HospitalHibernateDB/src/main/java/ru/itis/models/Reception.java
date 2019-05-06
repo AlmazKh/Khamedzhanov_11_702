@@ -16,8 +16,6 @@ public class Reception {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 5)
-    private Integer cabinetNumber;
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;

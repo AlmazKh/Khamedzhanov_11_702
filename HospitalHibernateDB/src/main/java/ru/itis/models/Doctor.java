@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -30,4 +31,6 @@ public class Doctor {
     @ManyToOne
     @JoinColumn(name = "procedure_id")
     private Procedure procedure;
+    @OneToMany(mappedBy = "doctor", fetch=FetchType.LAZY)
+    private List<Reception> receptions;
 }
