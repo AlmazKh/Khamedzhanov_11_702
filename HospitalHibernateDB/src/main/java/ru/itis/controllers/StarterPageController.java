@@ -1,12 +1,14 @@
 package ru.itis.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.itis.forms.FeedbackForm;
 import ru.itis.models.User;
+import ru.itis.security.UserDetailsImpl;
 import ru.itis.services.FeedbackService;
 import ru.itis.services.LoginService;
 
@@ -20,24 +22,11 @@ public class StarterPageController {
     @Autowired
     private FeedbackService feedbackService;
 
-    private User currentUser(HttpServletRequest req) {
-        Cookie[] cookies = req.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("auth")) {
-                if (loginService.isExistByCookie(cookie.getValue())) {
-                    return loginService.getIdByCookie(cookie.getValue());
-                }
-            }
-        }
-        return User.builder().firstName("***").build();
-    }
-
     @GetMapping(value = "/starterPage")
-    public String getStarterPage(HttpServletRequest request, ModelMap modelMap){
-        User user = currentUser(request);
-        if (!user.getFirstName().equals("***")) {
-            modelMap.addAttribute("user", user);
-        }
+    public String getStarterPage(Authentication authentication, ModelMap modelMap){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userDetails.getUser();
+        modelMap.addAttribute("user", user);
         return "starterPage";
     }
 
