@@ -23,7 +23,7 @@
                 <a class="nav-link" href="/starterPage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" role="button">
+                <a class="nav-link" href="/hospitals" role="button">
                     Hospitals
                 </a>
             </li>
@@ -74,7 +74,7 @@
                                     <tr>
                                         <td>${reception?counter}</td>
                                         <td> ${reception.date}, ${reception.time}</td>
-                                        <td>${reception.cabinetNumber}</td>
+                                        <td>${doctors[reception?index].cabinetNumber}</td>
                                         <td>${doctors[reception?index].lastName}</td>
                                     <#--<td>${doctor.lastName}</td>-->
                                     </tr>

@@ -36,7 +36,7 @@ public class RecordController {
     @ResponseBody
     public List<Procedure> getProcedures(@RequestParam(value = "hospital_id") Long hospitalId) {
         if (hospitalId != null) {
-            List<Procedure> list = componentsService.getProcedures(hospitalId);
+//            List<Procedure> list = componentsService.getProcedures(hospitalId);
             return componentsService.getProcedures(hospitalId);
         } else {
             return null;

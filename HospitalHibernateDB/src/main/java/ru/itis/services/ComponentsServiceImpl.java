@@ -41,12 +41,12 @@ public class ComponentsServiceImpl implements ComponentsService {
     }
 
     @Override
-    public List<Doctor> getDoctorsNameById(Long patientId) {
-        return doctorsRepository.findDoctorsByPatientId(patientId);
+    public List<Doctor> getDoctorsByPatientId(Long patientId) {
+        return doctorsRepository.getDoctorsByPatientId(patientId);
     }
 
     @Override
     public List<Hospital> getHospitalsByAddress(String address) {
-        return hospitalRepository.findHospitalsByAddress(address);
+        return hospitalRepository.getHospitalsByAddress("%" + address + "%");
     }
 }

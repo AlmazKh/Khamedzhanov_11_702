@@ -12,6 +12,6 @@ public interface ComponentsService {
     List<Doctor> getDoctors(Long hospitalId);
     List<Procedure> getProcedures(Long hospitalId);
     List<Reception> getReception(Long userId);
-    List<Doctor> getDoctorsNameById(Long patientId);
+    List<Doctor> getDoctorsByPatientId(Long patientId);
     List<Hospital> getHospitalsByAddress(String address);
 }

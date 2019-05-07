@@ -96,7 +96,7 @@
                 <a class="nav-link" href="/starterPage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" role="button">
+                <a class="nav-link" href="/hospitals" role="button">
                     Hospitals
                 </a>
             </li>
@@ -193,7 +193,12 @@
         <#--</div>-->
     </div>
 </main>
+<#--<script>-->
+    <#--$("#submit_button").onclick{-->
+        <#--alert("Recording successful")-->
+    <#--}-->
 
+<#--</script>-->
 <#--<script>-->
     <#--$("#submit_button").on('click', function (e) {-->
         <#--e.preventDefault();-->

@@ -98,7 +98,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/history" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
-                    Hello
+                    History
                 </a>
             </li>
         </ul>

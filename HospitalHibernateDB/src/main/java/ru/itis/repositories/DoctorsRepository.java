@@ -13,7 +13,7 @@ public interface DoctorsRepository extends JpaRepository<Doctor, Long> {
 
     List<Doctor> findDoctorsByHospital_Id(Long hospitalId);
 
-    @Query(value = "SELECT last_name FROM doctor d JOIN reception r ON d.id = r.doctor_id WHERE  patient_id = ?1", nativeQuery = true)
-    List<Doctor> findDoctorsByPatientId(Long patientId);
+    @Query(value = "SELECT * FROM doctor d JOIN reception r ON d.id = r.doctor_id WHERE  user_id = ?1", nativeQuery = true)
+    List<Doctor> getDoctorsByPatientId(Long patientId);
 
 }

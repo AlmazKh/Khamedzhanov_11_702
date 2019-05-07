@@ -25,7 +25,7 @@
                 <a class="nav-link" href="/starterPage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" role="button">
+                <a class="nav-link" href="/hospitals" role="button">
                     Hospitals
                 </a>
             </li>
@@ -41,7 +41,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/history" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: auto">
-                    Hello
+                    History
                 </a>
             </li>
         </ul>
