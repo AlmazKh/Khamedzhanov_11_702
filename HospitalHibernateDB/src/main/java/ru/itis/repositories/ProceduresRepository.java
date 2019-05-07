@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProceduresRepository extends JpaRepository<Procedure, Long> {
     @Query(value = "SELECT * FROM procedure p JOIN hospital_procedure hp ON p.id = hp.procedure_id WHERE hp.hospital_id = :hospitalId", nativeQuery = true)
     List<Procedure> findProceduresByHospitalId(@Param("hospitalId") Long hospitalId);
+//    List<Procedure> findProceduresByHospitals(Long hospitalId);
+//    List<Procedure> findAllByHospitals(Long hospitalId);
 }

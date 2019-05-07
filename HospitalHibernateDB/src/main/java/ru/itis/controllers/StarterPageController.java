@@ -24,9 +24,11 @@ public class StarterPageController {
 
     @GetMapping(value = "/starterPage")
     public String getStarterPage(Authentication authentication, ModelMap modelMap){
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        User user = userDetails.getUser();
-        modelMap.addAttribute("user", user);
+        if (authentication.getPrincipal() != null) {
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+            User user = userDetails.getUser();
+            modelMap.addAttribute("user", user);
+        }
         return "starterPage";
     }
 

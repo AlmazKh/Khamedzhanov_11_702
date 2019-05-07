@@ -1,5 +1,6 @@
 package ru.itis.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Doctor {
     @ManyToOne
     @JoinColumn(name = "procedure_id")
     private Procedure procedure;
+    @JsonManagedReference
     @OneToMany(mappedBy = "doctor", fetch=FetchType.LAZY)
     private List<Reception> receptions;
 }

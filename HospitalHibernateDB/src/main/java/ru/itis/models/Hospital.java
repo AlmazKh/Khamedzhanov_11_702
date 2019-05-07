@@ -1,5 +1,6 @@
 package ru.itis.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Hospital {
     private String address;
     @Column(length = 20)
     private String phone;
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name="hospital_procedure",

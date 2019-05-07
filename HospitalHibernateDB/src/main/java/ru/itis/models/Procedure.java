@@ -1,9 +1,9 @@
 package ru.itis.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +21,8 @@ public class Procedure {
     private String name;
     @Column
     private Integer price;
+//    @JsonIgnore
+    @JsonManagedReference
     @ManyToMany(mappedBy = "procedures")
     private List<Hospital> hospitals;
 }

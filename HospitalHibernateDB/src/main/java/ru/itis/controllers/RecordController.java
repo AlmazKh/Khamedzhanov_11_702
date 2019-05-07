@@ -34,9 +34,10 @@ public class RecordController {
 
     @RequestMapping(value = "/record/procedures", method = RequestMethod.GET)
     @ResponseBody
-    public List<Procedure> getProcedures(@RequestParam(value = "hospital_id") Long hosptalId) {
-        if (hosptalId != null) {
-            return componentsService.getProcedures(hosptalId);
+    public List<Procedure> getProcedures(@RequestParam(value = "hospital_id") Long hospitalId) {
+        if (hospitalId != null) {
+            List<Procedure> list = componentsService.getProcedures(hospitalId);
+            return componentsService.getProcedures(hospitalId);
         } else {
             return null;
         }
@@ -65,7 +66,7 @@ public class RecordController {
     }
 
     @PostMapping(value = "/record")
-    @ResponseBody
+//    @ResponseBody
     public String getResponseForRecording(ModelMap modelMap, Authentication authentication, RecordForm recordForm) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userDetails.getUser();

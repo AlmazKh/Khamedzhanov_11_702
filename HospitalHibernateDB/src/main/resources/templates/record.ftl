@@ -173,47 +173,47 @@
                  </#if>
             </div>
         </div>
-        <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Successfully recording</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Thanks for your using our service</h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <#--<div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">-->
+            <#--<div class="modal-dialog" role="document">-->
+                <#--<div class="modal-content">-->
+                    <#--<div class="modal-header">-->
+                        <#--<h5 class="modal-title" id="modalLabel">Successfully recording</h5>-->
+                        <#--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                            <#--<span aria-hidden="true">&times;</span>-->
+                        <#--</button>-->
+                    <#--</div>-->
+                    <#--<div class="modal-body">-->
+                        <#--<h5>Thanks for your using our service</h5>-->
+                    <#--</div>-->
+                    <#--<div class="modal-footer">-->
+                        <#--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
+        <#--</div>-->
     </div>
 </main>
 
-<script>
-    $("#submit_button").on('click', function (e) {
-        e.preventDefault();
-        var formDataSer = $("#record").serializeArray();
-        var formData = {};
-        formDataSer.forEach(function (i) {
-            formData[i.name] = i.value;
-        });
-        $.ajax({
-            type: 'post',
-            url: '/record',
-            data: formData
-        }).done(function (data) {
-            $("#recordModal").modal('show');
-            document.querySelectorAll('#record').forEach(function (e) {
-                e.value = '';
-            })
-        });
-    });
-</script>
+<#--<script>-->
+    <#--$("#submit_button").on('click', function (e) {-->
+        <#--e.preventDefault();-->
+        <#--var formDataSer = $("#record").serializeArray();-->
+        <#--var formData = {};-->
+        <#--formDataSer.forEach(function (i) {-->
+            <#--formData[i.name] = i.value;-->
+        <#--});-->
+        <#--$.ajax({-->
+            <#--type: 'post',-->
+            <#--url: '/record',-->
+            <#--data: formData-->
+        <#--}).done(function (data) {-->
+            <#--$("#recordModal").modal('show');-->
+            <#--document.querySelectorAll('#record').forEach(function (e) {-->
+                <#--e.value = '';-->
+            <#--})-->
+        <#--});-->
+    <#--});-->
+<#--</script>-->
 
 </body>
 </html>
