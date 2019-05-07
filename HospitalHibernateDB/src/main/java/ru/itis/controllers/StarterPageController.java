@@ -18,13 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class StarterPageController {
     @Autowired
-    private LoginService loginService;
-    @Autowired
     private FeedbackService feedbackService;
 
     @GetMapping(value = "/starterPage")
     public String getStarterPage(Authentication authentication, ModelMap modelMap){
-        if (authentication.getPrincipal() != null) {
+        if (authentication != null) {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             User user = userDetails.getUser();
             modelMap.addAttribute("user", user);
