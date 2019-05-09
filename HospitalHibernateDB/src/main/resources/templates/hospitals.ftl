@@ -113,8 +113,8 @@
                 <h1 class="page-header">List of hospitals</h1>
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="selectHospital">Please, write hospital address</label>
-                        <input id="q" type="text" onkeyup="search(document.getElementById('q').value)">
+                        <label for="q">Please, write hospital address</label>
+                        <input id="q" type="text" class="form-control input-field" onkeyup="search(document.getElementById('q').value)">
                     </div>
                 </div>
                 <div class="row">
