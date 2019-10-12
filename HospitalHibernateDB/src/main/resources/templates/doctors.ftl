@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="text-center" background= "static/img/wallpaper.jpg">
+<body class="text-center" background= "img/wallpaper.jpg">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-flex">
 
     <a class="navbar-brand" href="/starterPage">
-        <img src="static/img/logo_withHS.png" width="109" height="49" >
+        <img src="img/logo_withHS.png" width="109" height="49" >
         <!--  <img src="logo_withHS.png">  -->
         <!-- <h1>HS</h1> --></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

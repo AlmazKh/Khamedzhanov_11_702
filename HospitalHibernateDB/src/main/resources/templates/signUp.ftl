@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 
-    <title>Title</title>
+    <title>Sign up</title>
 
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
 </head>
-<body class="text-center" background= "static/img/wallpaper.jpg">
+<body class="text-center" background= "img/wallpaper.jpg">
 
 <div class="container" >
 
@@ -28,7 +28,7 @@
             <div class="auth-form px-3" id="login" >
                 <div class="navbar-header" >
                     <a class="navbar-brand" href="file:///C:/Users/Almaz/Desktop/HS/starterPage.html#">
-                        <img src="static/img/logo.png">
+                        <img src="img/logo.png">
                     </a>
                 </div>
                 <!-- '"` --><!-- </textarea></xmp> -->
@@ -66,10 +66,10 @@
                     </div>
                 </form>
 
-                <%--<p class="create-account-callout mt-3">--%>
-                <%--New to Hospital Service?--%>
-                <%--<a data-ga-click="Sign in, switch to sign up" href="/signUp">Create an account</a>.--%>
-                <%--</p>--%>
+                <p class="create-account-callout mt-3">
+                New to Hospital Service?
+                <a data-ga-click="Sign in, switch to sign up" href="/signUp">Create an account</a>.
+                </p>
             </div>
         </div>
     </div>

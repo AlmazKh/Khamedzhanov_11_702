@@ -66,7 +66,6 @@ public class RecordController {
     }
 
     @PostMapping(value = "/record")
-//    @ResponseBody
     public String getResponseForRecording(ModelMap modelMap, Authentication authentication, RecordForm recordForm) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userDetails.getUser();
